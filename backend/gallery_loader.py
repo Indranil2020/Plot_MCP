@@ -7,6 +7,8 @@ import json
 import random
 from pathlib import Path
 
+import os
+
 class GalleryLoader:
     def __init__(self, gallery_file="backend/matplotlib_gallery_examples_full.json"):
         self.gallery_file = gallery_file
@@ -15,20 +17,21 @@ class GalleryLoader:
     
     def _load_examples(self):
         """Load all gallery examples"""
-        try:
-            with open(self.gallery_file, 'r') as f:
-                return json.load(f)
-        except FileNotFoundError:
+        if not os.path.exists(self.gallery_file):
             print(f"Warning: {self.gallery_file} not found")
             return {}
+
+        with open(self.gallery_file, 'r') as f:
+            return json.load(f)
     
     def _load_kb(self):
         """Load knowledge base summary"""
-        try:
-            with open("backend/matplotlib_gallery_kb.json", 'r') as f:
-                return json.load(f)
-        except FileNotFoundError:
+        kb_path = "backend/matplotlib_gallery_kb.json"
+        if not os.path.exists(kb_path):
             return {}
+            
+        with open(kb_path, 'r') as f:
+            return json.load(f)
     
     def get_category_examples(self, category, limit=3):
         """Get examples from a specific category"""

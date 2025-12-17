@@ -30,13 +30,10 @@ class OllamaProvider(LLMProvider):
                 "num_predict": 2048
             }
         }
-        try:
-            response = requests.post(self.api_url, json=payload)
-            response.raise_for_status()
-            return response.json().get("response", "")
-        except requests.exceptions.RequestException as e:
-            print(f"Error calling Ollama: {e}")
-            return None
+        
+        response = requests.post(self.api_url, json=payload)
+        response.raise_for_status()
+        return response.json().get("response", "")
 
 class GeminiProvider(LLMProvider):
     def __init__(self, api_key, model="gemini-1.5-flash"):
@@ -44,17 +41,13 @@ class GeminiProvider(LLMProvider):
         self.model = genai.GenerativeModel(model)
 
     def generate(self, prompt, system_instruction=None):
-        try:
-            # Gemini handles system instructions differently, but for simplicity we'll prepend
-            full_prompt = prompt
-            if system_instruction:
-                full_prompt = f"{system_instruction}\n\n{prompt}"
-            
-            response = self.model.generate_content(full_prompt)
-            return response.text
-        except Exception as e:
-            print(f"Error calling Gemini: {e}")
-            return None
+        # Gemini handles system instructions differently, but for simplicity we'll prepend
+        full_prompt = prompt
+        if system_instruction:
+            full_prompt = f"{system_instruction}\n\n{prompt}"
+        
+        response = self.model.generate_content(full_prompt)
+        return response.text
 
 class OpenAIProvider(LLMProvider):
     def __init__(self, api_key, model="gpt-4o"):
@@ -67,21 +60,18 @@ class OpenAIProvider(LLMProvider):
             messages.append({"role": "system", "content": system_instruction})
         messages.append({"role": "user", "content": prompt})
 
-        try:
-            response = self.client.chat.completions.create(
-                model=self.model,
-                messages=messages,
-                temperature=0.2
-            )
-            return response.choices[0].message.content
-        except Exception as e:
-            print(f"Error calling OpenAI: {e}")
-            return None
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=messages,
+            temperature=0.2
+        )
+        return response.choices[0].message.content
 
 class LLMService:
     def __init__(self):
-        # Default to Ollama
-        self.provider = OllamaProvider()
+        # Default to Ollama with model from env or llama3
+        default_model = os.getenv("OLLAMA_MODEL", "llama3")
+        self.provider = OllamaProvider(model=default_model)
 
     def set_provider(self, provider_name, api_key=None, model_name=None):
         if provider_name.lower() == "gemini":
@@ -93,7 +83,8 @@ class LLMService:
                 raise ValueError("API Key required for OpenAI")
             self.provider = OpenAIProvider(api_key, model=model_name or "gpt-4o")
         else:
-            self.provider = OllamaProvider(model=model_name or "llama3")
+            default_model = os.getenv("OLLAMA_MODEL", "llama3")
+            self.provider = OllamaProvider(model=model_name or default_model)
         self.system_instruction = self._construct_system_instruction() # Update system instruction if provider changes
 
     async def process_query(self, query, context=None, current_code=None, history=None, data_analysis=None, url_analysis=None):
@@ -110,31 +101,26 @@ class LLMService:
         """
         prompt = self._construct_plot_prompt(query, context, current_code, history, data_analysis, url_analysis)
         
-        try:
-            response_text = self.provider.generate(prompt, self.system_instruction)
-            code = self._extract_code(response_text)
-            
-            if code:
-                return {
-                    "type": "plot_code",
-                    "code": code,
-                    "text": "I've generated the plot code for you."
-                }
-            else:
-                return {
-                    "type": "text",
-                    "text": response_text
-                }
-        except Exception as e:
+        response_text = self.provider.generate(prompt, self.system_instruction)
+        code = self._extract_code(response_text)
+        
+        if code:
             return {
-                "type": "error",
-                "text": f"Error processing query: {str(e)}"
+                "type": "plot_code",
+                "code": code,
+                "text": "I've generated the plot code for you."
+            }
+        else:
+            return {
+                "type": "text",
+                "text": response_text
             }
 
     def _construct_system_instruction(self):
-        return """You are a Python data visualization expert using Matplotlib.
-Your goal is to generate high-quality, publication-ready plots.
-You must output valid Python code when requested.
+        return """You are a regular, friendly data visualization expert using Python and Matplotlib.
+Your goal is to assist the user in creating high-quality, publication-ready plots, but also to chat naturally.
+If the user says "hello", "hi", or asks a general question, respond naturally without trying to generate code.
+If the user asks for a plot, THEN you must output valid Python code inside markdown code blocks.
 """
 
     def _construct_plot_prompt(self, query, context=None, current_code=None, history=None, data_analysis=None, url_analysis=None):
@@ -142,9 +128,9 @@ You must output valid Python code when requested.
         
         prompt_parts.append("### Task")
         if current_code:
-            prompt_parts.append("Edit the following existing code based on the user's request.")
+            prompt_parts.append("Edit the existing code below if the user requested a change. If they are just chatting, ignore the code.")
         else:
-            prompt_parts.append("Generate Python code to create a plot based on the user's request.")
+            prompt_parts.append("If the user wants a plot, generate Python code. If the user is just chatting or asking for explanation, just answer them.")
         
         prompt_parts.append(f"\n### User Request\n{query}\n")
 

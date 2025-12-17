@@ -36,38 +36,32 @@ class DataManager:
             raise ValueError("Unsupported file format")
 
     def get_preview(self, file_path):
-        try:
-            if file_path.endswith('.csv'):
-                df = pd.read_csv(file_path)
-            elif file_path.endswith('.json'):
-                df = pd.read_json(file_path)
-            else:
-                return "Unsupported file format"
-            
-            return df.head().to_dict(orient='records')
-        except Exception as e:
-            return str(e)
+        if file_path.endswith('.csv'):
+            df = pd.read_csv(file_path)
+        elif file_path.endswith('.json'):
+            df = pd.read_json(file_path)
+        else:
+            return "Unsupported file format"
+        
+        return df.head().to_dict(orient='records')
 
     def get_data_context(self, file_path):
-        try:
-            if file_path.endswith('.csv'):
-                df = pd.read_csv(file_path)
-            elif file_path.endswith('.json'):
-                df = pd.read_json(file_path)
-            else:
-                return "No data available."
-            
-            buffer = io.StringIO()
-            df.info(buf=buffer)
-            info_str = buffer.getvalue()
-            
-            context = f"""
+        if file_path.endswith('.csv'):
+            df = pd.read_csv(file_path)
+        elif file_path.endswith('.json'):
+            df = pd.read_json(file_path)
+        else:
+            return "No data available."
+        
+        buffer = io.StringIO()
+        df.info(buf=buffer)
+        info_str = buffer.getvalue()
+        
+        context = f"""
 Data Columns: {list(df.columns)}
 Data Types:
 {info_str}
 First 3 rows:
 {df.head(3).to_string()}
 """
-            return context
-        except Exception as e:
-            return f"Error loading data context: {e}"
+        return context

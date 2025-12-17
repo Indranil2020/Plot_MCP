@@ -32,45 +32,38 @@ class IntelligentAssistant:
     def _analyze_github_repo(self, url: str, owner: str, repo: str) -> Dict:
         """Analyze a GitHub repository for plotting examples"""
         
-        try:
-            # Fetch README
-            readme_url = f"https://raw.githubusercontent.com/{owner}/{repo}/main/README.md"
+        # Fetch README
+        readme_url = f"https://raw.githubusercontent.com/{owner}/{repo}/main/README.md"
+        response = requests.get(readme_url, timeout=10)
+        
+        if response.status_code != 200:
+            # Try master branch
+            readme_url = f"https://raw.githubusercontent.com/{owner}/{repo}/master/README.md"
             response = requests.get(readme_url, timeout=10)
+        
+        if response.status_code == 200:
+            readme_content = response.text
             
-            if response.status_code != 200:
-                # Try master branch
-                readme_url = f"https://raw.githubusercontent.com/{owner}/{repo}/master/README.md"
-                response = requests.get(readme_url, timeout=10)
-            
-            if response.status_code == 200:
-                readme_content = response.text
-                
-                # Extract plot descriptions and images
-                images = re.findall(r'!\[([^\]]*)\]\(([^)]+)\)', readme_content)
-                
-                return {
-                    "type": "github_repo",
-                    "owner": owner,
-                    "repo": repo,
-                    "description": f"GitHub repository: {owner}/{repo}",
-                    "images": images[:5],  # First 5 images
-                    "suggestion": f"This appears to be a plotting library/tool. I can help you create similar visualizations. Please describe what specific plot type you'd like to create, or upload your data and I'll suggest appropriate visualizations."
-                }
+            # Extract plot descriptions and images
+            images = re.findall(r'!\[([^\]]*)\]\(([^)]+)\)', readme_content)
             
             return {
                 "type": "github_repo",
                 "owner": owner,
                 "repo": repo,
                 "description": f"GitHub repository: {owner}/{repo}",
-                "suggestion": "I can help you create plots similar to this repository. Please describe the visualization you want or upload your data."
+                "images": images[:5],  # First 5 images
+                "suggestion": f"This appears to be a plotting library/tool. I can help you create similar visualizations. Please describe what specific plot type you'd like to create, or upload your data and I'll suggest appropriate visualizations."
             }
+        
+        return {
+            "type": "github_repo",
+            "owner": owner,
+            "repo": repo,
+            "description": f"GitHub repository: {owner}/{repo}",
+            "suggestion": "I can help you create plots similar to this repository. Please describe the visualization you want or upload your data."
+        }
             
-        except Exception as e:
-            return {
-                "type": "error",
-                "message": f"Could not analyze GitHub repository: {str(e)}",
-                "suggestion": "Please describe the plot you want to create, and I'll help you build it."
-            }
     
     def _analyze_matplotlib_example(self, url: str, category: str, example: str) -> Dict:
         """Analyze a Matplotlib gallery example"""
@@ -85,31 +78,23 @@ class IntelligentAssistant:
     def _analyze_generic_url(self, url: str) -> Dict:
         """Analyze a generic URL for plot information"""
         
-        try:
-            response = requests.get(url, timeout=10)
-            soup = BeautifulSoup(response.content, 'html.parser')
-            
-            # Extract images
-            images = soup.find_all('img')
-            image_urls = [img.get('src') for img in images[:5] if img.get('src')]
-            
-            # Extract title
-            title = soup.find('title')
-            title_text = title.get_text() if title else "Unknown"
-            
-            return {
-                "type": "generic_url",
-                "title": title_text,
-                "images": image_urls,
-                "suggestion": f"I found a page titled '{title_text}'. Please describe what kind of plot you'd like to create based on this example, and I'll help you build it with your data."
-            }
-            
-        except Exception as e:
-            return {
-                "type": "error",
-                "message": f"Could not analyze URL: {str(e)}",
-                "suggestion": "Please describe the plot you want to create in your own words, and I'll help you build it."
-            }
+        response = requests.get(url, timeout=10)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        # Extract images
+        images = soup.find_all('img')
+        image_urls = [img.get('src') for img in images[:5] if img.get('src')]
+        
+        # Extract title
+        title = soup.find('title')
+        title_text = title.get_text() if title else "Unknown"
+        
+        return {
+            "type": "generic_url",
+            "title": title_text,
+            "images": image_urls,
+            "suggestion": f"I found a page titled '{title_text}'. Please describe what kind of plot you'd like to create based on this example, and I'll help you build it with your data."
+        }
     
     def generate_suggestion_prompt(self, user_message: str, data_analysis: Optional[Dict] = None) -> str:
         """Generate an intelligent suggestion prompt based on user message and data"""
