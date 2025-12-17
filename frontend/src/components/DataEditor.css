@@ -1,0 +1,146 @@
+.data-editor-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.data-editor-modal {
+    background: #1e293b;
+    width: 800px;
+    max-width: 90vw;
+    height: 80vh;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #334155;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.editor-header {
+    padding: 1rem;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.editor-header h3 {
+    margin: 0;
+    color: #f8fafc;
+}
+
+.schema-suggestion {
+    background: #0f172a;
+    padding: 1rem;
+    border-bottom: 1px solid #334155;
+}
+
+.schema-suggestion h4 {
+    margin: 0 0 0.5rem 0;
+    color: #38bdf8;
+    font-size: 0.9rem;
+}
+
+.schema-suggestion pre {
+    background: #1e293b;
+    padding: 0.5rem;
+    border-radius: 4px;
+    color: #a5b4fc;
+    font-family: monospace;
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.suggestion-note {
+    margin: 0;
+    color: #94a3b8;
+    font-size: 0.85rem;
+}
+
+.editor-toolbar {
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1e293b;
+}
+
+.format-selector {
+    display: flex;
+    gap: 1rem;
+    color: #f8fafc;
+}
+
+.format-selector label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.data-input {
+    flex: 1;
+    background: #0f172a;
+    color: #f8fafc;
+    border: none;
+    padding: 1rem;
+    font-family: monospace;
+    font-size: 0.9rem;
+    resize: none;
+    outline: none;
+}
+
+.editor-footer {
+    padding: 1rem;
+    border-top: 1px solid #334155;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.save-btn {
+    background: #38bdf8;
+    color: #0f172a;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.save-btn:hover {
+    background: #0ea5e9;
+}
+
+.cancel-btn {
+    background: transparent;
+    color: #94a3b8;
+    border: 1px solid #475569;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancel-btn:hover {
+    color: #f8fafc;
+    border-color: #94a3b8;
+}
+
+.clear-btn {
+    background: transparent;
+    color: #ef4444;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.clear-btn:hover {
+    text-decoration: underline;
+}

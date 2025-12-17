@@ -1,0 +1,232 @@
+/* Plot Canvas - Center (Maximum Space) */
+.plot-canvas {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #0f172a;
+    overflow: hidden;
+}
+
+.plot-canvas.empty {
+    justify-content: center;
+    align-items: center;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    max-width: 600px;
+}
+
+.empty-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state h1 {
+    color: #f8fafc;
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    color: #94a3b8;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.feature-icon {
+    font-size: 2rem;
+}
+
+.feature span:last-child {
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+/* Toolbar */
+.plot-toolbar {
+    padding: 1rem 1.5rem;
+    background: #1e293b;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.toolbar-left h3 {
+    margin: 0;
+    color: #f8fafc;
+    font-size: 1.1rem;
+}
+
+.quality-badge {
+    background: #22c55e;
+    color: #0f172a;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.toolbar-right {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.toolbar-btn {
+    padding: 0.5rem 1rem;
+    background: #334155;
+    color: #f8fafc;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.toolbar-btn:hover {
+    background: #475569;
+    transform: translateY(-1px);
+}
+
+.download-btn {
+    background: #38bdf8;
+    color: #0f172a;
+}
+
+.download-btn:hover {
+    background: #0ea5e9;
+}
+
+/* Plot Content */
+.plot-content {
+    flex: 1;
+    overflow: auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.plot-image-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.plot-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.plot-hint {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* Code View */
+.code-view {
+    width: 100%;
+    max-width: 1200px;
+    background: #1e293b;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    overflow: hidden;
+}
+
+.code-header {
+    padding: 1rem;
+    background: #0f172a;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.code-header h4 {
+    margin: 0;
+    color: #f8fafc;
+}
+
+.edit-code-btn,
+.apply-btn,
+.cancel-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: 0.5rem;
+}
+
+.edit-code-btn {
+    background: #38bdf8;
+    color: #0f172a;
+}
+
+.apply-btn {
+    background: #22c55e;
+    color: #0f172a;
+}
+
+.cancel-btn {
+    background: #ef4444;
+    color: white;
+}
+
+.code-block {
+    margin: 0;
+    padding: 1.5rem;
+    background: #000;
+    color: #22c55e;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.code-editor {
+    width: 100%;
+    padding: 1.5rem;
+    background: #000;
+    color: #22c55e;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    border: none;
+    resize: vertical;
+    min-height: 400px;
+}
+
+.code-editor:focus {
+    outline: none;
+}

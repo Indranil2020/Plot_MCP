@@ -1,0 +1,39 @@
+usage: generate_thumbnails_v2.py [-h] imagedir
+generate_thumbnails_v2.py: error: the following arguments are required: imagedir
+Loaded 161 existing thumbnails
+Total examples: 509
+Remaining: 348
+[7/509] ERROR: Frame Grabbing Sgskip - [Errno 2] No such file or directory: 'ffmpeg'
+[17/509] SKIP (interactive): Demo Axes Divider
+[18/509] SKIP (interactive): Demo Axes Grid
+[19/509] SKIP (interactive): Demo Axes Grid2
+[21/509] SKIP (interactive): Demo Axes Rgb
+[24/509] SKIP (interactive): Demo Edge Colorbar
+[28/509] SKIP (interactive): Inset Locator Demo2
+[37/509] SKIP (interactive): Simple Axesgrid2
+[40/509] SKIP (interactive): Demo Axis Direction
+[44/509] SKIP (interactive): Demo Floating Axes
+[45/509] SKIP (interactive): Demo Floating Axis
+[46/509] SKIP (interactive): Demo Parasite Axes
+[52/509] SKIP (interactive): Simple Axis Pad
+[59/509] SKIP (interactive): Color Sequences
+[61/509] ERROR: Colormap Reference - 'berlin' is not a valid value for cmap; supported values are 'Accent', 'Accent_r
+[65/509] SKIP (interactive): Set Alpha
+[71/509] SKIP (interactive): Ginput Manual Clabel Sgskip
+[94/509] SKIP (interactive): Contour Demo
+[95/509] SKIP (interactive): Contour Image
+[100/509] SKIP (interactive): Contours In Optimization Demo
+[104/509] SKIP (interactive): Image Antialiasing
+[136/509] SKIP (interactive): Bar Label Demo
+[151/509] SKIP (interactive): Fill Between Alpha
+[167/509] SKIP (interactive): Scatter Demo2
+[175/509] SKIP (interactive): Stackplot Demo
+[179/509] SKIP (interactive): Timeline
+[182/509] SKIP (interactive): Anchored Artists
+[189/509] SKIP (interactive): Demo Ribbon Box
+[190/509] SKIP (interactive): Fig X
+[191/509] SKIP (interactive): Fill Spiral
+[192/509] SKIP (interactive): Findobj Demo
+[193/509] ERROR: Font Indexing - cannot import name 'Kerning' from 'matplotlib.ft2font' (/usr/lib/python3/dist-pa
+[194/509] ERROR: Ftface Props - 'matplotlib.ft2font.FT2Font' object has no attribute 'num_named_instances'
+[195/509] SKIP (interactive): Histogram Path

@@ -1,0 +1,2676 @@
+{
+  "total_examples": 509,
+  "total_categories": 25,
+  "categories": {
+    "animation": {
+      "count": 15,
+      "examples": [
+        {
+          "filename": "animate_decay.py",
+          "title": "Animate Decay",
+          "code_length": 1120
+        },
+        {
+          "filename": "animated_histogram.py",
+          "title": "Animated Histogram",
+          "code_length": 1861
+        },
+        {
+          "filename": "animation_demo.py",
+          "title": "Animation Demo",
+          "code_length": 770
+        },
+        {
+          "filename": "bayes_update.py",
+          "title": "Bayes Update",
+          "code_length": 2102
+        },
+        {
+          "filename": "double_pendulum.py",
+          "title": "Double Pendulum",
+          "code_length": 2989
+        },
+        {
+          "filename": "dynamic_image.py",
+          "title": "Dynamic Image",
+          "code_length": 1195
+        },
+        {
+          "filename": "frame_grabbing_sgskip.py",
+          "title": "Frame Grabbing Sgskip",
+          "code_length": 942
+        },
+        {
+          "filename": "multiple_axes.py",
+          "title": "Multiple Axes",
+          "code_length": 1801
+        },
+        {
+          "filename": "pause_resume.py",
+          "title": "Pause Resume",
+          "code_length": 1683
+        },
+        {
+          "filename": "rain.py",
+          "title": "Rain",
+          "code_length": 2524
+        },
+        {
+          "filename": "random_walk.py",
+          "title": "Random Walk",
+          "code_length": 1346
+        },
+        {
+          "filename": "simple_anim.py",
+          "title": "Simple Anim",
+          "code_length": 710
+        },
+        {
+          "filename": "simple_scatter.py",
+          "title": "Simple Scatter",
+          "code_length": 886
+        },
+        {
+          "filename": "strip_chart.py",
+          "title": "Strip Chart",
+          "code_length": 1861
+        },
+        {
+          "filename": "unchained.py",
+          "title": "Unchained",
+          "code_length": 2069
+        }
+      ]
+    },
+    "axes_grid1": {
+      "count": 23,
+      "examples": [
+        {
+          "filename": "demo_anchored_direction_arrows.py",
+          "title": "Demo Anchored Direction Arrows",
+          "code_length": 2286
+        },
+        {
+          "filename": "demo_axes_divider.py",
+          "title": "Demo Axes Divider",
+          "code_length": 2632
+        },
+        {
+          "filename": "demo_axes_grid.py",
+          "title": "Demo Axes Grid",
+          "code_length": 2443
+        },
+        {
+          "filename": "demo_axes_grid2.py",
+          "title": "Demo Axes Grid2",
+          "code_length": 2161
+        },
+        {
+          "filename": "demo_axes_hbox_divider.py",
+          "title": "Demo Axes Hbox Divider",
+          "code_length": 1409
+        },
+        {
+          "filename": "demo_axes_rgb.py",
+          "title": "Demo Axes Rgb",
+          "code_length": 1405
+        },
+        {
+          "filename": "demo_colorbar_with_axes_divider.py",
+          "title": "Demo Colorbar With Axes Divider",
+          "code_length": 1503
+        },
+        {
+          "filename": "demo_colorbar_with_inset_locator.py",
+          "title": "Demo Colorbar With Inset Locator",
+          "code_length": 1569
+        },
+        {
+          "filename": "demo_edge_colorbar.py",
+          "title": "Demo Edge Colorbar",
+          "code_length": 2391
+        },
+        {
+          "filename": "demo_fixed_size_axes.py",
+          "title": "Demo Fixed Size Axes",
+          "code_length": 1271
+        },
+        {
+          "filename": "demo_imagegrid_aspect.py",
+          "title": "Demo Imagegrid Aspect",
+          "code_length": 530
+        },
+        {
+          "filename": "inset_locator_demo.py",
+          "title": "Inset Locator Demo",
+          "code_length": 5649
+        },
+        {
+          "filename": "inset_locator_demo2.py",
+          "title": "Inset Locator Demo2",
+          "code_length": 2333
+        },
+        {
+          "filename": "make_room_for_ylabel_using_axesgrid.py",
+          "title": "Make Room For Ylabel Using Axesgrid",
+          "code_length": 1439
+        },
+        {
+          "filename": "parasite_simple.py",
+          "title": "Parasite Simple",
+          "code_length": 519
+        },
+        {
+          "filename": "parasite_simple2.py",
+          "title": "Parasite Simple2",
+          "code_length": 1245
+        },
+        {
+          "filename": "scatter_hist_locatable_axes.py",
+          "title": "Scatter Hist Locatable Axes",
+          "code_length": 2246
+        },
+        {
+          "filename": "simple_anchored_artists.py",
+          "title": "Simple Anchored Artists",
+          "code_length": 2090
+        },
+        {
+          "filename": "simple_axes_divider1.py",
+          "title": "Simple Axes Divider1",
+          "code_length": 2375
+        },
+        {
+          "filename": "simple_axes_divider3.py",
+          "title": "Simple Axes Divider3",
+          "code_length": 1101
+        },
+        {
+          "filename": "simple_axesgrid.py",
+          "title": "Simple Axesgrid",
+          "code_length": 689
+        },
+        {
+          "filename": "simple_axesgrid2.py",
+          "title": "Simple Axesgrid2",
+          "code_length": 736
+        },
+        {
+          "filename": "simple_axisline4.py",
+          "title": "Simple Axisline4",
+          "code_length": 606
+        }
+      ]
+    },
+    "axisartist": {
+      "count": 17,
+      "examples": [
+        {
+          "filename": "axis_direction.py",
+          "title": "Axis Direction",
+          "code_length": 1619
+        },
+        {
+          "filename": "demo_axis_direction.py",
+          "title": "Demo Axis Direction",
+          "code_length": 2116
+        },
+        {
+          "filename": "demo_axisline_style.py",
+          "title": "Demo Axisline Style",
+          "code_length": 914
+        },
+        {
+          "filename": "demo_curvelinear_grid.py",
+          "title": "Demo Curvelinear Grid",
+          "code_length": 3929
+        },
+        {
+          "filename": "demo_curvelinear_grid2.py",
+          "title": "Demo Curvelinear Grid2",
+          "code_length": 1536
+        },
+        {
+          "filename": "demo_floating_axes.py",
+          "title": "Demo Floating Axes",
+          "code_length": 5090
+        },
+        {
+          "filename": "demo_floating_axis.py",
+          "title": "Demo Floating Axis",
+          "code_length": 2299
+        },
+        {
+          "filename": "demo_parasite_axes.py",
+          "title": "Demo Parasite Axes",
+          "code_length": 1682
+        },
+        {
+          "filename": "demo_parasite_axes2.py",
+          "title": "Demo Parasite Axes2",
+          "code_length": 1839
+        },
+        {
+          "filename": "demo_ticklabel_alignment.py",
+          "title": "Demo Ticklabel Alignment",
+          "code_length": 905
+        },
+        {
+          "filename": "demo_ticklabel_direction.py",
+          "title": "Demo Ticklabel Direction",
+          "code_length": 1137
+        },
+        {
+          "filename": "simple_axis_direction01.py",
+          "title": "Simple Axis Direction01",
+          "code_length": 531
+        },
+        {
+          "filename": "simple_axis_direction03.py",
+          "title": "Simple Axis Direction03",
+          "code_length": 917
+        },
+        {
+          "filename": "simple_axis_pad.py",
+          "title": "Simple Axis Pad",
+          "code_length": 3061
+        },
+        {
+          "filename": "simple_axisartist1.py",
+          "title": "Simple Axisartist1",
+          "code_length": 1698
+        },
+        {
+          "filename": "simple_axisline.py",
+          "title": "Simple Axisline",
+          "code_length": 853
+        },
+        {
+          "filename": "simple_axisline3.py",
+          "title": "Simple Axisline3",
+          "code_length": 300
+        }
+      ]
+    },
+    "color": {
+      "count": 10,
+      "examples": [
+        {
+          "filename": "color_by_yvalue.py",
+          "title": "Color By Yvalue",
+          "code_length": 794
+        },
+        {
+          "filename": "color_cycle_default.py",
+          "title": "Color Cycle Default",
+          "code_length": 1353
+        },
+        {
+          "filename": "color_demo.py",
+          "title": "Color Demo",
+          "code_length": 2825
+        },
+        {
+          "filename": "color_sequences.py",
+          "title": "Color Sequences",
+          "code_length": 1665
+        },
+        {
+          "filename": "colorbar_basics.py",
+          "title": "Colorbar Basics",
+          "code_length": 1924
+        },
+        {
+          "filename": "colormap_reference.py",
+          "title": "Colormap Reference",
+          "code_length": 3372
+        },
+        {
+          "filename": "custom_cmap.py",
+          "title": "Custom Cmap",
+          "code_length": 8032
+        },
+        {
+          "filename": "individual_colors_from_cmap.py",
+          "title": "Individual Colors From Cmap",
+          "code_length": 2056
+        },
+        {
+          "filename": "named_colors.py",
+          "title": "Named Colors",
+          "code_length": 3351
+        },
+        {
+          "filename": "set_alpha.py",
+          "title": "Set Alpha",
+          "code_length": 1671
+        }
+      ]
+    },
+    "event_handling": {
+      "count": 21,
+      "examples": [
+        {
+          "filename": "close_event.py",
+          "title": "Close Event",
+          "code_length": 655
+        },
+        {
+          "filename": "coords_demo.py",
+          "title": "Coords Demo",
+          "code_length": 1123
+        },
+        {
+          "filename": "cursor_demo.py",
+          "title": "Cursor Demo",
+          "code_length": 8426
+        },
+        {
+          "filename": "data_browser.py",
+          "title": "Data Browser",
+          "code_length": 3016
+        },
+        {
+          "filename": "figure_axes_enter_leave.py",
+          "title": "Figure Axes Enter Leave",
+          "code_length": 1508
+        },
+        {
+          "filename": "ginput_manual_clabel_sgskip.py",
+          "title": "Ginput Manual Clabel Sgskip",
+          "code_length": 2267
+        },
+        {
+          "filename": "image_slices_viewer.py",
+          "title": "Image Slices Viewer",
+          "code_length": 1511
+        },
+        {
+          "filename": "keypress_demo.py",
+          "title": "Keypress Demo",
+          "code_length": 968
+        },
+        {
+          "filename": "lasso_demo.py",
+          "title": "Lasso Demo",
+          "code_length": 2482
+        },
+        {
+          "filename": "legend_picking.py",
+          "title": "Legend Picking",
+          "code_length": 1934
+        },
+        {
+          "filename": "looking_glass.py",
+          "title": "Looking Glass",
+          "code_length": 1863
+        },
+        {
+          "filename": "path_editor.py",
+          "title": "Path Editor",
+          "code_length": 4532
+        },
+        {
+          "filename": "pick_event_demo.py",
+          "title": "Pick Event Demo",
+          "code_length": 6459
+        },
+        {
+          "filename": "pick_event_demo2.py",
+          "title": "Pick Event Demo2",
+          "code_length": 1405
+        },
+        {
+          "filename": "poly_editor.py",
+          "title": "Poly Editor",
+          "code_length": 6601
+        },
+        {
+          "filename": "pong_sgskip.py",
+          "title": "Pong Sgskip",
+          "code_length": 10382
+        },
+        {
+          "filename": "resample.py",
+          "title": "Resample",
+          "code_length": 2846
+        },
+        {
+          "filename": "timers.py",
+          "title": "Timers",
+          "code_length": 1157
+        },
+        {
+          "filename": "trifinder_event_demo.py",
+          "title": "Trifinder Event Demo",
+          "code_length": 2092
+        },
+        {
+          "filename": "viewlims.py",
+          "title": "Viewlims",
+          "code_length": 3249
+        },
+        {
+          "filename": "zoom_window.py",
+          "title": "Zoom Window",
+          "code_length": 1623
+        }
+      ]
+    },
+    "images_contours_and_fields": {
+      "count": 47,
+      "examples": [
+        {
+          "filename": "affine_image.py",
+          "title": "Affine Image",
+          "code_length": 1943
+        },
+        {
+          "filename": "barb_demo.py",
+          "title": "Barb Demo",
+          "code_length": 1999
+        },
+        {
+          "filename": "barcode_demo.py",
+          "title": "Barcode Demo",
+          "code_length": 1586
+        },
+        {
+          "filename": "colormap_interactive_adjustment.py",
+          "title": "Colormap Interactive Adjustment",
+          "code_length": 1306
+        },
+        {
+          "filename": "colormap_normalizations.py",
+          "title": "Colormap Normalizations",
+          "code_length": 5402
+        },
+        {
+          "filename": "colormap_normalizations_symlognorm.py",
+          "title": "Colormap Normalizations Symlognorm",
+          "code_length": 2839
+        },
+        {
+          "filename": "contour_corner_mask.py",
+          "title": "Contour Corner Mask",
+          "code_length": 1252
+        },
+        {
+          "filename": "contour_demo.py",
+          "title": "Contour Demo",
+          "code_length": 3697
+        },
+        {
+          "filename": "contour_image.py",
+          "title": "Contour Image",
+          "code_length": 3731
+        },
+        {
+          "filename": "contour_label_demo.py",
+          "title": "Contour Label Demo",
+          "code_length": 1969
+        },
+        {
+          "filename": "contourf_demo.py",
+          "title": "Contourf Demo",
+          "code_length": 4288
+        },
+        {
+          "filename": "contourf_hatching.py",
+          "title": "Contourf Hatching",
+          "code_length": 1716
+        },
+        {
+          "filename": "contourf_log.py",
+          "title": "Contourf Log",
+          "code_length": 1709
+        },
+        {
+          "filename": "contours_in_optimization_demo.py",
+          "title": "Contours In Optimization Demo",
+          "code_length": 1967
+        },
+        {
+          "filename": "demo_bboximage.py",
+          "title": "Demo Bboximage",
+          "code_length": 1820
+        },
+        {
+          "filename": "figimage_demo.py",
+          "title": "Figimage Demo",
+          "code_length": 634
+        },
+        {
+          "filename": "image_annotated_heatmap.py",
+          "title": "Image Annotated Heatmap",
+          "code_length": 10580
+        },
+        {
+          "filename": "image_antialiasing.py",
+          "title": "Image Antialiasing",
+          "code_length": 11758
+        },
+        {
+          "filename": "image_clip_path.py",
+          "title": "Image Clip Path",
+          "code_length": 778
+        },
+        {
+          "filename": "image_demo.py",
+          "title": "Image Demo",
+          "code_length": 5384
+        },
+        {
+          "filename": "image_masked.py",
+          "title": "Image Masked",
+          "code_length": 2693
+        },
+        {
+          "filename": "image_nonuniform.py",
+          "title": "Image Nonuniform",
+          "code_length": 1775
+        },
+        {
+          "filename": "image_transparency_blend.py",
+          "title": "Image Transparency Blend",
+          "code_length": 4094
+        },
+        {
+          "filename": "image_zcoord.py",
+          "title": "Image Zcoord",
+          "code_length": 1062
+        },
+        {
+          "filename": "interpolation_methods.py",
+          "title": "Interpolation Methods",
+          "code_length": 1604
+        },
+        {
+          "filename": "irregulardatagrid.py",
+          "title": "Irregulardatagrid",
+          "code_length": 3112
+        },
+        {
+          "filename": "layer_images.py",
+          "title": "Layer Images",
+          "code_length": 1401
+        },
+        {
+          "filename": "matshow.py",
+          "title": "Matshow",
+          "code_length": 553
+        },
+        {
+          "filename": "multi_image.py",
+          "title": "Multi Image",
+          "code_length": 2799
+        },
+        {
+          "filename": "pcolor_demo.py",
+          "title": "Pcolor Demo",
+          "code_length": 3260
+        },
+        {
+          "filename": "pcolormesh_grids.py",
+          "title": "Pcolormesh Grids",
+          "code_length": 4227
+        },
+        {
+          "filename": "pcolormesh_levels.py",
+          "title": "Pcolormesh Levels",
+          "code_length": 3914
+        },
+        {
+          "filename": "plot_streamplot.py",
+          "title": "Plot Streamplot",
+          "code_length": 2432
+        },
+        {
+          "filename": "quadmesh_demo.py",
+          "title": "Quadmesh Demo",
+          "code_length": 1372
+        },
+        {
+          "filename": "quiver_demo.py",
+          "title": "Quiver Demo",
+          "code_length": 2008
+        },
+        {
+          "filename": "quiver_simple_demo.py",
+          "title": "Quiver Simple Demo",
+          "code_length": 807
+        },
+        {
+          "filename": "shading_example.py",
+          "title": "Shading Example",
+          "code_length": 1952
+        },
+        {
+          "filename": "specgram_demo.py",
+          "title": "Specgram Demo",
+          "code_length": 1256
+        },
+        {
+          "filename": "spy_demos.py",
+          "title": "Spy Demos",
+          "code_length": 665
+        },
+        {
+          "filename": "tricontour_demo.py",
+          "title": "Tricontour Demo",
+          "code_length": 6023
+        },
+        {
+          "filename": "tricontour_smooth_delaunay.py",
+          "title": "Tricontour Smooth Delaunay",
+          "code_length": 5837
+        },
+        {
+          "filename": "tricontour_smooth_user.py",
+          "title": "Tricontour Smooth User",
+          "code_length": 3139
+        },
+        {
+          "filename": "trigradient_demo.py",
+          "title": "Trigradient Demo",
+          "code_length": 3749
+        },
+        {
+          "filename": "triinterp_demo.py",
+          "title": "Triinterp Demo",
+          "code_length": 2450
+        },
+        {
+          "filename": "tripcolor_demo.py",
+          "title": "Tripcolor Demo",
+          "code_length": 5430
+        },
+        {
+          "filename": "triplot_demo.py",
+          "title": "Triplot Demo",
+          "code_length": 4777
+        },
+        {
+          "filename": "watermark_image.py",
+          "title": "Watermark Image",
+          "code_length": 839
+        }
+      ]
+    },
+    "lines_bars_and_markers": {
+      "count": 48,
+      "examples": [
+        {
+          "filename": "axline.py",
+          "title": "Axline",
+          "code_length": 1907
+        },
+        {
+          "filename": "bar_colors.py",
+          "title": "Bar Colors",
+          "code_length": 846
+        },
+        {
+          "filename": "bar_label_demo.py",
+          "title": "Bar Label Demo",
+          "code_length": 3271
+        },
+        {
+          "filename": "bar_stacked.py",
+          "title": "Bar Stacked",
+          "code_length": 846
+        },
+        {
+          "filename": "barchart.py",
+          "title": "Barchart",
+          "code_length": 1462
+        },
+        {
+          "filename": "barh.py",
+          "title": "Barh",
+          "code_length": 746
+        },
+        {
+          "filename": "broken_barh.py",
+          "title": "Broken Barh",
+          "code_length": 1443
+        },
+        {
+          "filename": "capstyle.py",
+          "title": "Capstyle",
+          "code_length": 354
+        },
+        {
+          "filename": "categorical_variables.py",
+          "title": "Categorical Variables",
+          "code_length": 1172
+        },
+        {
+          "filename": "cohere.py",
+          "title": "Cohere",
+          "code_length": 998
+        },
+        {
+          "filename": "csd_demo.py",
+          "title": "Csd Demo",
+          "code_length": 1110
+        },
+        {
+          "filename": "curve_error_band.py",
+          "title": "Curve Error Band",
+          "code_length": 2792
+        },
+        {
+          "filename": "errorbar_limits_simple.py",
+          "title": "Errorbar Limits Simple",
+          "code_length": 1714
+        },
+        {
+          "filename": "errorbar_subsample.py",
+          "title": "Errorbar Subsample",
+          "code_length": 1138
+        },
+        {
+          "filename": "eventcollection_demo.py",
+          "title": "Eventcollection Demo",
+          "code_length": 1634
+        },
+        {
+          "filename": "eventplot_demo.py",
+          "title": "Eventplot Demo",
+          "code_length": 1816
+        },
+        {
+          "filename": "fill.py",
+          "title": "Fill",
+          "code_length": 2449
+        },
+        {
+          "filename": "fill_between_alpha.py",
+          "title": "Fill Between Alpha",
+          "code_length": 5023
+        },
+        {
+          "filename": "fill_between_demo.py",
+          "title": "Fill Between Demo",
+          "code_length": 4605
+        },
+        {
+          "filename": "fill_betweenx_demo.py",
+          "title": "Fill Betweenx Demo",
+          "code_length": 1727
+        },
+        {
+          "filename": "gradient_bar.py",
+          "title": "Gradient Bar",
+          "code_length": 2556
+        },
+        {
+          "filename": "hat_graph.py",
+          "title": "Hat Graph",
+          "code_length": 2620
+        },
+        {
+          "filename": "horizontal_barchart_distribution.py",
+          "title": "Horizontal Barchart Distribution",
+          "code_length": 2730
+        },
+        {
+          "filename": "joinstyle.py",
+          "title": "Joinstyle",
+          "code_length": 378
+        },
+        {
+          "filename": "line_demo_dash_control.py",
+          "title": "Line Demo Dash Control",
+          "code_length": 1857
+        },
+        {
+          "filename": "lines_with_ticks_demo.py",
+          "title": "Lines With Ticks Demo",
+          "code_length": 923
+        },
+        {
+          "filename": "linestyles.py",
+          "title": "Linestyles",
+          "code_length": 3168
+        },
+        {
+          "filename": "marker_reference.py",
+          "title": "Marker Reference",
+          "code_length": 7802
+        },
+        {
+          "filename": "markevery_demo.py",
+          "title": "Markevery Demo",
+          "code_length": 3099
+        },
+        {
+          "filename": "masked_demo.py",
+          "title": "Masked Demo",
+          "code_length": 1452
+        },
+        {
+          "filename": "multicolored_line.py",
+          "title": "Multicolored Line",
+          "code_length": 7043
+        },
+        {
+          "filename": "multivariate_marker_plot.py",
+          "title": "Multivariate Marker Plot",
+          "code_length": 1697
+        },
+        {
+          "filename": "psd_demo.py",
+          "title": "Psd Demo",
+          "code_length": 5296
+        },
+        {
+          "filename": "scatter_demo2.py",
+          "title": "Scatter Demo2",
+          "code_length": 1214
+        },
+        {
+          "filename": "scatter_hist.py",
+          "title": "Scatter Hist",
+          "code_length": 4655
+        },
+        {
+          "filename": "scatter_masked.py",
+          "title": "Scatter Masked",
+          "code_length": 867
+        },
+        {
+          "filename": "scatter_star_poly.py",
+          "title": "Scatter Star Poly",
+          "code_length": 1690
+        },
+        {
+          "filename": "scatter_with_legend.py",
+          "title": "Scatter With Legend",
+          "code_length": 3722
+        },
+        {
+          "filename": "simple_plot.py",
+          "title": "Simple Plot",
+          "code_length": 725
+        },
+        {
+          "filename": "span_regions.py",
+          "title": "Span Regions",
+          "code_length": 792
+        },
+        {
+          "filename": "spectrum_demo.py",
+          "title": "Spectrum Demo",
+          "code_length": 1561
+        },
+        {
+          "filename": "stackplot_demo.py",
+          "title": "Stackplot Demo",
+          "code_length": 2236
+        },
+        {
+          "filename": "stairs_demo.py",
+          "title": "Stairs Demo",
+          "code_length": 2878
+        },
+        {
+          "filename": "stem_plot.py",
+          "title": "Stem Plot",
+          "code_length": 1038
+        },
+        {
+          "filename": "step_demo.py",
+          "title": "Step Demo",
+          "code_length": 1838
+        },
+        {
+          "filename": "timeline.py",
+          "title": "Timeline",
+          "code_length": 5018
+        },
+        {
+          "filename": "vline_hline_demo.py",
+          "title": "Vline Hline Demo",
+          "code_length": 938
+        },
+        {
+          "filename": "xcorr_acorr_demo.py",
+          "title": "Xcorr Acorr Demo",
+          "code_length": 972
+        }
+      ]
+    },
+    "misc": {
+      "count": 31,
+      "examples": [
+        {
+          "filename": "anchored_artists.py",
+          "title": "Anchored Artists",
+          "code_length": 2486
+        },
+        {
+          "filename": "bbox_intersect.py",
+          "title": "Bbox Intersect",
+          "code_length": 966
+        },
+        {
+          "filename": "contour_manual.py",
+          "title": "Contour Manual",
+          "code_length": 1769
+        },
+        {
+          "filename": "coords_report.py",
+          "title": "Coords Report",
+          "code_length": 461
+        },
+        {
+          "filename": "custom_projection.py",
+          "title": "Custom Projection",
+          "code_length": 16204
+        },
+        {
+          "filename": "customize_rc.py",
+          "title": "Customize Rc",
+          "code_length": 1622
+        },
+        {
+          "filename": "demo_agg_filter.py",
+          "title": "Demo Agg Filter",
+          "code_length": 8788
+        },
+        {
+          "filename": "demo_ribbon_box.py",
+          "title": "Demo Ribbon Box",
+          "code_length": 2788
+        },
+        {
+          "filename": "fig_x.py",
+          "title": "Fig X",
+          "code_length": 770
+        },
+        {
+          "filename": "fill_spiral.py",
+          "title": "Fill Spiral",
+          "code_length": 517
+        },
+        {
+          "filename": "findobj_demo.py",
+          "title": "Findobj Demo",
+          "code_length": 868
+        },
+        {
+          "filename": "font_indexing.py",
+          "title": "Font Indexing",
+          "code_length": 1008
+        },
+        {
+          "filename": "ftface_props.py",
+          "title": "Ftface Props",
+          "code_length": 2192
+        },
+        {
+          "filename": "histogram_path.py",
+          "title": "Histogram Path",
+          "code_length": 2927
+        },
+        {
+          "filename": "hyperlinks_sgskip.py",
+          "title": "Hyperlinks Sgskip",
+          "code_length": 780
+        },
+        {
+          "filename": "image_thumbnail_sgskip.py",
+          "title": "Image Thumbnail Sgskip",
+          "code_length": 882
+        },
+        {
+          "filename": "keyword_plotting.py",
+          "title": "Keyword Plotting",
+          "code_length": 901
+        },
+        {
+          "filename": "logos2.py",
+          "title": "Logos2",
+          "code_length": 5014
+        },
+        {
+          "filename": "multipage_pdf.py",
+          "title": "Multipage Pdf",
+          "code_length": 1881
+        },
+        {
+          "filename": "multiprocess_sgskip.py",
+          "title": "Multiprocess Sgskip",
+          "code_length": 2416
+        },
+        {
+          "filename": "packed_bubbles.py",
+          "title": "Packed Bubbles",
+          "code_length": 6344
+        },
+        {
+          "filename": "patheffect_demo.py",
+          "title": "Patheffect Demo",
+          "code_length": 1359
+        },
+        {
+          "filename": "print_stdout_sgskip.py",
+          "title": "Print Stdout Sgskip",
+          "code_length": 286
+        },
+        {
+          "filename": "rasterization_demo.py",
+          "title": "Rasterization Demo",
+          "code_length": 3457
+        },
+        {
+          "filename": "set_and_get.py",
+          "title": "Set And Get",
+          "code_length": 2632
+        },
+        {
+          "filename": "svg_filter_line.py",
+          "title": "Svg Filter Line",
+          "code_length": 2165
+        },
+        {
+          "filename": "svg_filter_pie.py",
+          "title": "Svg Filter Pie",
+          "code_length": 2878
+        },
+        {
+          "filename": "table_demo.py",
+          "title": "Table Demo",
+          "code_length": 1709
+        },
+        {
+          "filename": "tickedstroke_demo.py",
+          "title": "Tickedstroke Demo",
+          "code_length": 3298
+        },
+        {
+          "filename": "transoffset.py",
+          "title": "Transoffset",
+          "code_length": 1799
+        },
+        {
+          "filename": "zorder_demo.py",
+          "title": "Zorder Demo",
+          "code_length": 2823
+        }
+      ]
+    },
+    "mplot3d": {
+      "count": 46,
+      "examples": [
+        {
+          "filename": "2dcollections3d.py",
+          "title": "2Dcollections3D",
+          "code_length": 1381
+        },
+        {
+          "filename": "3d_bars.py",
+          "title": "3D Bars",
+          "code_length": 791
+        },
+        {
+          "filename": "axlim_clip.py",
+          "title": "Axlim Clip",
+          "code_length": 1115
+        },
+        {
+          "filename": "bars3d.py",
+          "title": "Bars3D",
+          "code_length": 1191
+        },
+        {
+          "filename": "box3d.py",
+          "title": "Box3D",
+          "code_length": 1928
+        },
+        {
+          "filename": "contour3d.py",
+          "title": "Contour3D",
+          "code_length": 532
+        },
+        {
+          "filename": "contour3d_2.py",
+          "title": "Contour3D 2",
+          "code_length": 619
+        },
+        {
+          "filename": "contour3d_3.py",
+          "title": "Contour3D 3",
+          "code_length": 1123
+        },
+        {
+          "filename": "contourf3d.py",
+          "title": "Contourf3D",
+          "code_length": 638
+        },
+        {
+          "filename": "contourf3d_2.py",
+          "title": "Contourf3D 2",
+          "code_length": 1127
+        },
+        {
+          "filename": "custom_shaded_3d_surface.py",
+          "title": "Custom Shaded 3D Surface",
+          "code_length": 1185
+        },
+        {
+          "filename": "errorbar3d.py",
+          "title": "Errorbar3D",
+          "code_length": 717
+        },
+        {
+          "filename": "fillbetween3d.py",
+          "title": "Fillbetween3D",
+          "code_length": 694
+        },
+        {
+          "filename": "fillunder3d.py",
+          "title": "Fillunder3D",
+          "code_length": 1007
+        },
+        {
+          "filename": "hist3d.py",
+          "title": "Hist3D",
+          "code_length": 896
+        },
+        {
+          "filename": "imshow3d.py",
+          "title": "Imshow3D",
+          "code_length": 3399
+        },
+        {
+          "filename": "intersecting_planes.py",
+          "title": "Intersecting Planes",
+          "code_length": 3540
+        },
+        {
+          "filename": "lines3d.py",
+          "title": "Lines3D",
+          "code_length": 507
+        },
+        {
+          "filename": "lorenz_attractor.py",
+          "title": "Lorenz Attractor",
+          "code_length": 1649
+        },
+        {
+          "filename": "mixed_subplots.py",
+          "title": "Mixed Subplots",
+          "code_length": 1082
+        },
+        {
+          "filename": "offset.py",
+          "title": "Offset",
+          "code_length": 933
+        },
+        {
+          "filename": "pathpatch3d.py",
+          "title": "Pathpatch3D",
+          "code_length": 2222
+        },
+        {
+          "filename": "polys3d.py",
+          "title": "Polys3D",
+          "code_length": 831
+        },
+        {
+          "filename": "projections.py",
+          "title": "Projections",
+          "code_length": 1724
+        },
+        {
+          "filename": "quiver3d.py",
+          "title": "Quiver3D",
+          "code_length": 766
+        },
+        {
+          "filename": "rotate_axes3d_sgskip.py",
+          "title": "Rotate Axes3D Sgskip",
+          "code_length": 1464
+        },
+        {
+          "filename": "scatter3d.py",
+          "title": "Scatter3D",
+          "code_length": 1007
+        },
+        {
+          "filename": "stem3d_demo.py",
+          "title": "Stem3D Demo",
+          "code_length": 1619
+        },
+        {
+          "filename": "subplot3d.py",
+          "title": "Subplot3D",
+          "code_length": 1227
+        },
+        {
+          "filename": "surface3d.py",
+          "title": "Surface3D",
+          "code_length": 1465
+        },
+        {
+          "filename": "surface3d_2.py",
+          "title": "Surface3D 2",
+          "code_length": 639
+        },
+        {
+          "filename": "surface3d_3.py",
+          "title": "Surface3D 3",
+          "code_length": 1101
+        },
+        {
+          "filename": "surface3d_radial.py",
+          "title": "Surface3D Radial",
+          "code_length": 1008
+        },
+        {
+          "filename": "text3d.py",
+          "title": "Text3D",
+          "code_length": 1273
+        },
+        {
+          "filename": "tricontour3d.py",
+          "title": "Tricontour3D",
+          "code_length": 1311
+        },
+        {
+          "filename": "tricontourf3d.py",
+          "title": "Tricontourf3D",
+          "code_length": 1395
+        },
+        {
+          "filename": "trisurf3d.py",
+          "title": "Trisurf3D",
+          "code_length": 909
+        },
+        {
+          "filename": "trisurf3d_2.py",
+          "title": "Trisurf3D 2",
+          "code_length": 2274
+        },
+        {
+          "filename": "view_planes_3d.py",
+          "title": "View Planes 3D",
+          "code_length": 1896
+        },
+        {
+          "filename": "voxels.py",
+          "title": "Voxels",
+          "code_length": 910
+        },
+        {
+          "filename": "voxels_numpy_logo.py",
+          "title": "Voxels Numpy Logo",
+          "code_length": 1283
+        },
+        {
+          "filename": "voxels_rgb.py",
+          "title": "Voxels Rgb",
+          "code_length": 1181
+        },
+        {
+          "filename": "voxels_torus.py",
+          "title": "Voxels Torus",
+          "code_length": 1326
+        },
+        {
+          "filename": "wire3d.py",
+          "title": "Wire3D",
+          "code_length": 453
+        },
+        {
+          "filename": "wire3d_animation_sgskip.py",
+          "title": "Wire3D Animation Sgskip",
+          "code_length": 1184
+        },
+        {
+          "filename": "wire3d_zero_stride.py",
+          "title": "Wire3D Zero Stride",
+          "code_length": 857
+        }
+      ]
+    },
+    "pie_and_polar_charts": {
+      "count": 9,
+      "examples": [
+        {
+          "filename": "bar_of_pie.py",
+          "title": "Bar Of Pie",
+          "code_length": 2743
+        },
+        {
+          "filename": "nested_pie.py",
+          "title": "Nested Pie",
+          "code_length": 3022
+        },
+        {
+          "filename": "pie_and_donut_labels.py",
+          "title": "Pie And Donut Labels",
+          "code_length": 4925
+        },
+        {
+          "filename": "pie_features.py",
+          "title": "Pie Features",
+          "code_length": 3808
+        },
+        {
+          "filename": "polar_bar.py",
+          "title": "Polar Bar",
+          "code_length": 885
+        },
+        {
+          "filename": "polar_demo.py",
+          "title": "Polar Demo",
+          "code_length": 1902
+        },
+        {
+          "filename": "polar_error_caps.py",
+          "title": "Polar Error Caps",
+          "code_length": 1723
+        },
+        {
+          "filename": "polar_legend.py",
+          "title": "Polar Legend",
+          "code_length": 1323
+        },
+        {
+          "filename": "polar_scatter.py",
+          "title": "Polar Scatter",
+          "code_length": 2105
+        }
+      ]
+    },
+    "pyplots": {
+      "count": 4,
+      "examples": [
+        {
+          "filename": "pyplot_simple.py",
+          "title": "Pyplot Simple",
+          "code_length": 705
+        },
+        {
+          "filename": "pyplot_text.py",
+          "title": "Pyplot Text",
+          "code_length": 1066
+        },
+        {
+          "filename": "pyplot_three.py",
+          "title": "Pyplot Three",
+          "code_length": 598
+        },
+        {
+          "filename": "pyplot_two_subplots.py",
+          "title": "Pyplot Two Subplots",
+          "code_length": 740
+        }
+      ]
+    },
+    "scales": {
+      "count": 8,
+      "examples": [
+        {
+          "filename": "asinh_demo.py",
+          "title": "Asinh Demo",
+          "code_length": 3047
+        },
+        {
+          "filename": "aspect_loglog.py",
+          "title": "Aspect Loglog",
+          "code_length": 494
+        },
+        {
+          "filename": "custom_scale.py",
+          "title": "Custom Scale",
+          "code_length": 6817
+        },
+        {
+          "filename": "log_demo.py",
+          "title": "Log Demo",
+          "code_length": 2717
+        },
+        {
+          "filename": "logit_demo.py",
+          "title": "Logit Demo",
+          "code_length": 2365
+        },
+        {
+          "filename": "power_norm.py",
+          "title": "Power Norm",
+          "code_length": 1155
+        },
+        {
+          "filename": "scales.py",
+          "title": "Scales",
+          "code_length": 1724
+        },
+        {
+          "filename": "symlog_demo.py",
+          "title": "Symlog Demo",
+          "code_length": 3975
+        }
+      ]
+    },
+    "shapes_and_collections": {
+      "count": 17,
+      "examples": [
+        {
+          "filename": "arrow_guide.py",
+          "title": "Arrow Guide",
+          "code_length": 4452
+        },
+        {
+          "filename": "artist_reference.py",
+          "title": "Artist Reference",
+          "code_length": 2602
+        },
+        {
+          "filename": "collections.py",
+          "title": "Collections",
+          "code_length": 4633
+        },
+        {
+          "filename": "compound_path.py",
+          "title": "Compound Path",
+          "code_length": 1127
+        },
+        {
+          "filename": "dolphin.py",
+          "title": "Dolphin",
+          "code_length": 4237
+        },
+        {
+          "filename": "donut.py",
+          "title": "Donut",
+          "code_length": 2258
+        },
+        {
+          "filename": "ellipse_arrow.py",
+          "title": "Ellipse Arrow",
+          "code_length": 1260
+        },
+        {
+          "filename": "ellipse_collection.py",
+          "title": "Ellipse Collection",
+          "code_length": 1215
+        },
+        {
+          "filename": "ellipse_demo.py",
+          "title": "Ellipse Demo",
+          "code_length": 1560
+        },
+        {
+          "filename": "fancybox_demo.py",
+          "title": "Fancybox Demo",
+          "code_length": 6118
+        },
+        {
+          "filename": "hatch_demo.py",
+          "title": "Hatch Demo",
+          "code_length": 1985
+        },
+        {
+          "filename": "hatch_style_reference.py",
+          "title": "Hatch Style Reference",
+          "code_length": 1897
+        },
+        {
+          "filename": "line_collection.py",
+          "title": "Line Collection",
+          "code_length": 2477
+        },
+        {
+          "filename": "patch_collection.py",
+          "title": "Patch Collection",
+          "code_length": 2058
+        },
+        {
+          "filename": "path_patch.py",
+          "title": "Path Patch",
+          "code_length": 1217
+        },
+        {
+          "filename": "quad_bezier.py",
+          "title": "Quad Bezier",
+          "code_length": 885
+        },
+        {
+          "filename": "scatter.py",
+          "title": "Scatter",
+          "code_length": 620
+        }
+      ]
+    },
+    "showcase": {
+      "count": 7,
+      "examples": [
+        {
+          "filename": "anatomy.py",
+          "title": "Anatomy",
+          "code_length": 4062
+        },
+        {
+          "filename": "firefox.py",
+          "title": "Firefox",
+          "code_length": 3945
+        },
+        {
+          "filename": "integral.py",
+          "title": "Integral",
+          "code_length": 1230
+        },
+        {
+          "filename": "mandelbrot.py",
+          "title": "Mandelbrot",
+          "code_length": 2543
+        },
+        {
+          "filename": "pan_zoom_overlap.py",
+          "title": "Pan Zoom Overlap",
+          "code_length": 2279
+        },
+        {
+          "filename": "stock_prices.py",
+          "title": "Stock Prices",
+          "code_length": 4245
+        },
+        {
+          "filename": "xkcd.py",
+          "title": "Xkcd",
+          "code_length": 1494
+        }
+      ]
+    },
+    "specialty_plots": {
+      "count": 12,
+      "examples": [
+        {
+          "filename": "advanced_hillshading.py",
+          "title": "Advanced Hillshading",
+          "code_length": 1999
+        },
+        {
+          "filename": "anscombe.py",
+          "title": "Anscombe",
+          "code_length": 2285
+        },
+        {
+          "filename": "hinton_demo.py",
+          "title": "Hinton Demo",
+          "code_length": 1335
+        },
+        {
+          "filename": "ishikawa_diagram.py",
+          "title": "Ishikawa Diagram",
+          "code_length": 6036
+        },
+        {
+          "filename": "leftventricle_bullseye.py",
+          "title": "Leftventricle Bullseye",
+          "code_length": 5399
+        },
+        {
+          "filename": "mri_with_eeg.py",
+          "title": "Mri With Eeg",
+          "code_length": 1674
+        },
+        {
+          "filename": "radar_chart.py",
+          "title": "Radar Chart",
+          "code_length": 8645
+        },
+        {
+          "filename": "sankey_basics.py",
+          "title": "Sankey Basics",
+          "code_length": 3564
+        },
+        {
+          "filename": "sankey_links.py",
+          "title": "Sankey Links",
+          "code_length": 2000
+        },
+        {
+          "filename": "sankey_rankine.py",
+          "title": "Sankey Rankine",
+          "code_length": 4155
+        },
+        {
+          "filename": "skewt.py",
+          "title": "Skewt",
+          "code_length": 10180
+        },
+        {
+          "filename": "topographic_hillshading.py",
+          "title": "Topographic Hillshading",
+          "code_length": 3263
+        }
+      ]
+    },
+    "spines": {
+      "count": 5,
+      "examples": [
+        {
+          "filename": "centered_spines_with_arrows.py",
+          "title": "Centered Spines With Arrows",
+          "code_length": 1126
+        },
+        {
+          "filename": "multiple_yaxis_with_spines.py",
+          "title": "Multiple Yaxis With Spines",
+          "code_length": 1532
+        },
+        {
+          "filename": "spine_placement_demo.py",
+          "title": "Spine Placement Demo",
+          "code_length": 1244
+        },
+        {
+          "filename": "spines.py",
+          "title": "Spines",
+          "code_length": 1371
+        },
+        {
+          "filename": "spines_dropped.py",
+          "title": "Spines Dropped",
+          "code_length": 823
+        }
+      ]
+    },
+    "statistics": {
+      "count": 21,
+      "examples": [
+        {
+          "filename": "boxplot.py",
+          "title": "Boxplot",
+          "code_length": 3623
+        },
+        {
+          "filename": "boxplot_color.py",
+          "title": "Boxplot Color",
+          "code_length": 1212
+        },
+        {
+          "filename": "boxplot_demo.py",
+          "title": "Boxplot Demo",
+          "code_length": 8093
+        },
+        {
+          "filename": "boxplot_vs_violin.py",
+          "title": "Boxplot Vs Violin",
+          "code_length": 1885
+        },
+        {
+          "filename": "bxp.py",
+          "title": "Bxp",
+          "code_length": 2449
+        },
+        {
+          "filename": "confidence_ellipse.py",
+          "title": "Confidence Ellipse",
+          "code_length": 6775
+        },
+        {
+          "filename": "customized_violin.py",
+          "title": "Customized Violin",
+          "code_length": 2683
+        },
+        {
+          "filename": "errorbar.py",
+          "title": "Errorbar",
+          "code_length": 665
+        },
+        {
+          "filename": "errorbar_features.py",
+          "title": "Errorbar Features",
+          "code_length": 1631
+        },
+        {
+          "filename": "errorbar_limits.py",
+          "title": "Errorbar Limits",
+          "code_length": 2692
+        },
+        {
+          "filename": "errorbars_and_boxes.py",
+          "title": "Errorbars And Boxes",
+          "code_length": 2732
+        },
+        {
+          "filename": "hexbin_demo.py",
+          "title": "Hexbin Demo",
+          "code_length": 1188
+        },
+        {
+          "filename": "hist.py",
+          "title": "Hist",
+          "code_length": 3421
+        },
+        {
+          "filename": "histogram_bihistogram.py",
+          "title": "Histogram Bihistogram",
+          "code_length": 1361
+        },
+        {
+          "filename": "histogram_cumulative.py",
+          "title": "Histogram Cumulative",
+          "code_length": 2766
+        },
+        {
+          "filename": "histogram_histtypes.py",
+          "title": "Histogram Histtypes",
+          "code_length": 1836
+        },
+        {
+          "filename": "histogram_multihist.py",
+          "title": "Histogram Multihist",
+          "code_length": 3313
+        },
+        {
+          "filename": "histogram_normalization.py",
+          "title": "Histogram Normalization",
+          "code_length": 9651
+        },
+        {
+          "filename": "multiple_histograms_side_by_side.py",
+          "title": "Multiple Histograms Side By Side",
+          "code_length": 2521
+        },
+        {
+          "filename": "time_series_histogram.py",
+          "title": "Time Series Histogram",
+          "code_length": 4310
+        },
+        {
+          "filename": "violinplot.py",
+          "title": "Violinplot",
+          "code_length": 4952
+        }
+      ]
+    },
+    "style_sheets": {
+      "count": 8,
+      "examples": [
+        {
+          "filename": "bmh.py",
+          "title": "Bmh",
+          "code_length": 797
+        },
+        {
+          "filename": "dark_background.py",
+          "title": "Dark Background",
+          "code_length": 700
+        },
+        {
+          "filename": "fivethirtyeight.py",
+          "title": "Fivethirtyeight",
+          "code_length": 778
+        },
+        {
+          "filename": "ggplot.py",
+          "title": "Ggplot",
+          "code_length": 1528
+        },
+        {
+          "filename": "grayscale.py",
+          "title": "Grayscale",
+          "code_length": 970
+        },
+        {
+          "filename": "petroff10.py",
+          "title": "Petroff10",
+          "code_length": 1372
+        },
+        {
+          "filename": "plot_solarizedlight2.py",
+          "title": "Plot Solarizedlight2",
+          "code_length": 1372
+        },
+        {
+          "filename": "style_sheets_reference.py",
+          "title": "Style Sheets Reference",
+          "code_length": 5943
+        }
+      ]
+    },
+    "subplots_axes_and_figures": {
+      "count": 35,
+      "examples": [
+        {
+          "filename": "align_labels_demo.py",
+          "title": "Align Labels Demo",
+          "code_length": 1289
+        },
+        {
+          "filename": "auto_subplots_adjust.py",
+          "title": "Auto Subplots Adjust",
+          "code_length": 3332
+        },
+        {
+          "filename": "axes_box_aspect.py",
+          "title": "Axes Box Aspect",
+          "code_length": 4133
+        },
+        {
+          "filename": "axes_demo.py",
+          "title": "Axes Demo",
+          "code_length": 1488
+        },
+        {
+          "filename": "axes_margins.py",
+          "title": "Axes Margins",
+          "code_length": 2669
+        },
+        {
+          "filename": "axes_props.py",
+          "title": "Axes Props",
+          "code_length": 443
+        },
+        {
+          "filename": "axes_zoom_effect.py",
+          "title": "Axes Zoom Effect",
+          "code_length": 3397
+        },
+        {
+          "filename": "axhspan_demo.py",
+          "title": "Axhspan Demo",
+          "code_length": 1385
+        },
+        {
+          "filename": "axis_equal_demo.py",
+          "title": "Axis Equal Demo",
+          "code_length": 1024
+        },
+        {
+          "filename": "axis_labels_demo.py",
+          "title": "Axis Labels Demo",
+          "code_length": 508
+        },
+        {
+          "filename": "broken_axis.py",
+          "title": "Broken Axis",
+          "code_length": 1909
+        },
+        {
+          "filename": "custom_figure_class.py",
+          "title": "Custom Figure Class",
+          "code_length": 1599
+        },
+        {
+          "filename": "demo_constrained_layout.py",
+          "title": "Demo Constrained Layout",
+          "code_length": 1719
+        },
+        {
+          "filename": "demo_tight_layout.py",
+          "title": "Demo Tight Layout",
+          "code_length": 3076
+        },
+        {
+          "filename": "fahrenheit_celsius_scales.py",
+          "title": "Fahrenheit Celsius Scales",
+          "code_length": 1251
+        },
+        {
+          "filename": "figure_size_units.py",
+          "title": "Figure Size Units",
+          "code_length": 2462
+        },
+        {
+          "filename": "figure_title.py",
+          "title": "Figure Title",
+          "code_length": 1756
+        },
+        {
+          "filename": "ganged_plots.py",
+          "title": "Ganged Plots",
+          "code_length": 1074
+        },
+        {
+          "filename": "geo_demo.py",
+          "title": "Geo Demo",
+          "code_length": 709
+        },
+        {
+          "filename": "gridspec_and_subplots.py",
+          "title": "Gridspec And Subplots",
+          "code_length": 1008
+        },
+        {
+          "filename": "gridspec_customization.py",
+          "title": "Gridspec Customization",
+          "code_length": 1499
+        },
+        {
+          "filename": "gridspec_multicolumn.py",
+          "title": "Gridspec Multicolumn",
+          "code_length": 1003
+        },
+        {
+          "filename": "gridspec_nested.py",
+          "title": "Gridspec Nested",
+          "code_length": 1222
+        },
+        {
+          "filename": "invert_axes.py",
+          "title": "Invert Axes",
+          "code_length": 1086
+        },
+        {
+          "filename": "multiple_figs_demo.py",
+          "title": "Multiple Figs Demo",
+          "code_length": 1298
+        },
+        {
+          "filename": "secondary_axis.py",
+          "title": "Secondary Axis",
+          "code_length": 5812
+        },
+        {
+          "filename": "share_axis_lims_views.py",
+          "title": "Share Axis Lims Views",
+          "code_length": 791
+        },
+        {
+          "filename": "shared_axis_demo.py",
+          "title": "Shared Axis Demo",
+          "code_length": 1865
+        },
+        {
+          "filename": "subfigures.py",
+          "title": "Subfigures",
+          "code_length": 4515
+        },
+        {
+          "filename": "subplot.py",
+          "title": "Subplot",
+          "code_length": 1156
+        },
+        {
+          "filename": "subplot2grid.py",
+          "title": "Subplot2Grid",
+          "code_length": 817
+        },
+        {
+          "filename": "subplots_adjust.py",
+          "title": "Subplots Adjust",
+          "code_length": 892
+        },
+        {
+          "filename": "subplots_demo.py",
+          "title": "Subplots Demo",
+          "code_length": 6395
+        },
+        {
+          "filename": "two_scales.py",
+          "title": "Two Scales",
+          "code_length": 1619
+        },
+        {
+          "filename": "zoom_inset_axes.py",
+          "title": "Zoom Inset Axes",
+          "code_length": 1170
+        }
+      ]
+    },
+    "text_labels_and_annotations": {
+      "count": 47,
+      "examples": [
+        {
+          "filename": "accented_text.py",
+          "title": "Accented Text",
+          "code_length": 1129
+        },
+        {
+          "filename": "align_ylabels.py",
+          "title": "Align Ylabels",
+          "code_length": 2173
+        },
+        {
+          "filename": "angle_annotation.py",
+          "title": "Angle Annotation",
+          "code_length": 13120
+        },
+        {
+          "filename": "angles_on_bracket_arrows.py",
+          "title": "Angles On Bracket Arrows",
+          "code_length": 2625
+        },
+        {
+          "filename": "annotate_transform.py",
+          "title": "Annotate Transform",
+          "code_length": 1402
+        },
+        {
+          "filename": "annotation_basic.py",
+          "title": "Annotation Basic",
+          "code_length": 900
+        },
+        {
+          "filename": "annotation_demo.py",
+          "title": "Annotation Demo",
+          "code_length": 14882
+        },
+        {
+          "filename": "annotation_polar.py",
+          "title": "Annotation Polar",
+          "code_length": 1178
+        },
+        {
+          "filename": "arrow_demo.py",
+          "title": "Arrow Demo",
+          "code_length": 5628
+        },
+        {
+          "filename": "autowrap.py",
+          "title": "Autowrap",
+          "code_length": 1200
+        },
+        {
+          "filename": "custom_legends.py",
+          "title": "Custom Legends",
+          "code_length": 2195
+        },
+        {
+          "filename": "date.py",
+          "title": "Date",
+          "code_length": 2612
+        },
+        {
+          "filename": "demo_annotation_box.py",
+          "title": "Demo Annotation Box",
+          "code_length": 3591
+        },
+        {
+          "filename": "demo_text_path.py",
+          "title": "Demo Text Path",
+          "code_length": 3969
+        },
+        {
+          "filename": "demo_text_rotation_mode.py",
+          "title": "Demo Text Rotation Mode",
+          "code_length": 2965
+        },
+        {
+          "filename": "dfrac_demo.py",
+          "title": "Dfrac Demo",
+          "code_length": 998
+        },
+        {
+          "filename": "engineering_formatter.py",
+          "title": "Engineering Formatter",
+          "code_length": 1416
+        },
+        {
+          "filename": "fancyarrow_demo.py",
+          "title": "Fancyarrow Demo",
+          "code_length": 2195
+        },
+        {
+          "filename": "fancytextbox_demo.py",
+          "title": "Fancytextbox Demo",
+          "code_length": 639
+        },
+        {
+          "filename": "figlegend_demo.py",
+          "title": "Figlegend Demo",
+          "code_length": 764
+        },
+        {
+          "filename": "font_family_rc.py",
+          "title": "Font Family Rc",
+          "code_length": 1891
+        },
+        {
+          "filename": "font_file.py",
+          "title": "Font File",
+          "code_length": 1089
+        },
+        {
+          "filename": "font_table.py",
+          "title": "Font Table",
+          "code_length": 3899
+        },
+        {
+          "filename": "fonts_demo.py",
+          "title": "Fonts Demo",
+          "code_length": 2472
+        },
+        {
+          "filename": "fonts_demo_kw.py",
+          "title": "Fonts Demo Kw",
+          "code_length": 1891
+        },
+        {
+          "filename": "label_subplots.py",
+          "title": "Label Subplots",
+          "code_length": 2663
+        },
+        {
+          "filename": "legend.py",
+          "title": "Legend",
+          "code_length": 916
+        },
+        {
+          "filename": "legend_demo.py",
+          "title": "Legend Demo",
+          "code_length": 6303
+        },
+        {
+          "filename": "line_with_text.py",
+          "title": "Line With Text",
+          "code_length": 2548
+        },
+        {
+          "filename": "mathtext_asarray.py",
+          "title": "Mathtext Asarray",
+          "code_length": 1910
+        },
+        {
+          "filename": "mathtext_demo.py",
+          "title": "Mathtext Demo",
+          "code_length": 625
+        },
+        {
+          "filename": "mathtext_examples.py",
+          "title": "Mathtext Examples",
+          "code_length": 4043
+        },
+        {
+          "filename": "mathtext_fontfamily_example.py",
+          "title": "Mathtext Fontfamily Example",
+          "code_length": 1026
+        },
+        {
+          "filename": "multiline.py",
+          "title": "Multiline",
+          "code_length": 1194
+        },
+        {
+          "filename": "placing_text_boxes.py",
+          "title": "Placing Text Boxes",
+          "code_length": 1054
+        },
+        {
+          "filename": "rainbow_text.py",
+          "title": "Rainbow Text",
+          "code_length": 1277
+        },
+        {
+          "filename": "stix_fonts_demo.py",
+          "title": "Stix Fonts Demo",
+          "code_length": 835
+        },
+        {
+          "filename": "tex_demo.py",
+          "title": "Tex Demo",
+          "code_length": 3254
+        },
+        {
+          "filename": "text_alignment.py",
+          "title": "Text Alignment",
+          "code_length": 3615
+        },
+        {
+          "filename": "text_commands.py",
+          "title": "Text Commands",
+          "code_length": 1490
+        },
+        {
+          "filename": "text_fontdict.py",
+          "title": "Text Fontdict",
+          "code_length": 864
+        },
+        {
+          "filename": "text_rotation_relative_to_line.py",
+          "title": "Text Rotation Relative To Line",
+          "code_length": 1176
+        },
+        {
+          "filename": "titles_demo.py",
+          "title": "Titles Demo",
+          "code_length": 1388
+        },
+        {
+          "filename": "unicode_minus.py",
+          "title": "Unicode Minus",
+          "code_length": 982
+        },
+        {
+          "filename": "usetex_baseline_test.py",
+          "title": "Usetex Baseline Test",
+          "code_length": 819
+        },
+        {
+          "filename": "usetex_fonteffects.py",
+          "title": "Usetex Fonteffects",
+          "code_length": 698
+        },
+        {
+          "filename": "watermark_text.py",
+          "title": "Watermark Text",
+          "code_length": 709
+        }
+      ]
+    },
+    "ticks": {
+      "count": 23,
+      "examples": [
+        {
+          "filename": "auto_ticks.py",
+          "title": "Auto Ticks",
+          "code_length": 1383
+        },
+        {
+          "filename": "centered_ticklabels.py",
+          "title": "Centered Ticklabels",
+          "code_length": 1542
+        },
+        {
+          "filename": "colorbar_tick_labelling_demo.py",
+          "title": "Colorbar Tick Labelling Demo",
+          "code_length": 1888
+        },
+        {
+          "filename": "custom_ticker1.py",
+          "title": "Custom Ticker1",
+          "code_length": 889
+        },
+        {
+          "filename": "date_concise_formatter.py",
+          "title": "Date Concise Formatter",
+          "code_length": 6591
+        },
+        {
+          "filename": "date_demo_convert.py",
+          "title": "Date Demo Convert",
+          "code_length": 1013
+        },
+        {
+          "filename": "date_demo_rrule.py",
+          "title": "Date Demo Rrule",
+          "code_length": 1261
+        },
+        {
+          "filename": "date_formatters_locators.py",
+          "title": "Date Formatters Locators",
+          "code_length": 3745
+        },
+        {
+          "filename": "date_index_formatter.py",
+          "title": "Date Index Formatter",
+          "code_length": 3015
+        },
+        {
+          "filename": "date_precision_and_epochs.py",
+          "title": "Date Precision And Epochs",
+          "code_length": 5054
+        },
+        {
+          "filename": "dollar_ticks.py",
+          "title": "Dollar Ticks",
+          "code_length": 899
+        },
+        {
+          "filename": "engformatter_offset.py",
+          "title": "Engformatter Offset",
+          "code_length": 793
+        },
+        {
+          "filename": "fig_axes_customize_simple.py",
+          "title": "Fig Axes Customize Simple",
+          "code_length": 1264
+        },
+        {
+          "filename": "major_minor_demo.py",
+          "title": "Major Minor Demo",
+          "code_length": 3234
+        },
+        {
+          "filename": "multilevel_ticks.py",
+          "title": "Multilevel Ticks",
+          "code_length": 3583
+        },
+        {
+          "filename": "scalarformatter.py",
+          "title": "Scalarformatter",
+          "code_length": 1109
+        },
+        {
+          "filename": "tick-formatters.py",
+          "title": "Tick-Formatters",
+          "code_length": 3543
+        },
+        {
+          "filename": "tick-locators.py",
+          "title": "Tick-Locators",
+          "code_length": 2900
+        },
+        {
+          "filename": "tick_label_right.py",
+          "title": "Tick Label Right",
+          "code_length": 767
+        },
+        {
+          "filename": "tick_labels_from_values.py",
+          "title": "Tick Labels From Values",
+          "code_length": 1385
+        },
+        {
+          "filename": "tick_xlabel_top.py",
+          "title": "Tick Xlabel Top",
+          "code_length": 906
+        },
+        {
+          "filename": "ticklabels_rotation.py",
+          "title": "Ticklabels Rotation",
+          "code_length": 886
+        },
+        {
+          "filename": "ticks_too_many.py",
+          "title": "Ticks Too Many",
+          "code_length": 2609
+        }
+      ]
+    },
+    "units": {
+      "count": 10,
+      "examples": [
+        {
+          "filename": "annotate_with_units.py",
+          "title": "Annotate With Units",
+          "code_length": 1001
+        },
+        {
+          "filename": "artist_tests.py",
+          "title": "Artist Tests",
+          "code_length": 1726
+        },
+        {
+          "filename": "bar_demo2.py",
+          "title": "Bar Demo2",
+          "code_length": 1146
+        },
+        {
+          "filename": "bar_unit_demo.py",
+          "title": "Bar Unit Demo",
+          "code_length": 1049
+        },
+        {
+          "filename": "basic_units.py",
+          "title": "Basic Units",
+          "code_length": 12025
+        },
+        {
+          "filename": "ellipse_with_units.py",
+          "title": "Ellipse With Units",
+          "code_length": 1910
+        },
+        {
+          "filename": "evans_test.py",
+          "title": "Evans Test",
+          "code_length": 2211
+        },
+        {
+          "filename": "radian_demo.py",
+          "title": "Radian Demo",
+          "code_length": 598
+        },
+        {
+          "filename": "units_sample.py",
+          "title": "Units Sample",
+          "code_length": 913
+        },
+        {
+          "filename": "units_scatter.py",
+          "title": "Units Scatter",
+          "code_length": 679
+        }
+      ]
+    },
+    "user_interfaces": {
+      "count": 25,
+      "examples": [
+        {
+          "filename": "canvasagg.py",
+          "title": "Canvasagg",
+          "code_length": 2315
+        },
+        {
+          "filename": "embedding_in_gtk3_panzoom_sgskip.py",
+          "title": "Embedding In Gtk3 Panzoom Sgskip",
+          "code_length": 1039
+        },
+        {
+          "filename": "embedding_in_gtk3_sgskip.py",
+          "title": "Embedding In Gtk3 Sgskip",
+          "code_length": 893
+        },
+        {
+          "filename": "embedding_in_gtk4_panzoom_sgskip.py",
+          "title": "Embedding In Gtk4 Panzoom Sgskip",
+          "code_length": 1300
+        },
+        {
+          "filename": "embedding_in_gtk4_sgskip.py",
+          "title": "Embedding In Gtk4 Sgskip",
+          "code_length": 1153
+        },
+        {
+          "filename": "embedding_in_qt_sgskip.py",
+          "title": "Embedding In Qt Sgskip",
+          "code_length": 3255
+        },
+        {
+          "filename": "embedding_in_tk_sgskip.py",
+          "title": "Embedding In Tk Sgskip",
+          "code_length": 1970
+        },
+        {
+          "filename": "embedding_in_wx2_sgskip.py",
+          "title": "Embedding In Wx2 Sgskip",
+          "code_length": 1774
+        },
+        {
+          "filename": "embedding_in_wx3_sgskip.py",
+          "title": "Embedding In Wx3 Sgskip",
+          "code_length": 4518
+        },
+        {
+          "filename": "embedding_in_wx4_sgskip.py",
+          "title": "Embedding In Wx4 Sgskip",
+          "code_length": 2475
+        },
+        {
+          "filename": "embedding_in_wx5_sgskip.py",
+          "title": "Embedding In Wx5 Sgskip",
+          "code_length": 1771
+        },
+        {
+          "filename": "embedding_webagg_sgskip.py",
+          "title": "Embedding Webagg Sgskip",
+          "code_length": 8945
+        },
+        {
+          "filename": "fourier_demo_wx_sgskip.py",
+          "title": "Fourier Demo Wx Sgskip",
+          "code_length": 8582
+        },
+        {
+          "filename": "gtk3_spreadsheet_sgskip.py",
+          "title": "Gtk3 Spreadsheet Sgskip",
+          "code_length": 2511
+        },
+        {
+          "filename": "gtk4_spreadsheet_sgskip.py",
+          "title": "Gtk4 Spreadsheet Sgskip",
+          "code_length": 2729
+        },
+        {
+          "filename": "mathtext_wx_sgskip.py",
+          "title": "Mathtext Wx Sgskip",
+          "code_length": 4110
+        },
+        {
+          "filename": "mpl_with_glade3_sgskip.py",
+          "title": "Mpl With Glade3 Sgskip",
+          "code_length": 1212
+        },
+        {
+          "filename": "mplcvd.py",
+          "title": "Mplcvd",
+          "code_length": 8888
+        },
+        {
+          "filename": "pylab_with_gtk3_sgskip.py",
+          "title": "Pylab With Gtk3 Sgskip",
+          "code_length": 1473
+        },
+        {
+          "filename": "pylab_with_gtk4_sgskip.py",
+          "title": "Pylab With Gtk4 Sgskip",
+          "code_length": 1296
+        },
+        {
+          "filename": "svg_histogram_sgskip.py",
+          "title": "Svg Histogram Sgskip",
+          "code_length": 4577
+        },
+        {
+          "filename": "svg_tooltip_sgskip.py",
+          "title": "Svg Tooltip Sgskip",
+          "code_length": 3346
+        },
+        {
+          "filename": "toolmanager_sgskip.py",
+          "title": "Toolmanager Sgskip",
+          "code_length": 2649
+        },
+        {
+          "filename": "web_application_server_sgskip.py",
+          "title": "Web Application Server Sgskip",
+          "code_length": 2159
+        },
+        {
+          "filename": "wxcursor_demo_sgskip.py",
+          "title": "Wxcursor Demo Sgskip",
+          "code_length": 1932
+        }
+      ]
+    },
+    "userdemo": {
+      "count": 3,
+      "examples": [
+        {
+          "filename": "demo_gridspec06.py",
+          "title": "Demo Gridspec06",
+          "code_length": 1075
+        },
+        {
+          "filename": "simple_legend01.py",
+          "title": "Simple Legend01",
+          "code_length": 649
+        },
+        {
+          "filename": "simple_legend02.py",
+          "title": "Simple Legend02",
+          "code_length": 513
+        }
+      ]
+    },
+    "widgets": {
+      "count": 17,
+      "examples": [
+        {
+          "filename": "annotated_cursor.py",
+          "title": "Annotated Cursor",
+          "code_length": 13331
+        },
+        {
+          "filename": "buttons.py",
+          "title": "Buttons",
+          "code_length": 1253
+        },
+        {
+          "filename": "check_buttons.py",
+          "title": "Check Buttons",
+          "code_length": 1792
+        },
+        {
+          "filename": "cursor.py",
+          "title": "Cursor",
+          "code_length": 637
+        },
+        {
+          "filename": "lasso_selector_demo_sgskip.py",
+          "title": "Lasso Selector Demo Sgskip",
+          "code_length": 3328
+        },
+        {
+          "filename": "menu.py",
+          "title": "Menu",
+          "code_length": 4099
+        },
+        {
+          "filename": "mouse_cursor.py",
+          "title": "Mouse Cursor",
+          "code_length": 1165
+        },
+        {
+          "filename": "multicursor.py",
+          "title": "Multicursor",
+          "code_length": 839
+        },
+        {
+          "filename": "polygon_selector_demo.py",
+          "title": "Polygon Selector Demo",
+          "code_length": 3267
+        },
+        {
+          "filename": "polygon_selector_simple.py",
+          "title": "Polygon Selector Simple",
+          "code_length": 1159
+        },
+        {
+          "filename": "radio_buttons.py",
+          "title": "Radio Buttons",
+          "code_length": 2184
+        },
+        {
+          "filename": "range_slider.py",
+          "title": "Range Slider",
+          "code_length": 1938
+        },
+        {
+          "filename": "rectangle_selector.py",
+          "title": "Rectangle Selector",
+          "code_length": 2311
+        },
+        {
+          "filename": "slider_demo.py",
+          "title": "Slider Demo",
+          "code_length": 2195
+        },
+        {
+          "filename": "slider_snap_demo.py",
+          "title": "Slider Snap Demo",
+          "code_length": 1945
+        },
+        {
+          "filename": "span_selector.py",
+          "title": "Span Selector",
+          "code_length": 1713
+        },
+        {
+          "filename": "textbox.py",
+          "title": "Textbox",
+          "code_length": 1437
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+/* Plot-Centric Layout */
+.app-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .app-layout {
+    flex-direction: column;
+  }
+}

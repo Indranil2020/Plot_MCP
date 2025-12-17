@@ -1,0 +1,4914 @@
+STUDIES ON III-V DILUTE NITRIDE,
+BISMUTH AND ANTIMONIDE ALLOYS
+USING K.P HAMILTONIAN
+Dissertation
+Submitted in partial fulfillment of the requirements
+for the award of the degree of
+
+Master of Technology
+In
+
+Mobile Communication And Computing
+By
+
+Indranil Mal
+(MCC/15/05)
+Under the supervision of:
+
+Dr. T. D. Das
+Assistant Professor
+
+Department of Basic and Applied Science
+
+Department of Electronics and Computer Engineering
+
+National Institute of Technology
+(Established by Ministry of Human Resource Development, Govt. of India)
+Yupia, District: Papum Pare, Arunachal Pradesh 791 112
+May 2017
+
+CERTIFICATE OF APPROVAL
+
+The dissertation entitled " STUDIES ON III-V DILUTE NITRIDE, BISMUTH
+AND ANTIMONIDE ALLOYS USING K.P HAMILTONIAN" submitted by
+Indranil Mal bearing Roll No MCC/15/05 is presented in a satisfactory manner to
+warrant its acceptance as a pre-requisite for the degree of Master of Technology in
+Mobile Communication and Computing of National Institute of Technology,
+Arunachal Pradesh. It is understood that by this approval the undersigned do not
+necessarily endorse or approve any statement made, the opinion expressed or
+conclusion drawn therein, but only for the purpose for which it has been submitted.
+
+BOARD OF EXAMINERS:
+
+1. External Examiner
+
+2. Internal Examiner
+
+CERTIFICATE FROM SUPERVISOR
+
+This is to certify that the dissertation entitled "STUDIES ON III-V DILUTE
+NITRIDE,
+
+BISMUTH
+
+AND
+
+ANTIMONIDE
+
+ALLOYS
+
+USING
+
+K.P
+
+HAMILTONIAN " submitted by Indranil Mal bearing Roll No. MCC/15/05 to
+the Department of Electronics and Computer Engineering of National Institute of
+Technology, Arunachal Pradesh, as a partial fulfillment of his M.Tech. degree in
+Mobile Communication and Computing of the Institute is absolutely based upon
+his own work, carried out during the period from July 2016 to May 2017 under
+my supervision. Neither this dissertation nor any part of it has been submitted for
+the award of any other degree of this Institute or any other Institute/ University.
+
+Dr. T. D. Das
+Supervisor
+
+ABSTRACT
+The electronic band structure of strained GaSbBi/GaAs heterostructures are
+investigated using a 14 band k·p Hamiltonian which is an extended form of the 12
+band Valance band Anticrossing (VBAC) matrix. The shift in the valence and
+conduction subbands due to the incorporation of Bi in GaSb/GaAs Type II system
+are calculated and compared with the available experimental data. Unlike the band
+gap reduction of 51 meV and enhancement of spin-orbit splitting energy by ~ 27
+meV in bulk GaSb0.987Bi0.013, 7.3% compressive strain in GaSbBi/GaAs quantum
+wells (QWs) amends the scenario completely by increasing the band gap to 1.12
+eV and the spin-orbit splitting energy to 1.217 eV. The dispersion relations and
+effective masses of the carriers in the crystal directions Δ, Λ, and Σ are calculated
+near the Γ point using this Hamiltonian yield some interesting results. The
+variation of the optical gain with the density of injected carriers and dimension of
+the QW is calculated and the peak of the gain curve exhibits a shift towards lower
+wavelengths with the decrease in the width of the QWs.
+Quaternary GaAsSbN is a promising candidate for use in GaAs-based
+optoelectronic devices in the 1.33-1.55 μm wavelength region. We have calculated
+the band structure of dilute nitride-antimonide GaAs1--x--yNxSby alloys, lattice
+matched to GaAs, using Band anticrossing (BAC) and Valence Band Anticrossing
+(VBAC) model in conjugation with the k·p Hamiltonian method. This
+mathematical model in the form of a 16 band Hamiltonian matrix is used to
+examine the shift of different bands as a function of Sb concentration for both bulk
+and quantum well structures for GaAsSbN/GaAs. The band parameters such as
+energy gap, spin-orbit splitting energy, carrier effective masses, band offsets, and
+strain generated due to the growth of GaAsSbN/GaAs heterostructures as a
+function of Sb and N concentrations are calculated and compared with the recent
+experimental data. The substitution of As atoms due to the incorporation of N and
+Sb impurity atoms causes a significant band gap reduction of ~330 meV for
+GaAs0.931Sb0.05N0.019 alloys. The enhancement of spin-orbit splitting energy causes
+a crossover between Eg and ΔSO for Sb and N concentration of 27 and 10 at %
+respectively. Suitable tuning of the band offset values with Sb and N
+concentrations makes GaAsSbN/GaAs alloy system an efficient alternative for
+band gap engineering and fabricating photonic device structures.
+
+i
+
+Date
+
+ACKNOWLEDGEMENT
+
+I take this opportunity to express my heartfelt gratitude and sincere thanks to my
+project supervisor Dr. Tushar Dhabal Das, Assistant Professor, Department of
+Basic And Applied Science, National Institute of Technology, Arunachal Pradesh
+for his constant guidance, suggestion and cordial encouragement at my very crucial
+stage of this dissertation work without him it could not become successful.
+I am also grateful to Dr. Dip Prakash Samajdar, Assistant Professor,
+Indian Institute of Information Technology, Design and Manufacturing (IIITDM)
+Jabalpur for his valuable supports, suggestion and gracious encouragement
+whenever required, without him it could not become successful.
+Finally, I want to thank my family and friends Sahana Deb, Asish Hazra, Sabya
+Sachi Sahu, N. Kumar Reddy, Sirikonda Rambabu, Shivam Raj, Md.
+Sirajuddin Inamdar, Bharat Kaushik, Bharat Richhariya, Mirwajahat
+Hussain, Dileep Kumar, Sanjeet Kumar, Saikat Ghosh for always being there
+for me. Their love, constant support and encouragement and motivation to pursue
+my goals made this thesis possible.
+
+Indranil Mal
+MCC/15/05
+Place: Yupia, Papum Pare
+
+ii
+
+Table of Contents
+ABSTRACT .......................................................................................... I
+ACKNOWLEDGEMENT ..................................................................II
+TABLE OF CONTENTS .................................................................. III
+LIST OF FIGURES........................................................................... IV
+LIST OF TABLES.......................................................................... VIII
+1
+
+INTRODUCTION..........................................................................1
+
+2
+
+THEORETICAL FRAMEWORK ...............................................3
+2.1 THE K.P HAMILTONIAN .............................................................................3
+2.2 VALANCE BAND ANTI CROSSING MODEL ................................................6
+2.3 14 BAND MODEL : GASB1-XBIX...................................................................8
+2.4 16 BAND MODEL : GAAS1-X-YSBYNX .........................................................10
+2.5 STRAIN EFFECT ........................................................................................12
+2.6 OPTICAL PROPERTIES .............................................................................14
+2.6.1
+Band Offset .......................................................................................14
+2.6.2
+Optical Gain ......................................................................................15
+
+3
+
+RESULTS AND DISCUSSION ..................................................17
+3.1 ELECTRONIC PROPERTIES .......................................................................17
+3.1.1
+Binary GaAs and GaSb .....................................................................17
+3.1.2
+Ternary GaSbBi ................................................................................18
+3.1.3
+Quaternary GaAsSbN........................................................................25
+3.2 OPTICAL PROPERTIES .............................................................................37
+3.2.1
+Optical Properties of GaSbBi............................................................37
+3.2.2
+Optical Properties of GaAsSbN ........................................................41
+
+4
+
+CONCLUSION AND FUTURE WORK ...................................43
+
+BIBLIOGRAPHY...............................................................................45
+ANNEXURE I : LIST OF PUBLICATIONS ..................................49
+ANNEXURE II : REPRINT OF PUBLICATIONS..........................1
+
+iii
+
+List of Figures
+Figure2.1 Energy-space diagram of compressively strained GaAs1-x-ySbyNx /GaAs
+QWs. .......................................................................................................................15
+Figure 3.1 Electronic Band Diagram of GaAs ......................................................17
+Figure 3.2 Band Diagram of GaSb Corresponding Energy states are mentioned in
+the diagram along different symmetric direction of crystal. ...................................18
+Figure 3.3 (Solid lines) Electronic band structure (BS) of
+unstrained
+GaSb0.987Bi0.013 at 300 K determined near  point along k-directions  and 
+using (14×14) VBAC model. (Dashed lines) BS of GaSb calculated using the k.p
+method (eight-band model). (Dash-dotted lines) EBi and EBi-SO are Bi localized
+levels in GaSb. Conduction band electrons, heavy holes, light holes and spin orbit
+splitting bands are represented by the indices cb, hh, lh and so respectively. ........18
+Figure 3.4 (Solid lines) Electronic band structure (BS) of strained GaSb0.987Bi0.013
+at 300 K determined near  point along k-directions  and  using (14×14)
+VBAC model. (Dashed lines) BS of GaSb calculated using the k.p method (eightband model). (Dash-dotted lines) EBi and EBi-SO are Bi localized levels in GaSb.
+Conduction band electrons, heavy holes, light holes and spin orbit splitting bands
+are represented by the indices cb, hh, lh and so respectively..................................19
+Figure 3.5 Variation of the E+ and E- sub band energy levels as a function of Sb
+concentration showing a decrease in band gap energy E G due to the downward
+movement of ECB- and upward movement of EHH/LH+ ; solid lines represent energy
+level for QW structure and the dashed for bulk GaSb0.987Bi0.013 . ...........................20
+Figure 3.6 Comparison of the calculated and experimental values of band gap E g
+as a function of Sb mole fraction for both the bulk and QW structure. the
+parenthesis reflect the slope of the curves...............................................................20
+Figure 3.7 Dispersion relations for different energy levels as a function k of
+GaSb0.987Bi0.013 along different high symmetric directions. ....................................21
+Figure 3.8 Variation of effective masses with respect to Bi mole fraction at 
+point of GaSb0.987Bi0.013 along. ................................................................................21
+Figure 3.9 Variation of conduction and valance band offsets of GaSbBi with
+respect to Bismuth mole fraction ............................................................................22
+Figure 3.10 Conduction band offset ratio of GaSbBi with respect to Bismuth mole
+fraction ....................................................................................................................23
+Figure 3.11 Conduction band offset ratio of GaSbBi vs Bi mole fraction.............23
+Figure 3.12 Predicted band offsets of the conduction band (∆Ecb), heavy-hole
+(∆Ehh) and light-hole (∆Elh) valence bands for GaSbBi/GaAs as a function of Bi
+mole fraction at 300K.............................................................................................24
+iv
+
+Figure 3.13 Variation of the E+ and E- energy levels corresponding to the CB, HH,
+LH and SO bands as a function of Sb concentration showing a decrease in band
+gap energy EG due to the downward movement of ECB- and upward movement of
+EHH/LH+ .....................................................................................................................25
+Figure 3.14 Band structure of GaAs0.931N0.019Sb0.05 (solid lines) and host GaAs
+(dotted lines) in the crystal directions Δ and Λ at room temperature. The downward
+movement of the ECB- energy band is indicated by an arrow (red). ........................26
+Figure 3.15 Comparison of the calculated and experimental values of band gap Eg
+and spin-orbit splitting energy as a function of Sb mole fraction. The resonant
+energy Er is 0.44 eV for Sb concentration of 2.7 at%. ............................................26
+Figure 3.16 Eg for GaAs1-x-yNxSby in the range 0.4-1.3 eV with increment of 0.1
+eV as a function of both Sb and N mole fraction. Experimental values of band gap
+are added from the literature and good agreement exists between our calculated
+results and experimental values. .............................................................................27
+Figure 3.17 Dispersion relations E± (k) for CB, HH, LH and SO bands in the
+crystal directions Δ, Σ and Λ...................................................................................28
+Figure 3.18 Changes in the effective masses in the crystal directions Δ, Σ and Λ in
+the lower and upper valence and conduction sub bands with the variation of Sb
+mole fraction in the range 0-0.05. ...........................................................................28
+Figure 3.19 Variation of CBO for GaAsNSb versus Sb mole fraction (y) for
+different values of N concentration in the material. Dashed lines are used to
+represent the lattice matched condition (x/y =0.38)................................................29
+Figure 3.20 Variation of CBO ratio for GaAsNSb versus Sb mole fraction (y) for
+different values of N concentration in the material. Dashed lines are used to
+represent the lattice matched condition (x/y =0.38)................................................29
+Figure 3.21 Variation of VBO for GaAsNSb versus Sb mole fraction (y) for
+different values of N concentration in the material. Dashed lines are used to
+represent the lattice matched condition (x/y =0.38)................................................30
+Figure 3.22 Variation of CBO ratio for GaAsNSb versus Sb mole fraction (y) for
+different values of N concentration in the material. Dashed lines are used to
+represent the lattice matched condition (x/y =0.38)................................................30
+Figure 3.23 Band structure of tensile strained GaAsNSb/GaAs QWs near the Γ
+point in the k directions (∆ and Λ). Dashed lines indicate the band structure of
+GaAsNSb alloy lattice matched to GaAs substrate.................................................31
+Figure 3.24 Band structure of compressive strained GaAsNSb/GaAs QWs near
+the Γ point in the k directions (∆ and Λ). Dashed lines indicate the band structure
+of GaAsNSb alloy lattice matched to GaAs substrate. ...........................................31
+Figure 3.25 Relative positions of the energy levels E± corresponding to the CB,
+HH, LH and SO bands as a function Sb mole fraction for tensile strained
+GAAsNSb/GaAs QWs. Dashed lines represent the lattice matched condition. .....32
+v
+
+Figure 3.26 Relative positions of the energy levels E± corresponding to the CB,
+HH, LH and SO bands as a function of Sb mole fraction for compressive strained
+GAAsNSb/GaAs QWs. Dashed lines represent the lattice matched condition. .....33
+Figure 3.27 Predicted band offsets of the conduction band (∆Ecb), heavy-hole
+(∆Ehh) and light-hole (∆Elh) valence bands for GaAsNSb/GaAs as a function of Sb
+mole fraction at different N composition at 300K. .................................................33
+*
+
+Figure 3.28 Effective masses m () of the electrons and holes in the upper and
+lower conduction and valence sub bands versus N concentration in the crystal
+direction ∆. ..............................................................................................................34
+*
+
+Figure 3.29 Effective masses m () of the electrons and holes in the upper and
+lower conduction and valence sub bands versus N concentration in the crystal
+direction  . .............................................................................................................34
+*
+
+Figure 3.30 Effective masses m () of the electrons and holes in the upper and
+lower conduction and valence sub bands versus N concentration in the crystal
+direction  ..............................................................................................................35
+*
+
+Figure 3.31 Effective masses m () of the electrons and holes in the upper and
+lower conduction and valence sub bands versus Sb concentration in the crystal
+direction ∆. ..............................................................................................................35
+*
+
+Figure 3.32 Effective masses m () of the electrons and holes in the upper and
+lower conduction and valence sub bands versus Sb concentration along 
+direction...................................................................................................................36
+*
+
+Figure 3.33 Effective masses m () of the electrons and holes in the upper and
+lower conduction and valence sub bands versus Sb concentration in the crystal
+direction  ...............................................................................................................36
+Figure 3.34 Confinement potential energy levels of 10 nm width
+GaSb0.987Bi0.013/GaAs type-II QW. .........................................................................37
+Figure 3.35 Plot of Gain versus Photon energy for different carrier concentrations
+showing the Interband transitions in GaAsBi/GaAs QWs. .....................................38
+Figure 3.36 Optical gain spectra of 10 nm width GaSb0.987Bi0.013/GaAs QW
+calculated within 14-band k.p model for various carrier concentrations. ...............38
+Figure 3.37 Optical gain spectra of GaSb0.987Bi0.013/GaAs QW for various widths
+calculated within 14-band k.p model for carrier concentration of 3  1016 m 2 . .....39
+Figure 3.38
+Peak gain and corresponding peak wavelength of of
+GaSb0.987Bi0.013/GaAs QW for various widths calculated within 14-band k.p model
+for carrier concentration of 3  1016 m 2 . ...............................................................40
+
+vi
+
+Figure 3.39 The quantum confinement potential and energy levels for electrons
+and holes for a set of 10 nm wide GaAsNSb/GaAs QWs for lattice matched
+condition..................................................................................................................41
+Figure 3.40 The quantum confinement potential and energy levels for electrons
+and holes for a set of 10 nm wide GaAsNSb/GaAs QWs for tensile strain...........41
+Figure 3.41 The quantum confinement potential and energy levels for electrons
+and holes for a set of 10 nm wide GaAsNSb/GaAs QWs for compressive strain. .42
+
+vii
+
+List of Tables
+Table 1 List of VBAC parameters for band structure calculation............................9
+Table 2 List of BAC parameters for band structure calculation.............................12
+Table 3 List of strain parameters used to calculate band structure of strained QWs
+.................................................................................................................................14
+Table 4 Operating wavelength range in  m ........................................................42
+
+viii
+
+1
+
+Introduction
+
+Selection of suitable materials with excellent structural and optical characteristics
+forms the basis for the fabrication of optoelectronic devices. Bi-containing III-V
+alloy, GaSbBi is one of such potential candidate for the realization of numerous
+applications in the technologically important 2-5 µm mid-infrared window, such as
+spectroscopy, materials processing, chemical and biomolecular sensing, security
+and industry due to its important property of band gap tuning [1]. Substitution of
+the Sb atoms by Bi atoms in GaSb helps in reducing the band gap by the upward
+shift of the light hole/heavy hole band and subsequent lowering of the conduction
+band minimum owing to Virtual Crystal Approximation (VCA) [2]. There are a
+number of reports on the theoretical modeling [1-5] and experimental growth [6-9]
+of this bulk ternary alloy GaSb1-xBix. Band gap reduction by about 40 meV/at%Bi
+and enhancement of spin-orbit splitting energy by 21 meV/at%Bi is obtained using
+VBAC Model [1] which is consistent with the experimental results [6-9]. In
+addition to GaSbBi alloys, Type-II GaSb/GaAs quantum dot (QD) structures have
+been the subject of study by the researchers due to their applications in LEDs
+involving dipole transitions [10], charge storage devices [11,12] Intermediate Band
+solar cells [13] and quantum-dot infrared LED [14]. Type-II quantum well (QW)
+structures have fascinated the researchers to resolve the major challenges, like
+charge separation due to the existence of the built-in electric field inside the QW
+[15]. The primary advantage of using Type II structures in optoelectronic
+applications is that it helps to improve the electron-hole envelope function, which
+enhances the radiative efficiency of developed heterostructures [16]. A recent
+report on the growth and photoluminescence studies of strained Type II
+GaSbBi/GaAs QDs produced some interesting results [17].
+Dilute III-V Nitride alloys have attracted the attention of the researchers in the past
+few decades due to their unique physical properties such as simultaneous reduction
+of band gap and lattice parameter of the corresponding III-V host lattice and
+potential applications in GaAs-based optoelectronic and photonic devices
+operating in the strategically important telecommunication wavelength range of
+1.3-1.55 µm [18-21]. GaAsSbN is a favorable alternative for achieving longer
+wavelengths with lower N concentration compared to GaInAsN [22]. A Smaller
+value of energy band gap is achievable with GaAsSbN than with GaInAsN for the
+same nitrogen concentration as GaAsSb presents a stronger bandgap bowing than
+GaInAs [23]. Harmand and co-workers reported a band gap reduction of 180 meV
+for a nitrogen incorporation of 1% in GaAsSbN/GaAs quantum wells (QWs) [2123]. Though GaAsSbN (QW) structures are not suitable for the fabrication of 1.3
+µm GaAs-based lasers due to their weaker electron confinement compared to
+GaInAsN QWs, they are suitable for 1.55 µm lasers for the lesser percentage of
+nitrogen required to achieve the desired wavelength [21]. Higher concentration of
+nitrogen often leads to the formation of N-related defects which degrades the
+
+1
+
+minority-carrier lifetime and efficiency in GaInAsN based devices [24]. The
+presence of a single Group III element in GaAsSbN makes the nitrogen
+concentration insensitive to the presence of Sb unlike GaInAsN alloys where In is
+reported to lower the concentration of N atoms [22]. This makes the electronic
+band structure of GaAsSbN alloys less dependent on the alloy configuration [21].
+The fact that GaAsSbN alloys can yield band gap values as low as 1 eV while
+maintaining lattice match with GaAs makes them ideal candidates for the
+fabrication of multijunction solar cells [24]. Thermal annealing in Sb-based alloys
+such as GaAsSbN and InGaAsSbN needed for the optimization of emission causes
+a larger blue-shift of the band gap compared to other dilute nitrides [25]. A recent
+report by Iyer et al. suggested that reducing the dimensionality of GaAsSbN alloy
+systems to nanowires can lead to the annihilation of N-induced point defects and
+enhanced photon collection for improving the performance of these dilute nitride
+nanowires in nanoscale optoelectronic devices [26]. The band gap reduction in
+dilute GaAsSbN alloys is explained using a double band anticrossing (BAC) model
+by Lin et al. which is a combination of BAC model for GaAsN and Valence BAC
+model for GaAsN [19].
+Here we have calculated the band structure of GaSbBi/GaAs type-II QWs by
+including the effect of strain and bulk GaSbBi using14 band k·p Hamiltonian to
+estimate the band gap, spin-orbit splitting energy, effective masses, dispersion
+relations and band offsets with variable bismuth concentration. We have also
+calculated the optical gain of type-II QW structures as a function of well width and
+doping concentration.
+We have also investigated the band structure of GaAsSbN alloys and
+GaAsSbN/GaAs QWs using a 16 band k·p Hamiltonian. We have extended the 8
+band Hamiltonian for GaAs to a 16 band k·p model to take into account the effects
+of the incorporation of Sb and N related impurities more accurately. The influence
+of these impurities on the band parameters such as band gap and spin-orbit
+splitting energy, electron and hole effective masses, conduction band and valence
+band offsets for GaAsSbN alloys and QWs are discussed. The dissertation is
+organized as follows. Section 2 gives the details of theoretical models and material
+parameters for the calculation of electronic band structure and related band
+parameters of binary GaAs and GaSb, ternary GaSbBi/ GaAs QW and Quaternary
+GaAsSbN. The results of the 8 band,14 band and 16 band k·p calculations for the
+corresponding alloys and QWs are presented in Section 3. The effects of strain on
+the band structure are also discussed in this section. Section 4 summarizes the
+contribution of our work in the relevant field and future work.
+
+2
+
+2
+
+Theoretical Framework
+
+For appropriate characterization of any material, both empirical and theoretical
+analysis is required. For theoretical analysis, there are various kind of tool with
+their own better hub such as DFT, Tight Binging method, Pseudopotential method,
+The k.p method. As per the subject of interest, specific methods are being used;
+here we are interested in optoelectronic behavior, which primarily depends on the
+band edge of III-V materials. As a result, we will focus on The k.p Hamiltonian,
+which offers precise and reliable results near the band edge.
+2.1
+
+The k.p Hamiltonian
+
+This numerical powerful tool helps to analyze the conduction band and valance
+band near the band edges of direct band-gap III-V semiconductors, where the wave
+vector k changes by a little amount from a vector k0 where a local maximum or
+minimum occurs. The k.p method was introduced by Bardeen [27] and Seitz [28],
+the method offers numerical analysis of Eigenvalue of 8 8 system Hamiltonian
+and provides basic 4 band electronic band structure of III-V semiconductors. The
+method has also been used widely by many researchers to semiconductors [29-34].
+We will discuss Kane’s model [31,32], which takes into account the spin-orbit
+interaction, and Luttinger-Kohn’s models [33] for degenerate bands and further
+modification for Valance Band Anticrossing (VBAC) model for 14 band and 16
+band respectively along with strain influence. These models are very popular in
+studying bulk and quantum well semiconductors and have been used during the
+past few decades. The Schrödinger equation for single electron
+
+ 2 2
+
+H  r   
+    r   E  k    r 
+ 2m0
+
+
+2-1
+
+where E  k  is the Eigenvalue of the electron wave function and k is the electron
+wave vector; the general solution of above equation is
+ nk  r   e ik.r u nk  r 
+
+2-2
+
+where u nk  r  is the periodic Bloch function and n refers to the band. Generalize
+Schrödinger equation for electron with above wave function in terms of u nk  r  can
+be written as
+
+ p2
+
+
+
+2 k 2 
+
+k
+.
+p
++
+V
+r
+u
+r
+
+E
+k
+
+  nk    n  
+
+ unk  r 
+2
+m
+m
+2
+m
+0
+0 
+ 0
+
+
+
+3
+
+2-3
+
+This equation can be evaluated at a specific point k0 of interest in the Brillouin
+zone; at k0 = 0, at  point, the above equation can be expanded as
+
+
+
+
+
+2 k 2 
+H
+
+k
+.
+p
+u
+r
+
+E
+k
+
+ 0
+ nk    n  
+ unk  r 
+m
+2
+m
+0
+0 
+
+
+
+
+2-4
+
+where
+
+p2
+ V r 
+2m0
+
+2-5
+
+H 0 u n 0  r   En  0  u n 0  r 
+
+2-6
+
+H0 
+
+The III-V zinc-blende crystal (GaAs) formed by the contribution of outermost
+electron of 4s2 and 4p1 electrons with valence III (Ga) atoms and 4s2 and 4p3
+electrons with valence V (As) atoms, as result the electron wave functions are plike near the top of the valence band and S-like near the bottom of the conduction
+band. The first four basis functions are respectively degenerate with the last four
+basis functions; hence the 8x8 interaction matrix becomes [35]
+
+
+
+1
+2
+1
+1
+1
+8
+0
+ P
+Pz
+P
+0
+Pz
+P 
+ C
+3
+2
+6
+3
+3 
+
+
+1
+2
+1
+1
+1 
+ 0
+C8
+0
+ P
+Pz
+P
+P
+ Pz 
+3
+6
+2
+3
+3 
+
+ 1
+
+
+ P*
+0
+H8
+
+
+0
+i
+i 2 
+2
+ 2
+
+
+
+8
+ D 
+3 
+*
+8
+ 2 P  1 P*
+
+L
+0
+
+i
+
+i
+
+
+
+
+ 3 z
+2 
+6
+ 2
+
+H88  
+2
+3 *  D8 
+ 1 *
+*
+8
+P
+Pz
+
+0
+L
+ i  i   
+
+3
+2
+6
+ 2 
+
+
+1 *
+* 
+P
+0
+*
+*
+H8
+i 2 * i
+ 0
+
+2
+2 
+
+ 1
+
+ D8 
+1 *
+*
+3
+
+Pz
+P
+i
+i   i  i 2
+S8
+0 
+2
+ 3
+
+3
+2
+ 2
+
+
+8
+8
+ 1 P *  1 P i 2 * i 3* i  D  i 
+0
+S 
+ 
+z
+ 3 
+
+2
+3
+2
+2
+ 
+
+
+
+4
+
+2-7
+
+where
+
+C 8  EG 
+
+2  1 EP  2
+1 
+2
+2
+2
+
+ *
+
+   kx  k y  kz 
+2m0  me
+3  EG EG    
+
+2
+ k x2  k y2    1   2   k z2   1  2 2  
+H 
+
+2m0 
+8
+
+L8  
+
+2
+ k x2  k y2    1   2   k z2   1  2 2  
+
+2m0 
+
+2
+ k x2  k y2  k z2   1   
+S 
+
+2m0 
+8
+
+2
+ 
+3  2ik x k y 3   k x2  k y2   2 
+2m0
+
+ 
+
+2
+2 3  k z  ik y  k x   3 
+2m0
+
+P  P  kx  ik y  ,
+
+Pz  Pkz ,
+
+D8  L8  H 8 and EP 
+
+2m0 2
+P
+2
+
+EG and Δ are the band gap and spin-orbit splitting of the material; Kane matrix
+element is denoted by P [2]. The valence band Luttinger parameters [36] (γ1L, γ2L,
+γ3L) used in 6-band Hamiltonian have to modify to use in 8-band Hamiltonian,
+which are called modified Luttinger parameters (γ1, γ2 , γ3 ) and the relation
+between them is as follows [35-37]:
+
+ 1   1L 
+
+1 EP
+1 EP
+1 EP
+,  2   2L 
+,  3   3L 
+3 EG
+6 EG
+6 EG
+
+Evaluating the Eigenvalue of the Hamiltonian matrix, electronic band structure can
+be obtained along with that effective mass also can be analyzed near the band edge.
+Further incorporation of dilute impurity atoms will influence the host material's
+system Hamiltonian and degenerate the Eigenstates, which leads to Band
+Anticrossing Model.
+
+5
+
+2.2
+
+Valance Band Anti Crossing Model
+
+Incorporation of dilute impurity atoms create localized isoelectronic defect states
+near the extended valance band; those defect states interact with the subbands of
+the host material and split of the corresponding subbands into E+ and E- subbands,
+where E+ and E- prolong the extended nature of host material and the defect states
+respectively [11]. As a result effective Band gap reduces and spin-orbit splitting
+energy changes accordingly. Defect state will form near conduction band or
+valance band depend on electronegativity of the impurity atoms; high
+electronegative impurity atoms like N create defect state near conduction band and
+impurity atoms like Bi, Sb will create defect states near valance band of host
+material, which is illustrated as valance band anticrossing (VBAC) or 12 band k.p
+Hamiltonian. Incorporation of less electronegative and high volume atoms (Bi, Sb)
+in III-V host material (GaAs, GaSb) generate localized isoelectronic states near the
+valance band of the host material. The 6 (SB, Bi) related p-like impurity states
+perturb the basic 6  6 system Hamiltonian [2] and result in 12  12 Hamiltonian
+given bellow
+
+ H 66 V66 
+H1212  
+
+ V66 Eimp 
+
+
+6
+ H
+
+ *
+ 
+
+
+ *
+
+where H 66  
+ 0
+
+
+*
+ i 
+
+2
+
+
+*
+i 2 
+
+
+2-8
+
+i
+
+
+
+
+
+
+
+0
+
+i
+
+L6
+
+0
+
+
+
+i
+
+0
+
+L6
+
+
+
+i
+
+*
+
+ *
+
+H6
+
+i 2 *
+
+3
+
+2
+
+i 2
+
+S6
+
+D6
+2
+
+3
+i  *
+2
+
+i
+i
+
+D6
+
+i
+
+2
+
+
+2
+
+2
+D6
+2
+3 *
+
+2
+
+0
+
+
+i 2 
+
+3 
+i 
+2 
+D6 
+
+i
+2
+ * 
+i
+2
+
+0 
+
+
+
+6
+S 
+
+
+2
+ k x2  k y2    1   2   k z2   1  2 2    EVBM  x 
+where L  
+
+2m0 
+6
+
+2
+ k x2  k y2    1   2   k z2  1  2 2   EVBM  x 
+H 
+
+2m0 
+6
+
+6
+
+2-9
+
+S6  
+
+2
+ k x2  k y2  k z2   1     ESO  x 
+
+2m0 
+
+D6  L6  H 6
+where x being the amount of mole fraction of impurity and EVBM  x  , E SO  x 
+are the valance band offset and spin-orbit offset between two basic binary material,
+which are also the function of impurity mole fraction.
+V 6  x 
+0
+0
+0
+0
+0 
+
+
+6
+V  x
+0
+0
+0
+0 
+ 0
+ 0
+0
+V 6  x
+0
+0
+0 
+V66  
+
+0
+0
+V 6  x
+0
+0 
+ 0
+ 0
+0
+0
+0
+V 6  x
+0 
+
+
+0
+0
+0
+0
+V 6  x  
+ 0
+ Eimp
+ 0
+
+ 0
+Eimp  
+ 0
+ 0
+
+ 0
+
+0
+Eimp
+0
+0
+0
+0
+
+0
+0
+Eimp
+0
+0
+0
+
+0
+0
+0
+Eimp
+0
+0
+
+0
+0
+0
+0
+Eimp  so
+0
+
+0
+0
+0
+0
+0
+
+
+
+
+
+
+
+
+
+Eimp  so 
+
+Where Cimp is the coupling parameter and Ei mp , Eimp  so is single atom energy state
+and spin-orbit splitting energy state of impurity atom with respect to the host atoms
+respectively. The Eigen value of the H1212 gives the doubly degenerated valance
+
+subbands as E HH
+, Eso owing to the impurity interaction with host atom's state.
+/ LH
+
+The E  states hold the extended host atom's state and E  states carry the nature of
+impurity atom's state. The E  states lifted upward and E  states dragged down
+with respect to the host atom's state as a result effective band gap reduction occurs
+[8], which is the key feature of VBAC model. Tough 12 band VBAC model
+remains silent about conduction band and offers detailed information about valance
+only but conduction band can be perturbed by conduction band offset between
+endpoint binary atoms and strain without incorporating another high
+electronegative impurity (N), which can be observed by 14 band VBAC model.
+
+7
+
+2.3
+
+14 Band Model: GaSb1-xBix
+
+14 band VBAC is an extension of 12 band VBAC which draws attention towards
+the modifications in conduction band without introducing any s-like isoelectronic
+defect state near conduction band edge of host atoms. Here we have considered
+GaSb as a host material where heavier dilute Bi replace the Sb atom and creates plike defect states near valance band edge and splits the valance subbands of GaSb
+into E  and E  states. Corresponding Bi impurity states and band offsets between
+the endpoint binary atoms GaSb and GaBi perturb the H88 and generate the
+
+14  14 Hamiltonian given bellow
+
+
+1
+2
+1
+1
+1
+14
+0
+
+P
+Pz
+P
+0
+Pz
+P
+0
+0
+0
+0
+0
+0 
+ C
+3
+2
+6
+3
+3
+
+
+
+
+1
+2
+1
+1
+1
+14
+ 0
+C
+0
+
+P
+Pz
+P
+P
+ Pz
+0
+0
+0
+0
+0
+0 
+3
+6
+2
+3
+3
+
+
+ 1
+
+
+
+P*
+0
+H6
+
+
+0
+i
+i 2 VBi ( x)
+0
+0
+0
+0
+0 
+2
+ 2
+
+
+
+6
+
+
+2
+1
+D
+3
+*
+*
+6
+
+Pz
+
+P
+
+L
+0
+
+i  i 
+0
+VBi ( x)
+0
+0
+0
+0 
+ 3
+
+2
+6
+ 2
+
+
+6
+
+
+2
+3
+D
+ 1 *
+
+*
+6
+*
+P
+P
+
+0
+L
+
+
+
+i
+
+i
+
+0
+0
+V
+(
+x
+)
+0
+0
+0
+
+
+
+z
+Bi
+
+
+3
+2
+6
+2
+
+
+
+
+*
+
+
+1 *
+
+H1414   0
+P
+0
+*
+ *
+H6
+i 2 *
+i
+0
+0
+0
+VBi ( x)
+0
+0 
+2
+2
+
+
+ 1
+
+ D6 
+1 *
+*
+3
+6
+
+Pz
+P
+i
+i   i  i 2
+S
+0
+0
+0
+0
+0
+VBi ( x)
+0 
+2
+ 3
+
+3
+2
+ 2
+
+
+6
+6
+ 1 P *  1 P i 2 * i 3 * i  D  i 
+0
+S
+0
+0
+0
+0
+0
+VBi ( x)
+ 
+z
+ 3 
+
+2
+3
+2
+ 2
+
+
+0
+VBi ( x)
+0
+0
+0
+0
+0
+EBi
+0
+0
+0
+0
+0 
+ 0
+ 0
+0
+0
+VBi ( x)
+0
+0
+0
+0
+0
+EBi
+0
+0
+0
+0 
+
+
+ 0
+0
+0
+0
+VBi ( x)
+0
+0
+0
+0
+0
+EBi
+0
+0
+0 
+
+
+0
+0
+0
+0
+VBi ( x)
+0
+0
+0
+0
+0
+EBi
+0
+0 
+ 0
+ 0
+0
+0
+0
+0
+0
+VBi ( x)
+0
+0
+0
+0
+0
+EBi so
+0 
+
+
+0
+0
+0
+0
+0
+0
+VBi ( x)
+0
+0
+0
+0
+0
+EBi so 
+ 0
+
+2-10
+
+2  1 EP  2
+1 
+2
+2
+2
+
+where C  EG 
+ *
+
+    k x  k y  k z   ECBM  x 
+2m0  me
+3  EG EG    
+14
+
+The Eigenvalues of the basic Hamiltonian at  point (k=0) gives the following set
+of energy states [38,39]:
+
+ECB  C '
+
+1
+ELH / HH    H '  EBi 
+2
+
+ H  E   4V 
+'
+
+8
+
+2
+
+Bi
+
+2
+Bi
+
+2-11
+
+1
+ESO   S '  EBi  SO 
+2
+
+S  E
+'
+
+  4V 
+2
+
+Bi  SO
+
+2
+Bi
+
+2-12
+
+ ESO ( x) .
+where C '  E gGaSb  ECBM ( x ) , H '  EVBM ( x ) and S '  H '  GaSb
+0
+EgGaSb is the band gap of bulk GaSb; ECBM ( x) , EVBM ( x) and ESO ( x) are the
+
+conduction band offset (CBO), Valance band offset (VBO) and spin-orbit split-off
+band offset respectively between two end point binary compounds GaSb and GaBi.
+The VBAC calculated band gap of the ternary alloy GaSbBi is given by the
+1
+following equation: Eg ( x )  C '   EVBM ( x )  EBi  ( H '  EBi ) 2  4C Bi2 x 
+
+2
+The 14 band k·p Hamiltonian is solved to calculate the dispersion relations of the
+different sub-bands in the three high symmetry non-equivalent crystal directions Λ,
+∆ and ∑ in the vicinity of Γ point. The dispersion relations are used to evaluate the
+effective masses of the carriers near the Brillouin zone center with the help of the
+following equation [40]:
+
+m* 
+
+2
+2E
+k 2 k 0
+
+2-13
+
+The parameters used for the calculation of band structure and band offsets are
+listed in Table 1:
+Table 1 List of VBAC parameters for band structure calculation
+Parameters
+EBi (eV)
+EBi-so (eV)
+CBi (eV)
+
+ 1L
+ 2L
+
+Considered
+Value
+-1.2[5]
+
+Parameters
+
+ 3L
+
+Considered
+Value
+6.0[37]
+
+-2.7[5]
+1.01[5]
+13.4[37]
+
+Δ0 (eV)
+me (m0)
+EG (eV)
+
+0.76[37]
+0.039[37]
+0.72[37]
+
+4.7[37]
+
+EP (eV)
+
+27.0[37]
+
+14 band model is concern about the changes in conduction band only due to
+endpoint binary's band offsets and strain; higher order Hamiltonian should be
+considered to take into account the influence of another impurity near conduction
+band edge.
+
+9
+
+2.4
+
+16 Band Model : GaAs1-x-ySbyNx
+
+The incorporation of N and Sb in GaAs causes the perturbation of the conduction
+and the valence bands respectively. The VBAC and Conduction Ban Anticrossing
+(CBAC) models take into account the effect of this perturbation using a 16 band
+Hamiltonian H16×16 obtained by the inclusion of 6 Sb-related and 2 N-related
+impurity states to the basic 8 band Hamiltonian of the host semiconductor matrix
+[38,40,41]. While the CBAC Model predicts the lowering of the Conduction Band
+Minimum (CBM) due to a quantum anticrossing interaction of N-related impurity
+states with the extended CB states of GaAs, the modification in the valence band
+structure due to the upward shift of the heavy hole (HH)/light hole (LH) and spinorbit split-off (SO) bands is well-explained by the VBAC Model [2]. Electronic
+band structure of GaAs1-x-yNxSby can be determined using this Hamiltonian which
+is the modified form of the 8 band k·p Hamiltonian based on the eight-band
+second-order Kane model applied to the zinc blende structure and Löwdin
+perturbation theory [35]. The resultant (16×16) matrix of the Hamiltonian can be
+written as [38,40]:
+
+ H 8168
+V8N8, Sb ( y, x) 
+H1616   N , Sb
+
+E8N8, Sb 
+ V88 ( y, x)
+
+2-14
+
+The matrix elements for H16×16 are as defined in ref. [38] for bulk GaAsNSb alloys
+grown on GaAs substrates. where H8168 consist of H88 with slide change in
+diagonal elements as follows
+
+C16  C 8  ECBM ( x, y ) ,
+H 16  H 8  EVBM ( x, y ) ,
+L16  L8  EVBM ( x, y ) and
+S 16  S 8  ESO ( x, y ) .
+where
+GaAsN
+GaAsSb
+ECBM ( x, y )  xECBM
+ yECBM
+GaAsN
+GaAsSb
+EVBM ( x, y )  xEVBM
+ yEVBM
+
+The 16 band Hamiltonian reduces to a 6×6 Hamiltonian at the Γ point (k=0) which
+is as given below [38]:
+
+10
+
+ C''
+
+0
+0
+V (x)
+0
+0
+N
+
+
+
+
+H '' /L''
+0
+0
+V (y)
+0
+ 0
+
+Sb
+
+
+0
+0
+S''
+0
+0
+V (y) 
+''
+
+Sb
+H 66 
+
+
+0
+0
+E
+0
+0
+ VN (y)
+
+N
+
+
+V (x)
+0
+0
+E
+0
+ 0
+
+Sb
+Sb
+
+
+0
+V (x)
+0
+0
+E
+ 0
+Sb
+Sb  SO 
+
+2-15
+
+where C ''  E gGaAs  ECBM ( x , y ) ,
+
+H ''  L''  EVBM ( x, y ) and
+S '' 
+
+1 ''
+( L  H '' )   GaAs
+ ESO ( x, y )
+0
+2
+
+The coupling parameters VSb ( x )  CSb y and VN ( x)  CN x takes care of the
+coupling between the Sb impurity states and the extended valence band states and
+the N resonant states with the host conduction band matrix. EN and ESb gives the
+energy of the N and Sb related resonant states and ESb-SO is the atomic spin-orbit
+splitting energy for Sb. Solution of the 6 band Hamiltonian of Equation (1) yields
+six distinct eigen states corresponding to the splitting of the CB, HH/LH and SO
+bands into E+ and E- sub bands guided by the following equations [38]:
+
+
+
+1
+H ''  ESb  H '' 2  2 H '' ESb  ESb2  4VSb ( y ) 2
+2
+
+EHH / LH  
+
+
+
+
+
+
+
+ECB  
+
+1 ''
+C  EN  (C ''2  2C '' EN  EN2  4VN ( x ) 2
+2
+
+ESO  
+
+1 ''
+2
+S  ESb-SO  ( S '' 2  2S '' ESb-SO  ESb-SO
+ 4VSb ( y ) 2
+2
+
+
+
+2-16
+
+2-17
+
+
+
+2-18
+
+The band gap energy of the quaternary alloy GaAs1-x-yNxSby obtained using a
+combination of VBAC and CBAC Models can be written as:
+
+11
+
+1
+1
+Eg (x, y)  EgGaAs ECBM (x, y)  EN  (C'' EN )2 4CN2 y  EVBM (x, y) ESb  (H'' ESb )2 4CSb2 x
+ 2
+
+2
+2-19
+
+Using Vegard’s law, the lattice constant of GaAs1-x-yNxSby can be obtained as a
+linear interpolation of the lattice constants of the endpoint compounds [36,40].
+aGaAs1 x  y N x Sby  (1  x  y ) aGaAs  yaGaSb  xaGaN
+
+2-20
+
+The values of aGaAs , aGaN and aGaSb as obtained from [37] are 5.653 Å, 4.50Å and
+6.095Å, respectively. The above equation is used to calculate that GaAs 1-x-yNxSby
+can be lattice matched to GaAs substrate for a N to Sb concentration ratio x/y of
+0.38. The VB and CB offsets and offset ratios are calculated employing the
+technique used in [38]. The parameters used for the calculation of band structure
+and band offsets are listed in Table 2
+Table 2 List of BAC parameters for band structure calculation
+Parameters Values used in this work Parameters
+(eV)
+EN
+0.23[19]
+E GaAs
+P
+
+Values used in this work
+(eV)
+28.8[37]
+
+CN
+
+2.7
+
+[19]
+
+GaAsSb
+E CBM
+
+-0.06
+
+ESb
+
+1.0 [2]
+
+GaAsSb
+EVBM
+
+-0.77
+
+ESb-so
+
+1.6[2]
+
+GaAsSb
+E SO
+
+-0.35
+
+CSb
+
+1.05[2]
+
+GaAsN
+ECBM
+
+0.07
+
+EgGaAs
+
+1.43[37]
+
+GaAsN
+EVBM
+
+1.84
+
+GaAs
+0
+
+0.341[37]
+
+GaAsN
+E SO
+
+1.52
+
+The above discussed VBAC and BAC model can be extended further for quantum
+confined structures where strain will play a crucial role , discussed latter section.
+2.5
+
+Strain Effect
+
+The effects of strain are of particular interest in Quantum confined structures to
+have better optical properties. Strong lattice mismatch with the host substrate
+offers a large conduction and valence band offsets. Hydrostatic strain acts
+uniformly irrespective of carrier's effective mass of corresponding subbands
+nevertheless shearing strain acts in a different way to HH and LH sub band, which
+breaks the degeneracy of HH and LH at Γ=0, predicted by VBAC model. Hence
+the strain influenced perturb Hamiltonian is calculated by using the Bir-Pikus
+Hamiltonian [42] given bellow
+
+12
+
+
+0
+ C
+
+
+ 0
+C
+
+ 1
+
+P*
+0
+ 2
+
+1 *
+ 2P
+P
+z
+ 3
+6
+Strain
+H88  
+2
+ 1 *
+Pz
+ 6 P
+3
+
+
+1 *
+P
+ 0
+2
+
+ 1
+1 *
+Pz
+P
+
+3
+ 3
+
+ 1 P*  1 P
+z
+ 3 
+3
+
+
+
+1
+2
+
+P
+
+0
+
+2
+Pz
+3
+
+1
+
+1
+
+2
+Pz
+3
+
+6
+
+6
+
+P
+
+P
+1
+
+2
+
+P
+
+H
+
+
+
+
+
+0
+
+*
+
+L
+
+0
+
+
+
+*
+
+0
+
+L
+
+
+
+0
+
+*
+
+ *
+
+H
+
+i *
+2
+
+ D
+
+i
+ 2 
+ 2
+
+
+i
+
+3
+2
+
+i 2
+
+i 2 *
+
+i *
+
+3
+2
+
+ D
+
+i
+ 2 
+ 2
+
+
+
+
+3
+3
+
+
+1
+1
+P
+ Pz 
+3
+3
+
+
+i
+i 2 
+2
+
+
+D
+3
+
+
+i  2 
+i
+
+
+
+2
+2
+
+
+D 
+
+* 3
+i
+i  2 
+
+2
+2 
+
+
+i *
+i 2 *
+
+2
+
+
+S
+0
+
+
+
+
+0
+S
+
+1
+
+0
+
+i
+2
+
+Pz
+
+1
+
+P
+
+2-21
+where
+
+C  C16 or C14   1 (z ) ,
+
+H   H 16 or H 6    2 ( z) ,
+
+L   L16 or L6    2 ( z) ,
+
+S   S16 or S 6    2 ( z) ,
+
+P  P(k x  ik y )  P (exx k x  ie yy k y )
+
+2(a c  a v )(1-c12 c11 )e xx
+0
+
+
+1 (z)  
+
+ b 1  2c12 c11  e xx
+0
+
+
+ 2 ( z)  
+
+and Pz  Pkz - P(ezz k z )
+
+in the well
+in the barrier
+in the well
+in the barrier
+
+where ac and av are the hydrostatic deformation potential for conduction and
+valence band, respectively, b is the shear deformation potential, c11 and c12 are the
+elastic stiffness constants. exx  as  aw aw is the in plane strain where as and aw
+are the lattice constants for the substrate and well layer, respectively. P is the Kane
+matrix element and is normally expressed in terms of energy units as [36,37]. All
+the strain corresponding parameters considered here is tabulated in Table 3
+
+13
+
+Table 3 List of strain parameters used to calculate band structure of strained QWs
+Strain
+Parameters
+a (Å)
+
+GaSb
+
+GaBi
+
+GaAs
+
+GaN
+
+6.0959[37]
+
+6.328 [43]
+
+5.6532[37]
+
+4.5[37]
+
+aC (eV)
+
+-7.5[37]
+
+-8.06 [43]
+
+-7.17[37]
+
+av (eV)
+
+-0.8[37]
+
+-1.16 [43]
+
+-1.16[37]
+
+-2.2[37]
+
+b (eV)
+
+-2.0[37]
+
+-1.7 [43]
+
+-2.0[37]
+
+C11
+
+884.2[37]
+
+81.6 [44]
+
+1221[37]
+
+C12
+
+402.6[37]
+
+28.1[44]
+
+566[37]
+
+2.6
+
+-5.2[37]
+-2.2[37]
+293[37]
+159[37]
+
+Optical Properties
+
+Dilute III-V N or Bi are the promising candidate for optoelectronic devices owing
+to their prominent direct band gap nature along with that wide range of wavelength
+response. Both the inter band and inter sub band transitions offers wide range of
+illumination and absorption. The band offsets play crucial role in direct transitions,
+carrier confinement and electron hole wave function's overlap, which can be tuned
+by varying the impurity concentration.
+2.6.1 Band Offset
+Band offsets define the structures and types of QWs or QDs and enlighten on
+confinement of carriers and ranges of wavelength response. Band offsets can be
+calculated as mention above where Effective band offsets can be as follows [45]
+
+Ec = |Ec (x, y) - Ec (GaAs / GaSb)|
+
+2-22
+
+Ev = |Ev (x, y) - Ev (GaAs/ GaSb)|
+
+2-23
+
+And the offsets ratios are given by:
+
+QC 
+
+EC
+Eg
+
+2-24
+
+Ev
+Eg
+
+2-25
+
+QVs 
+
+where Eg  Eg  x, y   Eg  GaAs / GaSb 
+Strain also has prominent impact on the shift of offsets as shown in the Figure2.1
+and the corresponding offsets are given [46] bellow
+
+14
+
+*
+hy
+ECB
+ ECB (  0)   ECB
+
+2-26
+
+1
+hy
+EHH  EVB (  0)   EVB
+  ES
+2
+
+2-27
+
+1
+hy
+ELH  EVB (  0)   EVB
+  ES
+2
+
+2-28
+
+Figure2.1 Energy-space diagram of compressively strained GaAs1-x-ySbyNx /GaAs
+QWs.
+2.6.2 Optical Gain
+The optical gain g     for GaSbBi/GaAs type-II QWs is calculated by
+considering all the transitions between respective sub bands as per density matrix
+theory [47,48]. A conformist method [49] based on the intra band relaxation time
+ in  approximation convoluted with a Lorentzian function with suitable
+broadening time ( 1 1014 s ) is used to evaluate optical gain spectra[50] as follows:
+
+g    
+
+
+2
+k p dk p
+ q2
+M nm  k p  L Enc,,mv  k p  f nc Enc  k p   f mv Emv  k p 
+
+2
+
+nr c 0 m0  Lw n,m 0 2
+
+
+
+ 
+
+
+
+
+
+2-29
+
+where c ,  0 are the velocity of light and permittivity respectively in free space, nr
+is the refractive index of the QW, Lw is the thickness of the QW, k p is the in-plane
+
+15
+
+
+
+wave vector, M nm  k p  is the momentum matrix element between the mth valance
+sub band and nth conduction band sub band . f nc and f mv are the Fermi-Dirac
+distribution for electrons and holes, respectively given as follows :
+
+ Enc  k p   E cf 
+c
+f n  k p   1  exp 
+
+kBT
+
+
+
+
+
+
+1
+
+
+ Emv  k p   E vf  
+v
+f m  k p   1  exp 
+
+kBT
+
+
+ 
+
+
+
+1
+
+where Enc and Emv are the energy dispersion curves of the nth and the mth sub bands
+respectively considering the barrier effect [51], E cf and E vf are the quasi-Fermi
+levels of respective bands. The Lorentzian function defined in [52] is as follows
+
+
+
+ 1 
+
+L Enc,,mv  k p  
+
+ /  in
+
+c
+v
+
+ En  k p   Em  k p        /  in 
+2
+
+16
+
+2
+
+3
+
+Results and Discussion
+
+Solution of all the above Hamiltonians offers detailed electronic band structures
+and effective mass of both bulk and quantum confined structures for the endpoint
+binary materials GaAs and GaSb with Bi, Sb and N as a impurity. 14 band model
+provides the detail information about electronic and optical property of ternary
+GaSbBi whereas 16 band model offers overall knowledge about quaternary
+GaAsSbN.
+3.1
+
+Electronic Properties
+
+The Eigen values at specific point of k space present the band diagram near band
+edge, which also can provide the dispersion relation along different symmetric
+direction and also inform about band offsets, which are crucial parameters for
+optoelectronic device applications. Details information about all the host binary,
+ternary and quaternary is discussed bellow.
+3.1.1 Binary GaAs and GaSb
+Calculating the Eigen value of basic 8 8 system Hamiltonian we got the
+electronic band structure of GaAs and GaSb shown in Figure 3-1 and Figure 3-2
+
+GaAs @ 300 K
+
+Energy ( eV )
+
+2
+
+1
+
+Ecb
+0.1(2a)
+
+0
+
+Ehh
+
+ESO
+
+-1
+
+Elh
+
+-2
+
+
+
+
+
+
+
+Figure 3.1 Electronic Band Diagram of GaAs
+
+17
+
+2.5
+
+GaSb @300K
+
+2.0
+1.5
+
+Ecb
+
+Energy (eV)
+
+1.0
+0.5
+
+Ehh
+
+0.1 2a
+
+0.0
+-0.5
+-1.0
+
+Elh
+
+-1.5
+
+ESO
+
+-2.0
+-2.5
+
+
+
+
+
+
+
+Figure 3.2 Band Diagram of GaSb Corresponding Energy states are mentioned in
+the diagram along different symmetric direction of crystal.
+3.1.2 Ternary : GaSbBi
+2.5
+2.0
+
+@300K
+
+Ecb
+
+1.5
+1.0
+
+Energy (eV)
+
+Unstrained GaSb0.987Bi0.013
+GaSb
+
+0.1 2a
+
+0.5
+
+Ehh+
+
+0.0
+
+ESO+
+
+-0.5
+-1.0
+-1.5
+-2.0
+-2.5
+-3.0
+
+Elh+
+
+ElhEBi-SO
+
+GaSb
+
+Bi
+0.987 0.013
+
+GaSb
+
+Bi
+0.987 0.013
+
+EBi
+Ehh-
+
+ESO
+
+
+
+
+
+Figure 3.3 (Solid lines) Electronic band structure (BS) of
+unstrained
+GaSb0.987Bi0.013 at 300 K determined near  point along k-directions  and 
+using (14×14) VBAC model. (Dashed lines) BS of GaSb calculated using the k.p
+method (eight-band model). (Dash-dotted lines) EBi and EBi-SO are Bi localized
+levels in GaSb. Conduction band electrons, heavy holes, light holes and spin orbit
+splitting bands are represented by the indices cb, hh, lh and so respectively.
+Solution of the 14 band Hamiltonian of Equation 2-10 yields the E-k diagrams
+shown in Figure 3.3 and Figure 3.4. Initially, we have studied the band structure of
+
+18
+
+bulk GaSb0.987Bi0.013 alloys using VBAC model [2] in which we can observe that
+an incorporation of 1.3% Bi in GaSb pushes the conduction band minima
+downward by 36 meV and shifts the valance band maxima upward by 15 meV
+which implies a band gap reduction of 51 meV (~39 meV/%Bi). The spin-orbit
+split-off band also exhibits an upward movement of 10.3 meV. Our calculated
+value of band gap reduction agree well with experimental results [3,4,7-9].
+However, the generation of strain due to the growth of GaSbBi/GaAs QWs affects
+the BS significantly. The splitting of the LH and HH bands and the upward shift of
+the CB results in a huge band gap of 1.12 eV. The separation of the LH and HH
+bands by about 373 meV is comparable to that of 400 meV [17] calculated using
+macroscopic theory of elasticity [53]. The spin-orbit split-off band ESO+ also moves
+downward by 230 meV which increases the spin-orbit splitting energy appreciably.
+
+2.5
+2.0
+
+Strained GaSb0.987Bi0.013
+
+Ecb
+
+1.5
+
+Energy (eV)
+
+1.0
+0.5
+0.0
+-0.5
+
+GaSb
+
+Ehh+
+
+0.1 2a
+Elh+
+
+ESO+
+
+-1.0
+-1.5
+
+
+
+Bi
+0.987 0.013
+
+GaSb
+
+Bi
+0.987 0.013
+
+Ehh-
+
+ESO-
+
+-2.5
+
+GaSb
+
+EBi
+
+Elh-
+
+-2.0
+-3.0
+
+@300K
+
+EBi-SO
+
+
+
+
+Figure 3.4 (Solid lines) Electronic band structure (BS) of strained GaSb 0.987Bi0.013
+at 300 K determined near  point along k-directions  and  using (14×14)
+VBAC model. (Dashed lines) BS of GaSb calculated using the k.p method (eightband model). (Dash-dotted lines) EBi and EBi-SO are Bi localized levels in GaSb.
+Conduction band electrons, heavy holes, light holes and spin orbit splitting bands
+are represented by the indices cb, hh, lh and so respectively.
+Higher value of ΔSO than Eg observed in GaSbBi [5] suppresses the Auger
+recombination loss mechanisms in optoelectronic devices such as LASERs and
+photodetectors thereby enhancing their efficiency and also reducing the spin
+lifetime of the conduction electrons. Therefore, GaSbBi system may find potential
+applications in the area of Spintronics [54-56].
+
+19
+
+2.0
+1.5
+
+E CB
+
+Energy ( eV )
+
+1.0
+0.5
+0.0
+-0.5
+
+Bulk GaSb 1-xBix
+
+GaSb 1-xBix/GaAs QWs
+0.66 eV shift due to strain
+
+E CB
+
+E HH+
+E HH/LH+
+
+E LH+
+
+E SO+
+E HH-
+
+-1.0
+
+E HH/LH-
+
+-2.70
+-2.75
+0.00
+
+E HH-
+
+E SO+
+
+E SO-
+
+E SO-
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+
+0.10
+
+Bi concentration, x
+
+Figure 3.5 Variation of the E+ and E- sub band energy levels as a function of Sb
+concentration showing a decrease in band gap energy E G due to the downward
+movement of ECB- and upward movement of EHH/LH+ ; solid lines represent energy
+level for QW structure and the dashed for bulk GaSb0.987Bi0.013 .
+The carrier confinement and strain immensely affects the CB and causes an
+upward shift of CB by 0.66 eV with respect to the host CB. As can be observed
+from Figure 3.5, CB and E+ energy levels corresponding to the LH, HH and SO
+sub bands for GaSbBi/GaAs QWs show large deviation from their respective
+values for bulk GaSbBi alloys. However, the E- sub bands are the least affected.
+1.4
+
+Energy (eV)
+
+1.2
+
+Das et. al.
+Strained GaSb 1-xBix
+
+1.25 eV @12 k
+
+Unstrained GaSb 1-xBix
+
+1.0
+0.8
+
+-35 m
+
+0.445 eV shift due to strain
+
+e V /%
+
+Bi
+
+0.6
+
+-3 9 .1
+
+0.4
+0.2
+0.0
+0.00
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+
+0.10
+
+m eV
+
+0.12
+
+/% B
+
+i
+
+0.14
+
+Bi concentration , x
+
+Figure 3.6 Comparison of the calculated and experimental values of band gap E g
+as a function of Sb mole fraction for both the bulk and QW structure. the
+parenthesis reflect the slope of the curves.
+
+20
+
+For GaSbBi/GaAs QWs, the slopes of the CB, HH, LH and SO E + bands are -23.4
+meV/%Bi, 21.3 meV/%Bi, 12.8 meV/%Bi and 11.2 meV/%Bi respectively and are
+calculated by solving the equations 2.11 and 2.12. Figure 3.6 clearly shows that the
+combined effect of strain and confinement potential increases the band gap for
+GaSbBi/GaAs QWs in comparison to GaSbBi alloys. However, introduction of Bi
+impurities in GaSb reduces the band gap by 35 meV/%Bi and 39.1 meV/%Bi
+respectively for QWs and bulk.
+3
+
+E cb
+
+2
+
+Energy (eV)
+
+1
+
+
+
+
+
+E hh+
+
+0
+
+E lh+
+
+E so+
+
+-1
+
+E hh-
+
+-2
+-3
+
+E lh-
+
+E so-
+
+-4
+-5
+0.00
+
+0.05
+
+0.10
+
+0.15
+
+0.20
+
+0.25
+
+k (2a)
+
+Figure 3.7 Dispersion relations for different energy levels as a function k of
+GaSb0.987Bi0.013 along different high symmetric directions.
+*
+
+100
+
+m so*
+m hh-
+
+
+
+
+
+*
+
+*
+
+m (  ) ( m 0)
+
+10
+1
+0.08
+
+m lh-
+
+*
+
+m cb
+*
+
+m lh+
+*
+0.06 m so+
+0.04
+
+*
+
+m hh+
+0.00
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+
+0.10
+
+Bi Concentration, x
+
+Figure 3.8 Variation of effective masses with respect to Bi mole fraction at 
+point of GaSb0.987Bi0.013 along.
+
+21
+
+It can also be observed that for a Bi incorporation of 13.2 at%, the band gap for
+QWs is equivalent to the band gap of GaSb alloys. A recent report by Das et al. on
+GaSbBi/GaAs Quantum dots demonstrated a band gap of 1.25 eV for a Bi
+incorporation of 1.2 at%Bi using photoluminescence measurements [17]. The
+value of the band gap of 1.17 eV calculated theoretically in this report exactly
+matches our calculated value of band gap for GaSbBi/GaAs QWs. We have
+calculated the dispersion relation Eu±(k) for the different sub bands along the three
+high symmetry k- directions ( Δ, Λ and Σ ) at  point using the k∙p Hamiltonian to
+observe the effect of inclusion of Bi on effective masses mu* ( ) of carriers in
+GaSb0.987Bi0.013/GaAs QWs where u = cb, hh, lh and so. Figure 3.7 depicts the
+calculated variation of the different energy levels as a function of k where it can be
+observed that only the variation of Eso+ is isotropic in all orientation of k upto
+k=0.10 Å-1. On the other hand, Ecb- and Eso- reflects a moderate change with kdirection beyond the value of k=0.12 Å-1. Ehh/lh± bands maintain their p-like nature
+and vary appreciably with the high symmetry k directions.
+1.2
+
+EC
+EV
+
+Band Offsets (eV)
+
+1.0
+0.8
+0.6
+0.4
+0.2
+0.0
+0.00
+
+0.05
+
+0.10
+
+0.15
+
+0.20
+
+0.25
+
+0.30
+
+0.35
+
+0.40
+
+Bismuth concentration x
+
+Figure 3.9 Variation of conduction and valance band offsets of GaSbBi with
+respect to Bismuth mole fraction
+The effective masses of charge carriers belonging to different sub bands calculated
+using Equation (2.13) in the vicinity of the Brillouin zone center is very significant
+for optical gain calculation. The variation of effective masses mu* ( ) with respect
+to the variation of Bi concentration @300K along the three high symmetry unlike
+k- directions ( Δ, Λ and Σ ) are shown in Figure 3-8. The effective mass of
+*
+electron me* obtained from the value of mcb
+= 0.09 m0 is higher than the value
+
+0.039 m0 for GaSb [37] which is due to the confinement of electrons in the QW
+*
+*
+*
+structure. The carrier effective masses mhh
+ , mlh  and mso in the upper sub bands
+
+22
+
+are almost isotropic. The spin-orbit split-off band effective mass mso*  of 0.063 m0
+
+Conduction band offset ratio Q c
+
+is almost five times higher than that of GaSb (0.012 m0).
+0.74
+
+0.73
+
+0.72
+
+0.71
+
+0.70
+
+0.05
+
+0.10
+
+0.15
+
+0.20
+
+0.25
+
+0.30
+
+0.35
+
+0.40
+
+Bismuth concentration x
+
+Figure 3.10 Conduction band offset ratio of GaSbBi with respect to Bismuth mole
+fraction
+Figure 3.9 shows the variation of conduction band offset (CBO) and valance band
+offset (VBO) with respect to the bismuth mole fraction. It can be observed that
+CBO is almost 3times greater than VBO and both the VBO and CBO increase with
+the increase in Bi concentration.
+
+Valence band offset ratio Q v
+
+0.30
+
+0.29
+
+0.28
+
+0.27
+
+0.26
+0.00
+
+0.05
+
+0.10
+
+0.15
+
+0.20
+
+0.25
+
+0.30
+
+0.35
+
+0.40
+
+Bismuth concentration x
+
+Figure 3.11 Conduction band offset ratio of GaSbBi vs Bi mole fraction
+
+23
+
+Band offsets (eV)
+
+The larger value of CBO is beneficial in the sense that the optoelectronic devices
+fabricated using GaSbBi could provide better electron confinement.
+
+0.6
+
+EC
+
+0.4
+
+ELH
+
+EHH
+
+0.2
+0.0
+-0.2
+-0.4
+-0.6
+0.0
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+Antimony concentration x
+
+Figure 3.12 Predicted band offsets of the conduction band (∆Ecb), heavy-hole
+(∆Ehh) and light-hole (∆Elh) valence bands for GaSbBi/GaAs as a function of Bi
+mole fraction at 300K.
+Unlike the linear increase in VBO and CBO, the VBO and CBO ratio changes nonlinearly with Bi mole fraction shown in Figure 3-10 and Figure 3-11. The offset
+ratios can be defined as the ratio between the change in offset values to the change
+in band gap as a result of the incorporation of Bi impurity atoms. It can be
+observed from the figures that the CBO and VBO ratios exhibit opposite nature,
+i.e. while CBO ratio increases with Bi concentration, VBO decreases. Considering
+strain effect CBO and VBO have been calculated shown in Figure 3-12. It can be
+observed that shearing strain breaks the degeneracy of heavy hole and light hole
+offset.
+
+24
+
+3.1.3 Quaternary : GaAsSbN
+
+E CB+
+
+Energy (eV)
+
+2
+
+1
+
+EG
+0
+
+E CBE G+SO+
+E HH/LH+
+E SO+
+
+-1
+
+E HH/LHE SO-
+
+-2
+0.00
+
+0.01
+
+0.02
+
+0.03
+
+0.04
+
+0.05
+
+Sb mole fraction (y)
+
+Figure 3.13 Variation of the E+ and E- energy levels corresponding to the CB, HH,
+LH and SO bands as a function of Sb concentration showing a decrease in band
+gap energy EG due to the downward movement of ECB- and upward movement of
+EHH/LH+
+Figure 3.13 shows the relative energy positions of the CB, HH/LH and SO sub
+bands as a function of Sb mole fraction under lattice-matched condition at the Γ
+point. The above figure is obtained by solving the 6 band Hamiltonian in Equation
+(2.15) that yields 6 distinct Eigen values corresponding to Equations 2.16-18. The
+anticrossing interactions of the CB, HH/LH and SO sub bands with the N and Sb
+related impurity states causes the repulsive movement of the E + and E- energy
+levels. The incorporation of N and Sb in GaAs pushes the energy levels ECB- in the
+downward direction by about 90 meV/%Sb and EHH/LH+ in the upward direction by
+10.3 meV/%Sb thereby causing a band gap reduction of ~100 meV/%Sb. The
+contribution of the lowering of the conduction band minimum to the total band gap
+reduction is about 90% which is due to the large value of the coupling parameter
+CN. The spin-orbit split-off energy level ESO+ moves upward by 6 meV per y=0.01
+which indicates that there is a slight increase of the spin-orbit splitting energy.
+Figure 3.14 shows the band structure of GaAs0.931N0.019Sb0.05 in the Δ and Λ
+directions near the Γ point at room temperature. As can be observed from this E-k
+diagram, the impurity levels EN, ESb and ESb-SO interacts with CB, HH, LH and SO
+bands of the host semiconductor to split them into their corresponding spindegenerate E+ and E- sub bands in accordance with Pauli’s exclusion principle. The
+lowering of the CBM (shown by an arrow) and the slight upward movement of the
+HH/LH band is the primary factor responsible for band gap reduction in this
+quaternary alloy.
+
+25
+
+ECB+
+
+2
+
+EN
+ECB-
+
+1
+
+Energy (eV)
+
+@ 300 K
+
+0.1(2a)
+0
+
+GaAs
+
+EHH+
+
+ESO+
+
+-1
+
+GaAs0.931N0.019Sb0.05
+
+ELH+
+
+ESb
+
+EHH-
+
+ESb-so
+ESO-
+
+ELH-
+
+-2
+
+
+
+
+
+
+
+Figure 3.14 Band structure of GaAs0.931N0.019Sb0.05 (solid lines) and host GaAs
+(dotted lines) in the crystal directions Δ and Λ at room temperature. The downward
+movement of the ECB- energy band is indicated by an arrow (red).
+For comparison the band structure of GaAs (dotted lines) is included in the same
+figure. A marked decrease in the CBM by an amount 281 meV and a
+comparatively lower increase in the VBM by about 49 meV leads to a band gap
+reduction of 330 meV.
+1.4
+1.2
+
+Energy level ( eV )
+
+L.F. Biana,et.al.
+K.-I Lin, et. al.
+Yan-Ting Lin, et. al.
+Alberi, et. al.
+
+EG
+
+1.0
+0.8
+0.6
+
+Er
+
+0.4
+0.2
+0.0
+
+SO+
+0.0
+
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+Sb mole fraction (y)
+
+Figure 3.15 Comparison of the calculated and experimental values of band gap Eg
+and spin-orbit splitting energy as a function of Sb mole fraction. The resonant
+energy Er is 0.44 eV for Sb concentration of 2.7 at%.
+
+26
+
+The comparison of band gap energy for GaAs0.931N0.019Sb0.05 (1.10 eV) with that of
+GaAs0.977N0.023 (1.11 eV) [40] shows that the introduction of Sb impurity atoms in
+GaAs reduces the N content form 2.3 at% to 1.9 at%. This reduction in nitrogen
+composition improves the structural and optical properties of GaAsNSb. The ECBenergy level moves downward by 0.256 eV and the increase in the VBM by 0.032
+eV leads to a large band gap reduction of 0.288 eV. The spin-orbit splitting energy
+0.8
+
+@300K
+
+Malikova, et. al.
+Uesugi, et. al.
+
+Sb mole fraction (y)
+
+0.7
+
+Bhat, et. al.
+Keyes, et. al.
+
+0.6
+
+Antypas,et.al
+Nahory, et. al.
+
+0.5
+0.799
+
+0.4
+0.3
+
+0.82
+1.053 0.832
+0.91
+
+0.2
+0.1
+
+0.9 0.8
+
+1.015
+
+1.2
+
+1.309
+
+Mitsuaki, et. al.
+
+E g= 0.4
+
+1.25 1.1
+
+1.2
+
+1.0
+
+Taylor, et. al.
+F.Bousbih et.al
+
+0.5
+
+G. Ungaro et.al
+
+0.6
+
+I. Sagnes'et. al.
+H.-P. Hsu et al.
+
+0.7
+0.85
+0.89
+
+1.3 1.198 1.098 0.98
+1.03 7
+
+0.0 1.316
+
+0.00 0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.10
+
+N mole fraction (x)
+Figure 3.16 Eg for GaAs1-x-yNxSby in the range 0.4-1.3 eV with increment of 0.1
+eV as a function of both Sb and N mole fraction. Experimental values of band gap
+are added from the literature and good agreement exists between our calculated
+results and experimental values.
+ΔSO+ increases by ~22 meV. This enhancement of spin-orbit splitting energy
+for GaAsNSb is much smaller in comparison to that of GaAsNBi (56
+meV/%Bi) [40]. We have represented a crossover between band gap energy Eg
+and spin-orbit splitting energy ΔSO+ in
+Figure 3.15. This crossover obtained for Sb = 27% and N = 10% results in the
+formation of Eg<ΔSO regime which is known to suppress the Auger recombination
+processes in optoelectronic devices. Our calculations show excellent agreement
+with the experimental values of Eg and ΔSO illustrated in the literature [19,57].
+Figure 3-16 shows the variation of energy band gap for GaAsNSb alloys as a
+function of both Sb and N concentration at room temperature. It can be observed
+from the graph that VBAC calculated values of the band gap agrees well with the
+experimental data [22,58-68]. Band gap values in the range 0.4 eV-1.3 eV can be
+obtained by varying the Sb and N mole fractions. GaAsNSb can be used as 1 eV
+
+27
+
+band gap material for solar cell applications by using either an Sb concentration of
+3.5 at% or N concentration of 2.5 at%.
+
+
+
+
+3
+
+Energy (eV)
+
+2
+
+E CB+
+E CB-
+
+1
+
+E HH+
+
+0
+
+E LH+
+
+E SO+
+
+-1
+
+E HH-
+
+-2
+
+E LH-
+
+E SO-
+
+-3
+0.00
+
+0.05
+
+0.10
+
+0.15
+
+0.20
+
+0.25
+
+k (2a)
+
+Figure 3.17 Dispersion relations E± (k) for CB, HH, LH and SO bands in the
+crystal directions Δ, Σ and Λ
+*
+
+
+
+
+
+m hh100
+*
+m so*
+
+*
+
+m (  ) ( m 0)
+
+10
+
+m lh-
+
+1
+
+*
+
+m hh+
+*
+
+m cb+
+
+0.1
+
+0.08
+0.06
+
+*
+
+m so+
+
+*
+
+m cb-
+
+*
+
+m lh+
+
+0.04
+0.00
+
+0.01
+
+0.02
+
+0.03
+
+Sb mole fraction (y)
+
+0.04
+
+0.05
+
+Figure 3.18 Changes in the effective masses m * () in the crystal directions Δ,
+Σ and Λ in the lower and upper valence and conduction sub bands with the
+variation of Sb mole fraction in the range 0-0.05.
+In order to calculate the effective masses of carriers, the dispersion relation E± (k)
+for GaAs0.931N0.019Sb0.05 lattice matched to GaAs are calculated in the high
+symmetry crystal directions (Δ, Σ and Λ). From Figure 3.17, we can observe that
+out of all the eight sub bands, only ECB- and ESO+ are isotropic with k vector
+orientation. The bands EHH± and ELH± are highly anisotropic due to their p-like
+symmetry [40]. The variation of the effective masses m*(Γ) as a function of Sb
+
+28
+
+Conduction Band offsets (meV)
+
+mole fraction in the three crystal directions Δ, Σ and Λ for T=300K is shown in
+Figure 3.18.
+500
+400
+300
+200
+
+c
+
+N= 0%
+N= 1%
+N= 2%
+N= 3%
+N= 4%
+N= 5%
+Lattice Matched
+
+100
+0
+0.00
+
+0.02
+
+0.04
+0.06
+0.08
+Sb mole fraction (y)
+
+0.10
+
+Figure 3.19 Variation of CBO for GaAsNSb versus Sb mole fraction (y) for
+different values of N concentration in the material. Dashed lines are used to
+represent the lattice matched condition (x/y =0.38).
+greater than the free electron mass m0 for the entire studied range. Hence, we are
+*
+*
+*
+*
+interested only with the effective masses mhh
+ , mlh  , mSO+ and mcb which can
+
+Conduction band offset ratio Q c
+
+contribute to the transport phenomenon of in GaAsNSb. While the HH/LH
+effective masses show anisotropy with changes in k, effective masses of the
+carriers in the SO and CB bands are isotropic and exhibit s-like symmetry.
+0.92
+
+Lattice Matched
+N=1%
+N=2%
+N=3%
+N=4%
+N=5%
+
+0.90
+0.88
+0.86
+0.84
+0.82
+0.00
+
+0.02
+
+0.04
+0.06
+0.08
+Sb mole fraction (y)
+
+0.10
+
+Figure 3.20 Variation of CBO ratio for GaAsNSb versus Sb mole fraction (y) for
+different values of N concentration in the material. Dashed lines are used to
+
+29
+
+represent the lattice matched condition (x/y =0.38).
+
+Valance Band offsets (meV)
+
+120
+100
+80
+60
+
+Lattice Matched
+N= 0%
+N= 1%
+N= 2%
+N= 3%
+N= 4%
+N= 5%
+
+v
+
+40
+20
+0
+0.00
+
+0.02
+
+0.04
+0.06
+0.08
+Sb mole fraction (y)
+
+0.10
+
+Figure 3.21 Variation of VBO for GaAsNSb versus Sb mole fraction (y) for
+different values of N concentration in the material. Dashed lines are used to
+represent the lattice matched condition (x/y =0.38).
+*
+*
+*
+*
+Unlike the effective masses mhh
+ , mlh  , mSO  and mcb which decreases with the
+*
+*
+*
+increase in Sb concentration, mhh
+ , mlh  and mSO  show just the opposite trend.
+*
+mcb
+ first shows an increase in value but decreases beyond y=3%. Since the carrier
+
+mobility is proportional to the inverse of the carrier effective mass, it can be
+inferred that unlike the dilute nitrides, the electron mobility in GaAsNSb increases
+
+Valence band offset ratio Q v
+
+0.18
+0.16
+0.14
+QV Lattice Matched
+
+0.12
+
+N=1%
+N=2%
+N=3%
+N=4%
+N=5%
+
+0.10
+0.08
+0.00
+
+0.02
+
+0.04
+0.06
+Sb mole fraction (y)
+
+0.08
+
+0.10
+
+Figure 3.22 Variation of CBO ratio for GaAsNSb versus Sb mole fraction (y) for
+different values of N concentration in the material. Dashed lines are used to
+
+30
+
+represent the lattice matched condition (x/y =0.38).
+for y>3% and the hole mobility decreases with the increase in Sb concentration as
+reported by Kini et al [69]. The value of the electron effective mass for GaAs
+(calculated using the 8 band k·p model) of 0.067m0 is exactly the same as in ref.
+[37]. However, the spin-orbit split-off hole effective mass shows a higher value of
+0.76m0. Figure 3.19, Figure 3.20, Figure 3.21 and Figure 3.22 show the variation
+of VB offset (VBO) and CB offset (CBO) and corresponding offset ratios as a
+function of Sb mole fraction under lattice matched condition.
+Ecb+
+
+@ 300 K
+
+2
+
+Energy (eV)
+
+1
+
+Ecb-
+
+0
+
+-1
+
+Ehh+
+
+0.1(2a)
+
+Elh+
+
+ESO+
+Ehh-
+
+Elh-
+
+ESO-
+
+-2
+
+
+
+
+
+
+
+Figure 3.23 Band structure of tensile strained GaAsNSb/GaAs QWs near the Γ
+point in the k directions (∆ and Λ). Dashed lines indicate the band structure of
+GaAsNSb alloy lattice matched to GaAs substrate.
+It can be observed form figures 6 (a) and (c) that the CBO is almost five times the
+VBO and both the VBO and CBO increase with the increase in Sb and N
+concentration.
+E
+2
+
+@ 300 K
+
+cb+
+
+Ecb-
+
+Energy (eV)
+
+1
+
+0.1(2a)
+0
+
+-1
+
+Ehh+
+
+ESO+
+
+Elh-
+
+ESO-
+
+Elh+
+Ehh-
+
+-2
+
+
+
+
+
+
+
+Figure 3.24 Band structure of compressive strained GaAsNSb/GaAs QWs near
+the Γ point in the k directions (∆ and Λ). Dashed lines indicate the band structure
+
+31
+
+of GaAsNSb alloy lattice matched to GaAs substrate.
+
+Energy level ( eV )
+
+The larger value of CBO is beneficial in the sense that the optoelectronic devices
+fabricated using GaAsNSb could provide better electron confinement. Unlike the
+linear increase in VBO and CBO, the VBO and CBO ratio changes non-linearly
+with Sb and N mole fraction. The offset ratios can be defined as the ratio between
+the change in offset values to the change in band gap as a result of the
+incorporation of Sb and N impurity atoms. It can be observed from the figures that
+the CBO and VBO ratios exhibit opposite nature, i.e. while CBO ratio decreases
+with Sb and N concentration, VBO increases.
+2
+
+E CB+
+
+1
+
+E CBE HH+
+
+0
+
+E HH/LH-
+
+-1
+
+E SO+
+
+E LH+
+
+E SO-
+
+-2
+
+0.00
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+
+0.10
+
+N m ole fraction (x)
+
+Figure 3.25 Relative positions of the energy levels E± corresponding to the CB,
+HH, LH and SO bands as a function Sb mole fraction for tensile strained
+GAAsNSb/GaAs QWs. Dashed lines represent the lattice matched condition.
+
+Energy level ( eV )
+
+2
+
+E CB+
+
+E CB1
+E HH/LH+
+
+0
+
+E SO+
+-1
+
+E HH/LHE SO
+
+-2
+0.00
+
+0.02
+
+0.04
+0.06
+Sb mole fraction (y)
+
+32
+
+0.08
+
+0.10
+
+Figure 3.26 Relative positions of the energy levels E± corresponding to the CB,
+HH, LH and SO bands as a function of Sb mole fraction for compressive strained
+GAAsNSb/GaAs QWs. Dashed lines represent the lattice matched condition.
+Figure 3.23 and Figure 3.24 are used to depict the difference in band structure of
+tensile strained and compressive strained GaAsSbN/GaAs QW structures. Tensile
+strain and compressive strain is plotted for N to Sb concentration ratio of 5 and 0.2
+respectively which is greater or less than the lattice matched N to Sb concentration
+ratio of 0.38.
+
+Band offsets (meV)
+
+400
+
+E cb
+
+300
+
+N=0%
+N=1%
+N=2%
+N=3%
+N=4%
+N=5%
+
+200
+100
+0
+
+E lh
+
+hh
+
+0.00
+
+0.02
+
+0.04
+
+0.06
+
+0.08
+
+0.10
+
+Sb mole fraction (y)
+
+Figure 3.27 Predicted band offsets of the conduction band (∆Ecb), heavy-hole
+(∆Ehh) and light-hole (∆Elh) valence bands for GaAsNSb/GaAs as a function of Sb
+mole fraction at different N composition at 300K.
+Splitting of LH and HH E+ bands and bandgap as low as 0.75 eV is is observed for
+tensile strained GaAs0.94N0.05Sb0.01/GaAs QW unlike compressive strained
+GaAs0.94N0.01Sb0.05/GaAs QW where such appreciable splitting is not observed
+and a higher value of band gap of 1.22 eV is obtained.
+80
+60
+40
+
+*
+
+m hh*
+
+m so*
+
+m cb+
+
+*
+
+m (  ) ( m 0)
+
+*
+
+m lh-
+
+20
+
+*
+
+m hh+
+
+*
+
+m cb*
+
+m lh+
+
+*
+
+m so+
+
+0.1
+0.02
+
+0.04
+
+0.06
+
+N concentration, x
+
+33
+
+0.08
+
+0.10
+
+*
+
+Figure 3.28 Effective masses m () of the electrons and holes in the upper and
+lower conduction and valence sub bands versus N concentration in the crystal
+direction ∆.
+Generation of tensile strain results in large separation between CB E+ and Eenergy levels indicating the effect of large concentration of N atoms on the CB
+of GaAsSbN /GaAs QWs. Figure 3.25 and
+Figure 3.26show the variation of CB and VB related E+ and E- energy levels for
+strained GaAsNSb/GaAs QWs.
+*
+
+m hh*
+
+*
+
+m (  ) ( m 0)
+
+10
+
+m so-
+
+m lh-
+
+*
+
+m cb+
+
+*
+
+*
+
+m hh+
+
+0.4
+0.3
+0.2
+0.1
+0.0
+
+*
+
+m cb-
+
+*
+
+m so+
+
+*
+
+m lh+
+0.02
+
+0.04
+
+0.06
+
+0.08
+
+0.10
+
+N concentration, x
+*
+
+Figure 3.29 Effective masses m () of the electrons and holes in the upper and
+lower conduction and valence sub bands versus N concentration in the crystal
+direction  .
+Clearly, the figures indicate that the deviation of the energy levels from the latticematched condition (shown by dotted lines) is more appreciable in tensile strained
+40
+QWs.
+*
+30
+
+m hh-
+
+20
+
+*
+
+m so-
+
+*
+
+m lh*
+
+0.3
+
+*
+
+m hh+
+
+m cb+
+
+*
+
+m (  ) ( m 0)
+
+10
+
+0.2
+0.1
+
+*
+
+m cb-
+
+*
+
+m so+
+
+*
+
+0.0
+
+m lh+
+0.02
+
+0.04
+
+0.06
+
+N concentration, x
+
+34
+
+0.08
+
+0.10
+
+*
+
+Figure 3.30 Effective masses m () of the electrons and holes in the upper and
+lower conduction and valence sub bands versus N concentration in the crystal
+direction  .
+This may be indicative of the fact that the effect of N atoms on the band structure
+is more than the Sb impurity atoms. Unlike the non-linear variation of ECB+ and
+*
+
+m hh-
+
+*
+
+m (  ) ( m 0)
+
+10
+
+*
+
+m lh-
+
+*
+
+m so-
+
+*
+
+0.8
+0.6
+0.4
+0.2
+
+m cb+
+
+*
+
+m hh+
+
+*
+
+m lh+
+
+*
+
+m cb0.03
+
+*
+
+m so+
+0.04
+
+0.05
+
+0.06
+
+0.07
+
+0.08
+
+0.09
+
+0.10
+
+Sb concentration, y
+*
+
+Figure 3.31 Effective masses m () of the electrons and holes in the upper and
+lower conduction and valence sub bands versus Sb concentration in the crystal
+direction ∆.
+ECB- in with the increase in N concentration level in tensile strained structures, the
+energy levels vary linearly in case of compressive strain.The band offsets
+calculated using Equation (2.26-28) (shown in Figure 3.27) exhibit some important
+characteristics.
+*
+
+m hh-
+
+10
+
+*
+
+m so-
+
+1
+
+*
+
+m hh+
+
+*
+
+m cb+
+
+*
+
+m (  ) ( m 0)
+
+*
+
+m lh-
+
+*
+
+0.1
+
+*
+
+m cb-
+
+m so+
+*
+
+m lh+
+0.03
+
+0.04
+
+0.05
+
+0.06
+
+0.07
+
+0.08
+
+Sb concentration, y
+
+35
+
+0.09
+
+0.10
+
+*
+
+Figure 3.32 Effective masses m () of the electrons and holes in the upper and
+lower conduction and valence sub bands versus Sb concentration along 
+direction.
+CBO increases at a rapid rate with Sb and N concentration unlike the LH and HH
+related band offsets. CBO, which shows a non-linear increase, is almost ten times
+greater than the LH and HH band offsets increasing linearly. While the band offset
+ E hh decreases with the increase in N and Sb concentration, E lh decreases. This
+is due to the opposite effect of the shearing component of strain on HH and LH
+bands as can be observed from Equation (2.26-28).
+
+*
+
+*
+
+m so*
+
+m lh1
+
+*
+
+m hh+
+*
+
+m cb+
+
+*
+
+m (  ) ( m 0)
+
+10
+
+m hh-
+
+0.1
+
+*
+
+m cb-
+
+*
+
+m so+
+
+*
+
+m lh+
+0.03
+
+0.04
+
+0.05
+
+0.06
+
+0.07
+
+0.08
+
+0.09
+
+0.10
+
+Sb concentration, y
+*
+
+Figure 3.33 Effective masses m () of the electrons and holes in the upper and
+lower conduction and valence sub bands versus Sb concentration in the crystal
+direction  .
+The effective masses for tensile strained GaAsSbN/GaAs QWs depicted in Figure
+3.28, Figure 3.29 and Figure 3.30 along three highly symetric direction  ,  and
+*
+*
+ respectively, which clearly reveals that the carrier effective masses mcb
+ , mhh ,
+*
+mlh*  and mso
+ have values lesser than the free electron effective mass m 0. The
+*
+*
+effective masses mcb
+ mhh
+
+*
+mlh*  and mso
+ decrease with the increase in N
+
+concentration for compressive strained GaAsSbN/GaAs QWs. The effective
+masses for compressive strained GaAsSbN/GaAs QW depicted in Figure 3.31,
+Figure 3.32 and Figure 3.33 along three highly symetric direction  ,  and 
+*
+*
+respectively, which clearly reveals that the carrier effective masses mcb
+ , mhh ,
+*
+mlh*  and mso
+ have values lesser than the free electron effective mass m 0. While
+*
+the effective masses mcb
+
+
+*
+mlh*  and mso
+ increase with the increase in Sb
+
+*
+concentration, mhh
+ decreases for compressive strained GaAsSbN/GaAs QWs. The
+
+36
+
+decrease in effective masses can be associated with the corresponding increase in
+mobility for the CB electrons and HH and SO holes and thus can be utilized for the
+fabrication of optoelectronic devices with superior carrier transport properties.
+3.2
+
+Optical Properties
+
+Considering band offsets, carrier effective masses and band structures from
+corresponding k.p Hamiltonian we have calculated optical properties of
+GaSbBi/GaAs and GaAsSbN/GaAs QW structures for numerous application in
+optoelectronic devices.
+3.2.1 Optical Properties of GaSbBi
+Collecting corresponding band offsets from 14  14 system Hamiltonian of
+GaSbBi/GaAs QW we have calculated the following optical properties.
+
+Energy (eV)
+
+2.0
+
+e3
+
+GaSb 0.987Bi0.013
+
+e2
+
+1.5
+
+CB
+
+e1
+
+GaAs
+
+1.0
+
+*
+
+GaAs
+
+hh 1
+hh 2
+lh 1
+lh 2
+hh 3
+
+0.5
+LH
+
+VB
+
+0.0
+5
+
+10
+
+15
+
+20
+
+25
+
+30
+
+HH
+
+VB
+
+35
+
+40
+
+45
+
+levels
+
+of
+
+Distance (nm)
+
+Figure 3.34 Confinement potential
+GaSb0.987Bi0.013/GaAs type-II QW.
+
+energy
+
+10
+
+nm
+
+width
+
+One of the significant parameters for the calculation of optical gain is the band
+offset which is obtained using Equation (2.26-28). Figure 3.34 shows the Type II
+band structure of a 10 nm wide GaSb0.987Bi0.013/GaAs QWs in accordance with
+[17]. The different excited energy states for heavy hole, light hole and conduction
+band electrons are also depicted in the figure. The large values of HH, LH and CB
+offsets of 0.99 eV, 0.4425 eV and 0.62 eV respectively results in higher
+confinement potential of both the electrons and holes in the CB and VB.
+Substantial refractive index difference between GaSb and GaAs and higher values
+of band offsets provide better optical and carrier confinement that leads to the
+enhancement of lasing action for GaSbBi/GaAs QW structures. Moreover, unlike
+Type I band structure in GaAsBi/GaAs QWs, Type II structure in GaSbBi/GaAs
+QWs offers higher overlap between electron and hole wave function which
+
+37
+
+improves the density of state and owing to higher carrier accumulation luminosity
+of the optoelectronic devices improve for Type II QWs [70]. Moreover, lesser
+amount of compressive strain (7%) due to dilute Bi concentration helps to achieve
+longer emission wavelength with larger material gain in GaSbBi/GaAs QWs.
+120
+
+-1
+
+Gain (m )
+
+100
+
+E 1 -H H 1
+
+16
+
+-2
+
+9.5 × 10 m
+16
+-2
+7.5 × 10 m
+16
+-2
+5.5 × 10 m
+
+E 2 -H H 1
+
+80
+
+E 1 -H H 2
+
+60
+
+E 1 -LH 1
+
+40
+20
+0
+
+0.30 0.45 0.60 0.75 0.90 1.05 1.20 1.35
+
+Photon Energy (eV)
+
+Figure 3.35 Plot of Gain versus Photon energy for different carrier concentrations
+showing the Interband transitions in GaAsBi/GaAs QWs.
+Figure 3.35Figure 3.35 shows the plot of gain as a function of energy for different
+injected carrier concentrations. The gain curve exhibits four peaks which can be
+interpreted as the interband transitions occurring between the excited HH/LH and
+conduction sub bands calculated from Figure 3.34.
+
+Figure 3.36 Optical gain spectra of 10 nm width GaSb0.987Bi0.013/GaAs QW
+calculated within 14-band k.p model for various carrier concentrations.
+38
+
+As the carrier concentration decreases, peaks 3 and 4 depicting the transition
+between conduction sub band and HH and LH sub bands respectively fade away.
+We have also calculated the values of intersubband transitions occurring between
+the heavy hole and light hole energy bands. The transitions from a HH to a LH
+state is important from the point of view of absorption of normally incident light
+by holes in GaAs based p-Quantum Well Infrared Photodetecors (QWIP) in the
+absence of an optical grating [71].
+
+7 nm
+
+100
+50
+0
+
+5 nm
+
+-1
+
+Gain (m )
+
+100
+50
+0
+
+100
+
+3 nm
+
+50
+0
+0.1
+
+0.2
+
+0.3
+
+0.4
+
+0.5
+
+0.6
+
+0.7
+
+0.8
+
+0.9
+
+1.0
+
+Photon Energy (eV)
+
+Figure 3.37 Optical gain spectra of GaSb0.987Bi0.013/GaAs QW for various widths
+calculated within 14-band k.p model for carrier concentration of 3  1016 m 2 .
+The inter subband transitions in the Conduction Band ranges from 0.17-0.45 eV
+whereas the transitions between the LH→HH/HH→HH/LH→LH subbands lie in
+the range 0.14-0.80 eV. It has been found out numerically that the hole
+intersubband absorption of normally incident radiation in the absence of an optical
+grating would be largest for transitions from a pure heavy hole state to a pure light
+hole state [72]. The sub band energy levels, effective masses and band offsets are
+used to calculate the optical gain with respect to the inter subband transitions.
+Figure 3.36 shows the shift of the peak of optical gain with the variation in injected
+surface carrier density of the GaSb0.987Bi0.013/GaAs QW with 10 nm active layer.
+Increasing the rate of injected carrier density improves the difference between the
+Fermi function which leads to gain improvement within the desired mid infrared
+
+39
+
+region. For quantum confined structures like QWs, the sub bands act as a tuning
+parameter for optoelectronic devices. The variation of the confinement length of
+the QWs causes variation in the sub bands Enc and E mv which leads to change in
+effective band gap of QWs and changes the peak gain position. We have analyzed
+the confinement effect on optical gain for a surface carrier density of 3×10 16 m-2
+which is shown in Figure 3.37.
+120
+2.22
+
+2.18
+90
+2.16
+80
+2.14
+70
+
+-1
+
+100
+
+Maximum Gain (m )
+
+Peak Wavelength m)
+
+110
+2.20
+
+2.12
+60
+2.10
+
+7
+
+8
+
+9
+
+10
+
+11
+
+12
+
+13
+
+14
+
+15
+
+Width of the well (nm)
+
+Figure 3.38
+Peak gain and corresponding peak wavelength of of
+GaSb0.987Bi0.013/GaAs QW for various widths calculated within 14-band k.p model
+for carrier concentration of 3  1016 m 2 .
+Reducing the dimension of the active region of the QWs causes a shift of the peak
+energy position towards lower wavelengths for a constant injected carrier density
+and this occurs due to the inverse squared dependence of the energy of the sub
+bands on the width of the QWs. Stronger confinement of the carriers due to the
+overlap of the exciton wave functions increases the transition energy for the
+carriers which shifts of the peak of gain towards lower wavelengths which is
+shown in Figure 3.37. Figure 3.38 depicts the opposite characteristics of the optical
+gain and peak energy position with the dimension of the QWs.
+
+40
+
+3.2.2 Optical Properties of GaAsSbN
+Considering corresponding band offsets from 16 16 system Hamiltonian of
+GaAsSbN/GaAs QW we have calculated the following optical properties.
+
+1.4
+
+Energy (eV)
+
+1.2
+
+GaN 0.0494 As0.8206 Sb 0.13
+
+GaAs
+
+GaAs
+
+CB
+
+1.0
+0.8
+0.10
+
+1
+
+VB
+
+0.05
+
+2
+3
+
+st
+
+Excitate State
+
+nd
+rd
+
+Excitate State
+Excitate State
+
+0.00
+0
+
+5
+
+10
+
+15
+
+20
+
+Distance (nm)
+
+Figure 3.39 The quantum confinement potential and energy levels for electrons
+and holes for a set of 10 nm wide GaAsNSb/GaAs QWs for lattice matched
+condition.
+1.5
+GaAs GaN 0.05As0.94 Sb 0.01
+
+GaAs
+
+1.4
+
+Energy (eV)
+
+CB
+
+e2
+
+*
+
+1.3
+
+0.05
+
+e1
+
+LH
+
+VB
+
+0.00
+
+lh 1
+
+HH
+
+VB
+
+0
+
+5
+
+10
+15
+Distance (nm)
+
+20
+
+Figure 3.40 The quantum confinement potential and energy levels for electrons
+and holes for a set of 10 nm wide GaAsNSb/GaAs QWs for tensile strain.
+
+41
+
+1.50
+
+GaAs GaN 0.01 As0.94 Sb 0.05
+
+Energy (eV)
+
+1.35
+
+CB
+
+GaAs
+
+e4
+e3
+e2
+e1
+
+*
+
+1.20
+0.06
+0.03
+
+hh 1
+
+LH
+
+VB
+
+lh 1
+
+HH
+
+VB
+
+0.00
+0
+
+5
+
+10
+15
+Distance (nm)
+
+20
+
+Figure 3.41 The quantum confinement potential and energy levels for electrons
+and holes for a set of 10 nm wide GaAsNSb/GaAs QWs for compressive strain.
+
+Figure 3.39, Figure 3.40 and Figure 3.41 shows the quantum confinement potential
+and the positions of the VB and CB energy levels for lattice matched, tensile
+strained and compressive strained 10 nm wide GaAsNSb/GaAs QWs. The
+dispersion of the energy levels in both the CB and VB increases significantly in
+compressive strained QWs. Hence, longer emission wavelengths in the
+telecommunication window (1.3-1.55 µm) can be achieved for
+GaAs0.94N0.01Sb0.05/GaAs QWs. Clearly, the figures show that GaAsNSb/GaAs
+QWs are Type I structures with strong confinement potential for both holes and
+electrons.
+Table 4 Operating wavelength range in  m
+Bulk
+High
+1.44
+
+Tensile
+Low
+0.95
+
+High
+1.62
+
+Low
+0.9
+
+42
+
+Compressive
+High
+Low
+1.343
+0.91
+
+4
+
+Conclusion and Future Work
+
+A mathematical model based on VBAC is used to calculate the electronic band
+structures of GaSb1-xBix for x= 0.013 along the <100> and <111> both for bulk and
+strained layer grown on GaAs. VBAC model predicts that for an incorporation of
+1.3% Bi in GaSb conduction band minima is pushed downward by 36 meV and the
+valance band maxima is shifted upward by 15 meV which produces a band gap
+reduction of 51 meV. The splitting of the LH and HH bands and the upward shift
+of the CB results in a huge band gap of 1.12 eV for GaSbBi/GaAs QWs. The
+separation of the LH and HH bands by about 373 meV is mainly due to the
+generation of strain for the large lattice mismatch between GaSbBi and GaAs. The
+downward shift of the spin-orbit split-off band ESO+ by 230 meV increases the
+spin-orbit splitting energy. The carrier confinement and strain immensely also
+affects the CB shifting it by 0.66 eV with respect to the CB of GaSb. The
+calculated dispersion relations show that Eso+ is isotropic in all orientation of k upto
+k=0.10 Å-1 and Ecb- and Eso- reflects a moderate change with k-direction beyond the
+value of k=0.12 Å-1 unlike Ehh/lh± bands. The increase in the effective masses of the
+charge carriers is also due to the confinement of electrons in the QW structure. The
+*
+*
+*
+carrier effective masses mhh
+ , mlh  and mso in the upper sub bands are almost
+
+isotropic. The large values of HH, LH and CB offsets for GaSbBi/GaAs QWs
+results in higher confinement potential of both the electrons and holes in the CB
+and VB. The optical gain of the QWs increase with an increase of the injected
+carrier charge density. However, the increase in the dimension of the QWs reduces
+the optical gain for a constant injection carrier density due to the reduction in the
+density of the states in the sub bands. The peak of the optical gain curve exhibits a
+blueshift due to the reduction in the width of the QWs.
+GaSbBi/GaAs QW systems are suited for applications in optoelectronic devices
+due to the innumerous advantages that these systems provide. Firstly, GaSbBi has
+a large spin orbit splitting energy and incorporation of a few percent of Bi results
+in the formation of ∆SO>Eg regime for low temperatures which is not only vital for
+spintronic applications but it also inhibits the Auger recombination losses that
+degrades the efficiency of LASERs. Secondly, Bi perturbs only the valence band
+of GaSb and hence the electron mobility remains unaffected. This improves the
+speed response and sensitivity of GaSbBi/GaAs based photodetectors.
+The enhanced optical as well as carrier confinement of GaSbBi/GaAs QWs
+improves the lasing action of such systems to a great extent. The inter sub band
+transitions occurring in GaSbBi/GaAs QWs, mainly between the HH and LH sub
+bands allows normal incidence inter subband absorption in p-QWIPs in the
+absence of an optical grating. Moreover the inter subband transitions occurring
+between the VB and CB sub bands could make possible the fabrication of LASER
+diodes operating in the 1.5-2.2 µm mid-infrared region.
+
+43
+
+We have calculated the band structure of GaAsNSb alloys lattice matched to GaAs
+substrates and GaAsNSb/GaAs QWs using a 16 band k·p Hamiltonian. Our
+calculations show that a significant band gap reduction of 330 meV is obtained for
+GaAs0.931N0.019Sb0.05 alloys lattice matched to GaAs. The spin-orbit splitting
+energy increases at the rate of 22meV/%Sb resulting in a crossover with the band
+gap energy Eg for Sb = 27% and N = 10% and a resonant energy of 0.44 eV. Hence
+GaAsNSb alloys with a spin-orbit splitting energy larger than the band gap can be
+used to design potential Auger and leakage free devices operating in the long
+wavelength regime. Calculation of effective masses indicate that unlike the dilute
+nitrides, the electron mobility in GaAsNSb alloys increases for y>3% and the hole
+mobility decreases with the increase in Sb concentration. VBO and CBO as well
+their ratios are calculated as function of both Sb and N mole fraction. CBO as high
+as 500 meV and VBO of 120 meV is obtained which can improve the device
+characteristics by providing strong carrier confinement. Band gap values of 0.75
+eV and 1.22 eV are obtained for tensile strained GaAs0.94N0.05Sb0.01/GaAs QW
+and compressive strained GaAs0.94N0.01Sb0.05/GaAs QWs respectively. The
+splitting between LH and HH sub bands are observed in case of tensile strained
+QWs. For QWs, CBO shows a non-linear increase and is almost ten times greater
+*
+*
+*
+than the LH and HH related VBO. The effective masses mcb
+ mhh and mso
+
+decrease with the increase in Sb concentration, mlh*  increases for compressive
+strained GaAsSbN/GaAs QWs in the crystal direction [100]. It is also shown that it
+is possible to achieve emission at telecommunication windows (i.e., 1.3 µm and
+1.55 µm) for GaAs-based lasers containing GaAsNSb/GaAs QWs.
+In future we would like to investigate the optoelectronic devices like Photo
+detector, LASER diode and Solar cell by using our investigated materials GaSbBi
+and GaAsSbN. The detailed device simulation and fabrication would help to enrich
+and support our recent work.
+
+44
+
+Bibliography
+[1] D. P. Samajdar, T. D. Das, and S. Dhar, Mater. Sci. Semicond. Process. 40, 539
+(2015).
+[2] K. Alberi, J. Wu, W. Walukiewicz, K. M. Yu, O. D. Dubon, S. P. Watkins, C.
+X. Wang, X. Liu, Y.-J. Cho, and J. Furdyna, Phys. Rev. B 75, 045203 (2007).
+[3] M. P. Polak et al. J. Phys. D: Appl. Phys. 47, 355107 (2014).
+[4] M. P. Polak, P. Scharoch, R. Kudrawiec, Semicond. Sci. Technol. 30, 094001
+(2015).
+[5] D. P. Samajdar and S. Dhar, Superlattices Microstruct. 89, 112 (2016).
+[6] S. K. Das, T. D. Das, S. Dhar, M. de la Mare, A. Krier, Infrared Phys. Technol.
+55, 156-160 (2012).
+[7] S. K. Das, T. D. Das, S. Dhar, Semicond. Sci. Technol. 29, 015003 (2014).
+[8] M. K. Rajpalke, W. M. Linhart, M. Birkett, K. M. Yu, J. Alaria, J. Kopaczek,
+R. Kudrawiec, T. S. Jones, M. J. Ashwin, T. D. Veal, J. Appl. Phys. 116, 043511
+(2014).
+[9] M. K. Rajpalke et al. App. Phys. Lett. 103, 142106 (2013).
+[10] S. Y. Lin et al. Appl. Phys. Lett. 96 , 123503 (2010).
+[11] M. Geller, C. Kapteyn, L. Müller-Kirsch, R. Heitz, D. Bimberg, Appl. Phys.
+Lett. 82, 2706 (2003).
+[12] A. Marent et al. Appl. Phys. Lett. 89, 072103 (2006).
+[13] J. Hwang, A. J. Martin, J. M. Millunchick, J. D. Phillips, J. Appl. Phys. 111,
+074514 (2012).
+[14] S. Y. Lin et al. Appl. Phys. Lett. 96, 123503 (2010).
+[15] H. Zhao, R. A. Arif, N. Tansu, J. Appl. Phys. 104, 043104 (2008).
+[16] R.A. Arif, H. Zhao, Y. K. Ee, N. Tansu, IEEE J. Quantum Electron. 44, 573
+(2008).
+[17] T. D. Das, D. P. Samajdar, M. K. Bhowal, S. C. Das, and S. Dhar, Curr. Appl.
+Phys. 16, 1615 (2016).
+[18] S. A. Lourenco, I. F. L. Dias, J. L. Duarte, E. Laureto, V. M. Aquino, and J.
+C. Harmand, Braz. J. Phys. 37, 1212 (2007).
+[19] Y-T. Lin, T-C. Ma, T-Y. Chen, and H-H. Lin, Appl. Phys. Lett. 93, 171914
+(2008).
+[20] T. D. Veal, L. F. J. Piper, S. Jollands, B. R. Bennett, P. H. Jefferson, P. A.
+Thomas, C. F. McConville, B. N. Murdin, L. Buckle, G. W. Smith, T. Ashley,
+Appl. Phys. Lett. 87 132101 (2005).
+[21] J. C. Harmand, A. Caliman, E. V. K Rao, L. Largeau, J. Ramos, R. Teissier,
+L. Travers, G. Ungaro, B. Theys and I. F. L. Dias, Semicond. Sci. Technol. 17 778
+(2002).
+45
+
+[22] G. Ungaro, Le Roux, R. Teissier, J. C. Harmand, Electron. Lett. 35 15 (1999).
+[23] J. C. Harmand, G. Ungaro, J. Ramos, E. V. K. Rao, G. Saint-Girons, R.
+Teissier, G. Le Roux, L. Largeau, and G. Patriarche, J. Cryst. Growth 227 553
+(2001).
+[24] Aymeric Maros, Nikolai Faleev, Richard R. King, and Christiana B.
+Honsberg, J. Vac. Sci. Technol. B 34, 02L106 (2016).
+[25] J. C. Harmand, L. Largeau, and F. Glas, Phys. Stat. Sol. C 3 1931 (2006).
+[26] P. Kasanaboina, M. Sharma, P. Deshmukh, C. L. Reynolds Jr., Y. Liu and S.
+Iyer, Nanoscale Res. Lett. 11, 47 (2016).
+[27] J. Bardeen, J. Chem. Phys. 6, 367 (1938).
+[28] F. Seitz, The Modern Theory of Solids, McGraw-Hill, New York, 1940.
+[29] W. Shockley, Phys. Rev. 78, 173-174, (1950).
+[30] G. Dresselhaus, A. F. Kip, and C. Kittel, Phys. Rev. 98, 368-384, (1955).
+[31] E. O. Kane, J. Phys. Chem. Solids 1, 249-261, (1957).
+[32] E. O. Kane, in Semiconductor and Semimetals, edited by R. K. Willardson
+and A. C. Beer (Academic Press, New York, 1966).
+[33] J. M. Luttinger and W. Kohn, Phys. Rev. 97, 869-883 (1955).
+[34] J. M. Luttinger, Phys. Rev. 102, 1030-1041 (1956).
+[35] The k·p Method: Electronic Properties of Semiconductors, in: Lok C. Lew
+Yan Voon, M. Willatzen, Springer, Springer-Verlag Berlin Heidelberg, New York,
+2009.
+[36] S. T. Ng, W. J. Fan, Y. X. Dang, S. F. Yoon, Phys. Rev. B 72, 115341
+(2005).
+[37] I. Vurgaftman, J.R. Meyer, L.R. Ram-Mohan, J. Appl. Phys. 89, 5815
+(2001).
+[38] D.P. Samajdar, Utsa Das, A.S. Sharma, S. Das and S. Dhar, Curr. Appl. Phys.
+16, 1687 (2016).
+[39] D. P. Samajdar and S.Dhar, The Sci. World. J. 2014 704830 (2014).
+[40] M. M. Habchi, A. Ben Nasr, A. Rebey, B. El Jani, Infrared Phys. Tech. 61, 88
+(2013).
+[41] Z-G. Song, S. Bose, W-J. Fan, and S-S. Li, J. Appl. Phys. 119, 143103
+(2016).
+[42] G. L. Bir and G. E. Pikus, Symmetry and Strain-Induced Effects in
+Semiconductors Wiley, New York, 1976.
+[43] G. M. T. Chai et al., Semicond. Sci. Technol. 3, 94015 (2015).
+[44] M. Ferhat, A. Zaoui, Phys. Rev. B - Condens. Matter Mater. Phys. 73, 1
+(2006).
+[45] S. Nacer, A. Aissat, and K. Ferdjani, Opt. Quantum Electron. 40, 677 (2008).
+
+46
+
+[46] R. Kudrawiec, J. Kopaczek, M. P. Polak, P. Scharoch, M. Gladysiewicz, J.
+Misiewicz,
+R. D. Richards, F. Bastiman, and J. P. R. David, J. Appl. Phys. 116, 0 (2014).
+[47] S. L. Chuang, Physics of Optoelectronic Devices (Pure and Applied Optics).
+New York, NY, USA: Wiley, 1995.
+[48] W. W. Chow and S. W. Koch, Semiconductor-Laser Fundamentals: Physics
+of the Gain Materials. New York, NY, USA: Springer-Verlag,1999.
+[49] A. Ben Ahmed, H. Saidi, S. Ridene, and H. Bouchriha, IEEE J. Q. E. 51, 1
+(2015).
+[50] M. Debbichi et al., Semicond. Sci.Technol., 24 085010-1 (2009).
+[51] V. V Lysak, H. Kawaguchi, and I.A. Sukhoivanov, IEEE Proc. Opto. 152, 131
+(2005).
+[52] M. Asada, A. Kameyama and Y. Suematsu, IEEE J. Quantum Electron. 20,
+745 (1984).
+[53] C. G. Van de Walle, Phys. Rev. B 39, 1871 (1989).
+[54] B. Chen, IEEE Trans. Electron Dev 64, 1606 (2017).
+[55] K. K. Nagaraja, Y. A. Mityagin, M. P. Telenkov, I. P. Kazakov, Crit. Rev.
+Solid State Mater. Sci. 0, 1 (2016).
+[56] H. Tong, X. Marie, and M. W. Wu, J. Appl. Phys. 112, 063701(2012).
+[57] L. F. Bian, D. S. Jiang, P. H. Tan, S. L. Lu, B.Q. Sun, L. H. Li, J. C.
+Harmand, Solid State Commun. 132, 707 (2004).
+[58] F. Bousbih, S.B. Bouzid, R. Chtourou, F.F. Charfi, J.C. Harmand, G. Ungaro,
+Mater. Sci. Eng. C 21, 251 (2002).
+[59] L. Malikova, F. H. Pollak and R. Bhat, Journal of Elec. Mater. 27 484 (1998).
+[60] K. Uesugi K, N. Marooka and I. Suemune , Appl. Phys. Lett.74 1254 (1999).
+[61] R. Bhat, C. Caneau, L. S. Riba, W. Bi and C. Tu J. Cryst. Growth 195, 427
+(1998).
+[62] B. M. Keyes, J. F. Geisz, P. C. Dippo, R. Reedy, C. Kramer, D. J. Friedman,
+R. S. Kurtz and J. M. Olson, NCPV Photovoltaics Program Review AIP Conf.
+Proc. 462 511(1999).
+[63] G. A. Antypas and L. W. James, J. Appl. Phys. 41, 2165 (1970).
+[64] R. E. Nahory, M. A. Pollack, J. C. DeWinter, and K. M. Williams, J. App.
+Phys. 48, 1607 (1977).
+[65] Y. Mitsuaki, S. Yukio, I. Tetsuo, M. Yuichi and K. Morihiko, Jpn. J. Appl.
+Phys. 17 2091(1978).
+[66] A. E. Taylor and E. Fortin, Can. J. Phys. 48, 1874 (1970).
+[67] G. Ungaro, I. Sagnes, G. Le Roux, L. Largeau, G. Patriarche, J. Saint-Girons,
+and J.C. Harmand, Conf. Proceedings. 2000 Int. Conf. Indium Phosphide Relat.
+Mater. (Cat. No.00CH37107) 553 (2000).
+
+47
+
+[68] H.-P. Hsu, Y.-T. Lin and H.-H. Lin, Jpn. J. Appl. Phys. 51, 022605 (2012).
+[69] R.N. Kini, A.J. Ptak, B. Fluegel, R. France, R.C. Reedy, A. Mascarenhas,
+Phys. Rev. B 83, 075307(2011).
+[70] S. Mazzucato, T. Zhang, H. Carrere, D. Lagarde, P. Boonpeng, A. Arnoult, G.
+Lacoste, A. Balocchi, A. Amand, C.Fontaine, and X. Marie, Appl. Phys. Lett. 102,
+252107 (2013).
+[71] J. L. Pan and C. G. Fonstad, Jr., IEEE Trans. Electron Dev. 47, 1325 (2000).
+
+48
+
+Annexure I : List of Publications
+Journals:
+1. “Effect of Sb and N resonant states on the band structure and carrier effective
+masses of GaAs1-xyNxSby alloys and GaAs1-x-yNxSby/GaAs quantum wells
+calculated using k·p Hamiltonian” Indranil Mal, D. P. Samajdar and T. D.
+Das, Superlattices and Microstructures, 106, 20-32 (2017).
+2. "Calculation of Band Structure and Optical Gain of Type-II GaSbBi/GaAs
+Quantum Wells Using 14-Band k•p Hamiltonian" Indranil Mal, D. P.
+Samajdar and T. D. Das, Superlattices and Microstructures, in Press (2017).
+
+49
+
+Annexure II : Reprint of Publications
+
+1
+
+2
+
+3
+
+4
+
+
