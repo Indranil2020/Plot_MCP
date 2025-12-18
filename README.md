@@ -8,15 +8,20 @@ Plot MCP is a comprehensive plotting system that integrates Matplotlib with logi
 
 - **Natural Language Plotting**: Generate complex Python plotting code from simple text descriptions.
 - **Intelligent Data Parsing**: Automatically detects delimiters (CSV, TSV, space-separated) and analyzes data structures.
-- **Publication Quality**: Default settings ensure plots meet academic publication standards (fonts, ticks, line widths).
+- **Projects (Origin-style)**: Each project is a folder with a `project.json` manifest (datasets, plot history, UI state).
+- **Threaded Chat Sessions**: Multiple chat threads with persistent message history and per-session plot context.
+- **Publication Quality (Optional)**: Enable consistent styling defaults for academic plots via the sandbox runner.
 - **Interactive Editing**: Click on plot elements (titles, axis labels) to edit them using natural language.
-- **Gallery Integration**: Access over 500 official Matplotlib examples.
+- **Code-First Reproducibility**: Edit plot code and re-execute deterministically (no LLM rewrite) via `/execute_plot`.
+- **Gallery Integration**: Browse 500+ official Matplotlib examples and adapt them to your data.
 - **Local Execution**: Run entirely locally using Ollama, or connect to cloud providers like OpenAI or Gemini.
 - **Flexible Export**: Download plots in PNG, PDF, or SVG formats with custom DPI settings.
+- **Safe Execution**: Plot code runs in a sandboxed subprocess with static lint checks (no file/network access).
+- **MCP Server**: Use Plot MCP as a standalone MCP server for any MCP-compatible LLM client.
 
 ## Prerequisites
 
-- Python 3.8+
+- Python 3.9+ (required for `ast.unparse`)
 - Node.js and npm (for frontend)
 - Ollama (for local LLM support)
 
@@ -49,14 +54,16 @@ Plot MCP is a comprehensive plotting system that integrates Matplotlib with logi
     cd frontend
     npm start
     ```
-    The application will be accessible at http://localhost:3000.
+    The application will be accessible at the Vite dev server URL (usually `http://localhost:5173`).
 
 ### Using the Interface
 
-1.  **Paste Data**: Click "Paste Data" to input your dataset (CSV, JSON, or space-separated text).
-2.  **Describe Plot**: Type your request in the chat (e.g., "Create a scatter plot of column A vs B").
-3.  **Edit**: Click on the generated plot title or axes to request modification.
-4.  **Download**: Use the download menu to save your plot in high resolution.
+1.  **Create a project**: Use the left sidebar to create/select a project.
+2.  **Add data**: Upload files or paste data into the project.
+3.  **Select files**: Check one or more files to use as plot context.
+4.  **Describe plot**: Ask for a plot in chat (e.g., "Scatter plot of A vs B").
+5.  **Refine**: Click plot elements (title/labels) to request edits, or edit code and re-run directly.
+6.  **Tools drawer**: Use the plot toolbar `Tools` to open Preview / Join / Analysis / Gallery.
 
 ## Environment Configuration
 
@@ -64,14 +71,16 @@ Plot MCP is a comprehensive plotting system that integrates Matplotlib with logi
 - **Frontend API URL**: set `VITE_API_URL` (see `frontend/.env.example`) to point to the backend.
 - **Port auto-release**: backend attempts to terminate processes on the chosen port using `lsof` or `fuser` before binding.
 - **Sandbox memory**: set `PLOT_EXEC_MEMORY_MB=1024` to enforce a memory cap; default is no limit.
+- **Sandbox style**: set `PLOT_ENFORCE_STYLE=1` to apply consistent styling defaults (fonts/ticks/spines).
+- **Projects directory**: set `PROJECTS_DIR=/path/to/projects` to store projects outside the repo.
 
 ## Happy Path Tutorial (End-to-End)
 
 1.  **Create a project**: In the left sidebar, create a project named `My Experiment`.
 2.  **Upload files**: Upload `data_a.csv` and `data_b.csv` into the project.
 3.  **Select files**: Check both files in the project explorer.
-4.  **Review preview**: Inspect the data preview and type summary at the top of the main panel.
-5.  **Join guidance**: Review join suggestions (shared columns and warnings) before plotting.
+4.  **Open Tools → Preview**: Inspect a file preview and inferred dtypes.
+5.  **Open Tools → Join**: Review join suggestions (shared columns and warnings) before plotting.
 6.  **Ask for a plot**: Example request: `Plot temperature from data_a vs pressure from data_b`.
 7.  **Iterate**: Click the plot title/labels to refine the output using natural language.
 8.  **History & undo**: Use thumbnails or undo/redo to revisit earlier plots.
@@ -97,4 +106,4 @@ See `doc/` folder for advanced configuration and Model Context Protocol (MCP) in
 
 - **Architecture**: See `doc/ARCHITECTURE.md` for system design diagrams.
 - **MCP Integration**: See `doc/MCP_INTEGRATION.md` for connecting to generic LLM clients.
-- **Production Setup**: See `doc/QUICKSTART_PROD.md` for standalone deployment instructions.
+- **Tiny Models**: See `doc/TINY_LLM_SETUP.md` for running with small local LLMs.

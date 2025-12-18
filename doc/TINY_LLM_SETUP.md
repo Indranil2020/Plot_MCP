@@ -54,7 +54,23 @@ $env:OLLAMA_MODEL = "qwen2:0.5b"
 python3 backend\main.py
 ```
 
+## Notes for Tiny Models
+
+- Prefer selecting files in a project instead of pasting huge datasets into chat. The backend sends compact column summaries to the LLM.
+- If the model asks a clarification question (e.g., “which columns?”), answer it in the same chat session so the backend can include history.
+- Some common “no data” plots (sine/cosine/square/sawtooth waves) are generated deterministically without needing the LLM.
+
 ## Performance Tips
 
 - **Quantization**: Ollama automatically uses 4-bit quantization, which reduces memory usage by 75% compared to full models.
 - **Context Window**: For tiny models, keep your data paste size reasonable (under 100 rows preview) to avoid overflowing the context.
+
+## Running the Full UI
+
+```bash
+python3 backend/main.py
+cd frontend
+npm start
+```
+
+The frontend runs on the Vite dev server (usually `http://localhost:5173`).
