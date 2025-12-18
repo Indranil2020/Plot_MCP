@@ -209,6 +209,10 @@ class DataValidator:
         
         return "Data structure looks compatible with this plot type."
 
+    def get_plot_schema(self, plot_type: str) -> Dict[str, object]:
+        """Return schema requirements for a plot type."""
+        return self.plot_requirements.get(plot_type, {})
+
 # Global instance
 _validator = None
 

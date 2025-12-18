@@ -1,0 +1,72 @@
+.session-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: #e2e8f0;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+}
+
+.session-create-btn {
+    padding: 0.3rem 0.6rem;
+    border: 1px solid #334155;
+    background: transparent;
+    color: #e2e8f0;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.session-create-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.session-item {
+    border: 1px solid #334155;
+    background: #1e293b;
+    color: #e2e8f0;
+    border-radius: 8px;
+    padding: 0.6rem;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.session-item.active {
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.3);
+}
+
+.session-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.session-meta {
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+.session-preview {
+    font-size: 0.75rem;
+    color: #cbd5f5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.session-empty {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}

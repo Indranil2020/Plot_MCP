@@ -1,2 +1,6 @@
 *.pyc
 .pyc
+backend/logs/
+backend/projects/
+backend/sessions/
+uploads/

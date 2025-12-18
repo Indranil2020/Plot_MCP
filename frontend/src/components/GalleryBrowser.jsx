@@ -2,18 +2,20 @@ import React, { useState, useEffect } from 'react';
 import './GalleryBrowser.css';
 import thumbnails from '../gallery_thumbnails.json';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
 const GalleryBrowser = ({ onSelectExample, onClose }) => {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [loading, setLoading] = useState(true);
-    const [activeExample, setActiveExample] = useState(null); // Added activeExample state
+    const [totalExamples, setTotalExamples] = useState(0);
 
     useEffect(() => {
-        // Load gallery knowledge base
-        fetch('/backend/matplotlib_gallery_kb.json')
+        fetch(`${API_URL}/gallery`)
             .then(res => res.json())
             .then(data => {
+                setTotalExamples(data.total_examples || 0);
                 const cats = Object.entries(data.categories || {}).map(([name, info]) => ({
                     name,
                     count: info.count,
@@ -81,7 +83,7 @@ const GalleryBrowser = ({ onSelectExample, onClose }) => {
             <div className="gallery-header">
                 <div>
                     <h2>📚 Gallery Browser</h2>
-                    <p className="gallery-subtitle">509 Official Examples</p>
+                    <p className="gallery-subtitle">{totalExamples} Official Examples</p>
                 </div>
                 <button onClick={onClose} className="close-btn">✕</button>
             </div>

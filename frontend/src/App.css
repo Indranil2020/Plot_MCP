@@ -7,9 +7,59 @@
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 }
 
+.sidebar-container {
+  height: 100%;
+  min-width: 280px;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-resizer {
+  width: 6px;
+  cursor: col-resize;
+  background: rgba(15, 23, 42, 0.6);
+  border-right: 1px solid #334155;
+  border-left: 1px solid #334155;
+}
+
+.sidebar-resizer:hover,
+.sidebar-resizer.active {
+  background: rgba(51, 65, 85, 0.8);
+}
+
+.app-layout .main-content {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  overflow: hidden;
+  background-image: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+}
+
+.plot-area {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  overflow: hidden;
+}
+
 /* Responsive adjustments */
 @media (max-width: 1200px) {
   .app-layout {
     flex-direction: column;
+  }
+
+  .sidebar-container {
+    width: 100% !important;
+    max-width: none;
+    min-width: 0;
+  }
+
+  .sidebar-resizer {
+    display: none;
   }
 }

@@ -29,7 +29,7 @@ const DataAnalysisPanel = ({ analysis, onSuggestionClick }) => {
 
                 {analysis.warnings && analysis.warnings.length > 0 && (
                     <div className="analysis-warnings">
-                        <h4>⚠️ Data Issues</h4>
+                        <h4>Data Issues</h4>
                         <ul>
                             {analysis.warnings.map((warning, idx) => (
                                 <li key={idx}>{warning}</li>

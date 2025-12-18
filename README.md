@@ -58,6 +58,25 @@ Plot MCP is a comprehensive plotting system that integrates Matplotlib with logi
 3.  **Edit**: Click on the generated plot title or axes to request modification.
 4.  **Download**: Use the download menu to save your plot in high resolution.
 
+## Environment Configuration
+
+- **Backend port**: set `PORT=8001` before running `python3 backend/main.py` if 8000 is in use.
+- **Frontend API URL**: set `VITE_API_URL` (see `frontend/.env.example`) to point to the backend.
+- **Port auto-release**: backend attempts to terminate processes on the chosen port using `lsof` or `fuser` before binding.
+- **Sandbox memory**: set `PLOT_EXEC_MEMORY_MB=1024` to enforce a memory cap; default is no limit.
+
+## Happy Path Tutorial (End-to-End)
+
+1.  **Create a project**: In the left sidebar, create a project named `My Experiment`.
+2.  **Upload files**: Upload `data_a.csv` and `data_b.csv` into the project.
+3.  **Select files**: Check both files in the project explorer.
+4.  **Review preview**: Inspect the data preview and type summary at the top of the main panel.
+5.  **Join guidance**: Review join suggestions (shared columns and warnings) before plotting.
+6.  **Ask for a plot**: Example request: `Plot temperature from data_a vs pressure from data_b`.
+7.  **Iterate**: Click the plot title/labels to refine the output using natural language.
+8.  **History & undo**: Use thumbnails or undo/redo to revisit earlier plots.
+9.  **Download**: Export a high-resolution image (PNG/PDF/SVG).
+
 ## Configuration
 
 The system uses `Ollama` with the `llama3` model by default. To use a lightweight model for low-resource environments:

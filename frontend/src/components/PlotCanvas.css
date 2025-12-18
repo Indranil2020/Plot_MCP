@@ -1,6 +1,8 @@
 /* Plot Canvas - Center (Maximum Space) */
 .plot-canvas {
     flex: 1;
+    min-width: 0;
+    min-height: 0;
     display: flex;
     flex-direction: column;
     background: #0f172a;
@@ -33,6 +35,28 @@
     color: #94a3b8;
     font-size: 1.1rem;
     margin-bottom: 2rem;
+}
+
+.empty-actions {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.empty-action-btn {
+    padding: 0.75rem 1.25rem;
+    background: #38bdf8;
+    color: #0f172a;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.empty-action-btn:hover {
+    background: #0ea5e9;
+    transform: translateY(-1px);
 }
 
 .features {
@@ -94,6 +118,21 @@
     gap: 0.5rem;
 }
 
+.history-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.toolbar-btn.secondary {
+    background: #0f172a;
+    border: 1px solid #334155;
+}
+
+.toolbar-btn.secondary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .toolbar-btn {
     padding: 0.5rem 1rem;
     background: #334155;
@@ -123,7 +162,7 @@
 .plot-content {
     flex: 1;
     overflow: auto;
-    padding: 2rem;
+    padding: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -131,7 +170,7 @@
 
 .plot-image-container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -150,6 +189,45 @@
     color: #94a3b8;
     font-size: 0.9rem;
     font-style: italic;
+}
+
+.plot-history-strip {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0.5rem 0;
+}
+
+.history-thumb {
+    border: 1px solid #334155;
+    background: transparent;
+    padding: 0.25rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.history-thumb img {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.history-thumb.active {
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+.plot-history-empty {
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.plot-history-empty h4 {
+    color: #e2e8f0;
+    margin-bottom: 0.75rem;
 }
 
 /* Code View */
@@ -196,6 +274,11 @@
 .apply-btn {
     background: #22c55e;
     color: #0f172a;
+}
+
+.apply-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .cancel-btn {
