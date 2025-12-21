@@ -523,7 +523,9 @@ async def chat(request: ChatRequest) -> Dict[str, object]:
         }
     else:
         template_plot = None
-        if data_paths is None and not request.current_code:
+        template_mode = os.getenv("PLOT_TEMPLATE_MODE", "off").strip().lower()
+        templates_enabled = template_mode not in {"off", "0", "false", "disabled"}
+        if templates_enabled and data_paths is None and not request.current_code:
             template_plot = maybe_generate_template_plot(request.message)
 
         if template_plot:

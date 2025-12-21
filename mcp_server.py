@@ -2,17 +2,125 @@
 
 from __future__ import annotations
 
+import importlib.util
+import os
+import socket
+import sys
 import uuid
 from typing import Dict, Optional
 
+ROOT_DIR = os.path.dirname(__file__)
+VENDOR_DIR = os.path.join(ROOT_DIR, "vendor")
+BACKEND_DIR = os.path.join(ROOT_DIR, "backend")
+
+if os.path.isdir(VENDOR_DIR) and VENDOR_DIR not in sys.path:
+    vendor_priority = os.getenv("PLOT_VENDOR_PRIORITY", "0").strip().lower()
+    vendor_first = vendor_priority in {"1", "true", "yes", "on"}
+    if vendor_first:
+        sys.path.insert(0, VENDOR_DIR)
+    else:
+        sys.path.append(VENDOR_DIR)
+if BACKEND_DIR not in sys.path:
+    sys.path.insert(0, BACKEND_DIR)
+
+def _require_module(module_name: str) -> None:
+    if importlib.util.find_spec(module_name) is not None:
+        return
+
+    sys.stderr.write(
+        f"Missing dependency: {module_name!r}\n\n"
+        "Install dependencies:\n"
+        "- User install (recommended): python3 -m pip install --user -r requirements.txt\n"
+        "- Repo-local install:         python3 -m pip install --target vendor -r requirements.txt\n\n"
+        "Then run:\n"
+        "  python3 mcp_server.py\n"
+    )
+    raise SystemExit(1)
+
+def _read_int_env(env_name: str, default: int) -> int:
+    value = os.getenv(env_name, "").strip()
+    if value.isdigit():
+        return int(value)
+    return default
+
+
+def _select_transport() -> str:
+    mode = os.getenv("PLOT_MCP_TRANSPORT", "auto").strip().lower()
+    allowed = {"auto", "stdio", "sse", "streamable-http"}
+    if mode not in allowed:
+        sys.stderr.write(
+            "Invalid PLOT_MCP_TRANSPORT value. Use one of: auto, stdio, sse, streamable-http\n"
+        )
+        raise SystemExit(1)
+    if mode != "auto":
+        return mode
+    if sys.stdin.isatty() and sys.stdout.isatty():
+        return "streamable-http"
+    return "stdio"
+
+
+def _write_startup_hint(transport: str, host: str, port: int) -> None:
+    if transport == "stdio":
+        sys.stderr.write(
+            "PlotMCP started in stdio mode (MCP client should launch this process).\n"
+        )
+        return
+
+    if transport == "sse":
+        sys.stderr.write(f"PlotMCP SSE server listening on http://{host}:{port}/sse\n")
+        sys.stderr.write(f"Messages endpoint: http://{host}:{port}/messages/\n")
+        return
+
+    sys.stderr.write(f"PlotMCP Streamable HTTP server listening on http://{host}:{port}/mcp\n")
+
+def _is_port_in_use(host: str, port: int) -> bool:
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+        sock.settimeout(0.15)
+        return sock.connect_ex((host, port)) == 0
+
+
+def _choose_available_port(host: str, preferred_port: int, scan_limit: int = 32) -> int:
+    if preferred_port <= 0:
+        return 8765
+
+    candidate = preferred_port
+    for _ in range(max(1, scan_limit)):
+        if not _is_port_in_use(host, candidate):
+            return candidate
+        candidate += 1
+    return preferred_port
+
+
+if importlib.util.find_spec("mcp.server.fastmcp") is None:
+    missing_hint = (
+        "Missing dependency: 'mcp'\n\n"
+        "Install dependencies:\n"
+        "- User install: python3 -m pip install --user -r requirements.txt\n"
+        "- Repo-local install: python3 -m pip install --target vendor -r requirements.txt\n\n"
+        "Then run:\n"
+        "  python3 mcp_server.py\n"
+    )
+    sys.stderr.write(missing_hint)
+    raise SystemExit(1)
+
+_require_module("pandas")
+_require_module("numpy")
+_require_module("matplotlib")
+_require_module("seaborn")
+_require_module("requests")
+
 from mcp.server.fastmcp import FastMCP
+from mcp.server.fastmcp.utilities.types import Image
 
-from backend.data_manager import DataManager
-from backend.data_validator import get_validator
-from backend.llm_service import LLMService
-from backend.plot_engine import PlotEngine
+from data_manager import DataManager
+from data_validator import get_validator
+from llm_service import LLMService
+from plot_engine import PlotEngine
 
-mcp = FastMCP("PlotMCP")
+FASTMCP_HOST = os.getenv("FASTMCP_HOST", "127.0.0.1").strip() or "127.0.0.1"
+FASTMCP_PORT = _read_int_env("FASTMCP_PORT", 8765)
+
+mcp = FastMCP("PlotMCP", host=FASTMCP_HOST, port=FASTMCP_PORT)
 
 DATA_MANAGER = DataManager()
 LLM_SERVICE = LLMService()
@@ -24,7 +132,7 @@ def _build_filename(format_type: str) -> str:
     return f"mcp_{uuid.uuid4().hex}.{extension}"
 
 
-@mcp.tool()
+@mcp.tool(structured_output=True)
 async def describe_data(data: str, format: str = "csv") -> Dict[str, object]:
     """Analyze a dataset and return summary plus preview rows."""
     filename = _build_filename(format)
@@ -37,7 +145,7 @@ async def describe_data(data: str, format: str = "csv") -> Dict[str, object]:
     return {"analysis": analysis, "preview": preview}
 
 
-@mcp.tool()
+@mcp.tool(structured_output=False)
 async def plot_data(
     data: str,
     instruction: str,
@@ -45,7 +153,7 @@ async def plot_data(
     provider: str = "ollama",
     api_key: Optional[str] = None,
     model: Optional[str] = None,
-) -> Dict[str, object]:
+) -> list[object]:
     """Generate a plot from raw data and a natural-language instruction."""
     filename = _build_filename(format)
     file_path = await DATA_MANAGER.save_text_data(data, filename)
@@ -61,27 +169,40 @@ async def plot_data(
     )
 
     if response.get("type") == "clarify":
-        return {"type": "clarify", "message": response.get("text", "")}
+        return [str(response.get("text", ""))]
 
     if response.get("type") != "plot_code":
-        return {"type": "text", "message": response.get("text", "")}
+        return [str(response.get("text", ""))]
 
     plot_result = PLOT_ENGINE.execute_code(response["code"], file_path)
     if plot_result.get("error"):
-        return {
-            "type": "error",
-            "message": plot_result.get("error_message", "Plot execution failed"),
-            "warnings": plot_result.get("warnings", []),
-        }
+        warnings = plot_result.get("warnings", [])
+        warning_text = ""
+        if warnings:
+            warning_text = "\n\nWarnings:\n- " + "\n- ".join(str(item) for item in warnings)
+        message = f"Plot execution failed: {plot_result.get('error_message', 'Unknown error')}{warning_text}"
+        return [message]
 
-    return {
-        "type": "plot",
-        "image": plot_result.get("image"),
-        "metadata": plot_result.get("metadata", []),
-        "code": response.get("code", ""),
-        "warnings": plot_result.get("warnings", []),
-    }
+    buffer = plot_result.get("buffer")
+    image_bytes = buffer.getvalue() if hasattr(buffer, "getvalue") else b""
+    warnings = plot_result.get("warnings", [])
+    warning_text = ""
+    if warnings:
+        warning_text = "\n\nWarnings:\n- " + "\n- ".join(str(item) for item in warnings)
+
+    code = response.get("code", "")
+    message = f"Plot generated successfully.{warning_text}\n\n```python\n{code}\n```"
+    return [message, Image(data=image_bytes, format="png")]
 
 
 if __name__ == "__main__":
-    mcp.run()
+    transport = _select_transport()
+
+    if transport != "stdio":
+        selected_port = _choose_available_port(FASTMCP_HOST, FASTMCP_PORT)
+        mcp.settings.port = selected_port
+        FASTMCP_PORT = selected_port
+
+    if sys.stdin.isatty() and sys.stdout.isatty():
+        _write_startup_hint(transport, host=FASTMCP_HOST, port=FASTMCP_PORT)
+    mcp.run(transport=transport)

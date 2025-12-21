@@ -25,9 +25,9 @@ Accepts raw text data and a plot description.
   - `api_key` (string, optional): API key for cloud providers.
   - `model` (string, optional): model name override.
 - **Returns**:
-  - `type`: `plot` | `clarify` | `text` | `error`
-  - When `type == plot`: `image` (base64 png), `code` (python), optional `metadata`, optional `warnings`
-  - When `type == clarify`: `message` describing what to answer next
+  - Unstructured MCP content blocks:
+    - A text block with the generated Python code (and any warnings)
+    - An image block (PNG) when a plot is successfully generated
 
 ### 2. `describe_data`
 Analyzes a dataset and returns column info.
@@ -40,8 +40,38 @@ Analyzes a dataset and returns column info.
 
 ## Running the MCP Server
 
+Install Python dependencies (including the `mcp` package):
+
+```bash
+python3 -m pip install -r requirements.txt
+```
+
+If you cannot (or do not want to) install to your user/site packages, you can install into the repo and the server will pick it up automatically:
+
+```bash
+python3 -m pip install --target vendor -r requirements.txt
+```
+
 ```bash
 python3 mcp_server.py
+```
+
+### Note on “Invalid JSON” errors
+
+MCP stdio servers are **not interactive CLIs**. If you run a stdio MCP server directly in a terminal and type random text (or press Enter), you may see JSON-RPC parsing errors like “Invalid JSON”.
+
+`mcp_server.py` defaults to:
+- `stdio` when launched by an MCP client (Claude Desktop, etc.)
+- `streamable-http` when run from a terminal (TTY) for easier manual testing
+
+You can force a specific mode with `PLOT_MCP_TRANSPORT`:
+
+```bash
+# Force stdio (for MCP clients that launch the process)
+PLOT_MCP_TRANSPORT=stdio python3 mcp_server.py
+
+# Run as an HTTP MCP server (manual testing / HTTP-capable clients)
+PLOT_MCP_TRANSPORT=streamable-http FASTMCP_PORT=8765 python3 mcp_server.py
 ```
 
 ## Reliability Notes
@@ -55,8 +85,8 @@ python3 mcp_server.py
 
 ## connecting to Claude Desktop
 
-1.  Navigate to your Claude Desktop config.
-2.  Add the MCP server configuration:
+1.  Locate your Claude Desktop config (Linux is typically `~/.config/Claude/claude_desktop_config.json`).
+2.  Add the MCP server configuration and restart Claude Desktop:
     ```json
     {
       "mcpServers": {
@@ -71,5 +101,10 @@ python3 mcp_server.py
 ## Environment Variables (Server-Side)
 
 - `OLLAMA_MODEL`: default local model name for Ollama (e.g., `llama3`, `qwen2:0.5b`)
+- `PLOT_GALLERY_RAG_MODE`: set to `off` to disable injecting closest Matplotlib gallery snippets into the LLM prompt (default: enabled)
 - `PLOT_EXEC_MEMORY_MB`: optional sandbox memory limit (0 = no limit)
 - `PLOT_ENFORCE_STYLE`: set to `1` to enforce consistent matplotlib styling defaults in the sandbox
+- `PLOT_TEMPLATE_MODE`: set to `on` to enable built-in deterministic templates for data-free requests (default: disabled / LLM-only)
+- `PLOT_MCP_TRANSPORT`: `auto` (default), `stdio`, `sse`, or `streamable-http`
+- `FASTMCP_HOST`: host for HTTP transports (default `127.0.0.1`)
+- `FASTMCP_PORT`: port for HTTP transports (default `8765`)

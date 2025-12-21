@@ -6,13 +6,13 @@ import json
 import logging
 import os
 from abc import ABC, abstractmethod
+from importlib.util import find_spec
 from typing import Dict, List, Optional
 
-import google.generativeai as genai
 import requests
-from openai import OpenAI
 
 from gallery_loader import get_gallery_prompt
+from gallery_rag import gallery_rag_enabled, retrieve_gallery_examples
 
 
 class LLMProvider(ABC):
@@ -54,6 +54,10 @@ class GeminiProvider(LLMProvider):
     """Google Gemini provider wrapper."""
 
     def __init__(self, api_key: str, model: str = "gemini-1.5-flash") -> None:
+        if find_spec("google.generativeai") is None:
+            raise ValueError("Gemini provider requires 'google-generativeai' to be installed")
+        import google.generativeai as genai
+
         genai.configure(api_key=api_key)
         self.model = genai.GenerativeModel(model)
 
@@ -70,6 +74,10 @@ class OpenAIProvider(LLMProvider):
     """OpenAI provider wrapper."""
 
     def __init__(self, api_key: str, model: str = "gpt-4o") -> None:
+        if find_spec("openai") is None:
+            raise ValueError("OpenAI provider requires the 'openai' package to be installed")
+        from openai import OpenAI
+
         self.client = OpenAI(api_key=api_key)
         self.model = model
 
@@ -140,6 +148,28 @@ class LLMService:
         self.logger.info("response=%s", response_text)
         code = self._extract_code(response_text)
 
+        if (
+            not code
+            and self._should_force_code_retry(
+                query=query,
+                response_text=response_text,
+                current_code=current_code,
+                history=history,
+                data_analysis=data_analysis,
+                file_catalog=file_catalog,
+            )
+        ):
+            retry_prompt = (
+                f"{prompt}\n\n### IMPORTANT\n"
+                "Return ONLY Python code in a ```python``` code block.\n"
+                "- Do not ask follow-up questions.\n"
+                "- Use reasonable defaults.\n"
+                "- If no data is provided, generate synthetic data with numpy.\n"
+            )
+            response_text = self.provider.generate(retry_prompt, self.system_instruction)
+            self.logger.info("retry_response=%s", response_text)
+            code = self._extract_code(response_text)
+
         if code:
             return {
                 "type": "plot_code",
@@ -154,6 +184,12 @@ class LLMService:
             "You are a friendly data visualization expert using Python and Matplotlib.\n"
             "Your goal is to assist the user in creating high-quality, publication-ready plots, "
             "and to chat naturally.\n"
+            "Prefer generating runnable plot code over asking clarifying questions. "
+            "Only ask questions when you genuinely cannot proceed.\n"
+            "Default to 2D plots unless the user explicitly asks for 3D.\n"
+            "If the user requests multiple series/functions, plot all of them together with a legend.\n"
+            "If the user's latest message is a short reply (e.g., '2d', 'yes'), "
+            "treat it as an answer to the previous context in the conversation history and proceed.\n"
             "If the user greets you, respond naturally without generating code.\n"
             "If the user asks for a plot, output valid Python code inside markdown code blocks."
         )
@@ -200,6 +236,12 @@ class LLMService:
             "curve",
             "trend",
             "time series",
+            "wave",
+            "sine",
+            "cos",
+            "cosine",
+            "square",
+            "sawtooth",
         }
 
         if normalized in {"hi", "hello", "hey"} or normalized.startswith("hi "):
@@ -384,6 +426,8 @@ class LLMService:
         if history:
             prompt_parts.append(f"\n### Conversation History\n{history}\n")
 
+        self._append_gallery_rag(prompt_parts, query=query, history=history, current_code=current_code)
+
         prompt_parts.append("\n### Instructions")
         prompt_parts.append("1. Use 'matplotlib.pyplot' as 'plt'. Seaborn ('sns') is also available.")
         prompt_parts.append("   Do NOT import modules; use the provided `plt`, `pd`, `np`, and `sns` objects.")
@@ -408,6 +452,11 @@ class LLMService:
                 "If the user's request requires data, ask them to upload a file. "
                 "If the request is for a general plot, generate synthetic data with numpy."
             )
+
+        prompt_parts.append(
+            "   If the user requests multiple series/functions, plot all of them together with a legend "
+            "(unless they explicitly ask for separate figures)."
+        )
 
         prompt_parts.append(
             """3. Publication Quality:
@@ -435,6 +484,136 @@ class LLMService:
 
         prompt_parts.append(get_gallery_prompt())
         return "\n".join(prompt_parts)
+
+    def _append_gallery_rag(
+        self,
+        prompt_parts: List[str],
+        query: str,
+        history: Optional[str],
+        current_code: Optional[str],
+    ) -> None:
+        """Inject a small number of relevant Matplotlib gallery snippets (RAG)."""
+        if current_code:
+            return
+        if not gallery_rag_enabled():
+            return
+
+        normalized_query = " ".join((query or "").strip().split())
+        if not normalized_query:
+            return
+
+        if self._is_explicit_gallery_request(normalized_query):
+            return
+
+        if not self._should_include_gallery_rag(normalized_query, history):
+            return
+
+        retrieval_query = self._build_gallery_rag_query(normalized_query, history)
+        examples = retrieve_gallery_examples(retrieval_query, limit=3)
+        if not examples:
+            return
+
+        prompt_parts.append("\n### Retrieved Matplotlib Gallery Examples (grounding)")
+        prompt_parts.append(
+            "Use the following example snippets as patterns when helpful. "
+            "Do not keep their synthetic data; adapt to `df` / `dfs` when data is provided."
+        )
+        for example in examples:
+            title = example.title or "Untitled Example"
+            descriptor = f"{example.category}/{example.filename}".strip("/")
+            prompt_parts.append(f"\n#### {title} ({descriptor})")
+            prompt_parts.append(f"```python\n{example.code}\n```")
+
+    def _should_include_gallery_rag(self, query: str, history: Optional[str]) -> bool:
+        lowered = query.lower()
+        plot_tokens = [
+            "plot",
+            "chart",
+            "graph",
+            "scatter",
+            "hist",
+            "violin",
+            "box",
+            "wave",
+            "sine",
+            "cos",
+            "cosine",
+            "square",
+            "sawtooth",
+        ]
+        if any(token in lowered for token in plot_tokens):
+            return True
+        if history and any(token in history.lower() for token in plot_tokens):
+            return True
+        return False
+
+    def _build_gallery_rag_query(self, query: str, history: Optional[str]) -> str:
+        """Build a retrieval query that handles short follow-up replies."""
+        normalized = " ".join((query or "").strip().split())
+        if not normalized:
+            return ""
+
+        if not history:
+            return normalized
+
+        if len(normalized) >= 12:
+            return normalized
+
+        lines = [line.strip() for line in history.splitlines() if line.strip()]
+        tail = " ".join(lines[-6:])
+        combined = f"{tail} {normalized}".strip()
+        return " ".join(combined.split())
+
+    def _is_explicit_gallery_request(self, query: str) -> bool:
+        lowered = query.lower()
+        return any(
+            phrase in lowered
+            for phrase in ["based on this example:", "apply example:", "example:"]
+        )
+
+    def _should_force_code_retry(
+        self,
+        query: str,
+        response_text: str,
+        current_code: Optional[str],
+        history: Optional[str],
+        data_analysis: Optional[Dict[str, object]],
+        file_catalog: Optional[List[Dict[str, object]]],
+    ) -> bool:
+        """Return True when the LLM should be re-asked to output runnable code."""
+        normalized_query = " ".join((query or "").strip().lower().split())
+        if not normalized_query:
+            return False
+
+        if current_code:
+            return True
+
+        has_data = bool(data_analysis and data_analysis.get("columns"))
+        if file_catalog:
+            has_data = True
+
+        plot_keywords = ["plot", "scatter", "line", "bar", "hist", "histogram", "chart", "graph"]
+        looks_like_plot = has_data or any(keyword in normalized_query for keyword in plot_keywords)
+
+        if not looks_like_plot and history:
+            looks_like_plot = any(keyword in history.lower() for keyword in plot_keywords)
+
+        if not looks_like_plot:
+            return False
+
+        normalized_response = " ".join((response_text or "").strip().lower().split())
+        if not normalized_response:
+            return True
+
+        if "```" in normalized_response:
+            return False
+
+        refusal_phrases = [
+            "what kind of visualization",
+            "what would you like",
+            "can you tell me",
+        ]
+        return any(phrase in normalized_response for phrase in refusal_phrases)
 
     def _extract_code(self, text: str) -> Optional[str]:
         if "```python" in text:

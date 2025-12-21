@@ -20,7 +20,7 @@ _PEAK_PATTERN = re.compile(r"(?P<count>\d+)\s*(peaks?|cycles?|periods?)")
 _WAVE_HINTS = {
     "sine": ("sine", "sin"),
     "cosine": ("cosine", "cos"),
-    "square": ("square", "squarewave", "square-wave"),
+    "square": ("square", "squarewave", "square-wave", "sqaure"),
     "sawtooth": ("sawtooth", "saw-tooth", "saw tooth", "swattooth", "swat tooth"),
 }
 

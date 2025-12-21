@@ -30,7 +30,7 @@ Plot MCP is a comprehensive plotting system that integrates Matplotlib with logi
 1.  Clone the repository.
 2.  Install Python dependencies:
     ```bash
-    pip install -r requirements.txt
+    python3 -m pip install -r requirements.txt
     ```
 3.  Install Frontend dependencies:
     ```bash
@@ -72,6 +72,8 @@ Plot MCP is a comprehensive plotting system that integrates Matplotlib with logi
 - **Port auto-release**: backend attempts to terminate processes on the chosen port using `lsof` or `fuser` before binding.
 - **Sandbox memory**: set `PLOT_EXEC_MEMORY_MB=1024` to enforce a memory cap; default is no limit.
 - **Sandbox style**: set `PLOT_ENFORCE_STYLE=1` to apply consistent styling defaults (fonts/ticks/spines).
+- **Gallery prompt grounding (RAG)**: set `PLOT_GALLERY_RAG_MODE=off` to disable injecting the closest Matplotlib gallery snippets into the LLM prompt (default: enabled).
+- **Deterministic templates**: set `PLOT_TEMPLATE_MODE=on` to enable built-in template plots (waves, etc.) as an optional fallback (default: disabled / LLM-only).
 - **Projects directory**: set `PROJECTS_DIR=/path/to/projects` to store projects outside the repo.
 
 ## Happy Path Tutorial (End-to-End)

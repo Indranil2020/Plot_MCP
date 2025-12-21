@@ -2,6 +2,7 @@ fastapi
 uvicorn
 matplotlib
 pandas
+numpy<2
 requests
 python-multipart
 google-generativeai

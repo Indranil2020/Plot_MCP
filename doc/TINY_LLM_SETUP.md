@@ -58,7 +58,8 @@ python3 backend\main.py
 
 - Prefer selecting files in a project instead of pasting huge datasets into chat. The backend sends compact column summaries to the LLM.
 - If the model asks a clarification question (e.g., “which columns?”), answer it in the same chat session so the backend can include history.
-- Some common “no data” plots (sine/cosine/square/sawtooth waves) are generated deterministically without needing the LLM.
+- By default, Plot MCP routes “no data” plot requests through the LLM (generic NL→plot behavior).
+- If you want deterministic templates for common “no data” requests (waves, etc.), set `PLOT_TEMPLATE_MODE=on`.
 
 ## Performance Tips
 
