@@ -140,18 +140,13 @@ class HandlerDashedLines(HandlerLineCollection):
             self.update_prop(legline, orig_handle, legend)
             # set color, dash pattern, and linewidth to that
             # of the lines in linecollection
-            try:
-                color = orig_handle.get_colors()[i]
-            except IndexError:
-                color = orig_handle.get_colors()[0]
-            try:
-                dashes = orig_handle.get_dashes()[i]
-            except IndexError:
-                dashes = orig_handle.get_dashes()[0]
-            try:
-                lw = orig_handle.get_linewidths()[i]
-            except IndexError:
-                lw = orig_handle.get_linewidths()[0]
+            colors = orig_handle.get_colors()
+            dashes_list = orig_handle.get_dashes()
+            widths = orig_handle.get_linewidths()
+
+            color = colors[i] if i < len(colors) else colors[0]
+            dashes = dashes_list[i] if i < len(dashes_list) else dashes_list[0]
+            lw = widths[i] if i < len(widths) else widths[0]
             if dashes[1] is not None:
                 legline.set_dashes(dashes[1])
             legline.set_color(color)

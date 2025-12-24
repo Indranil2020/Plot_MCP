@@ -36,23 +36,20 @@ def process_gallery_examples(gallery_dir="gallery_python"):
         category_examples = []
         
         for py_file in sorted(py_files):
-            try:
-                with open(py_file, 'r', encoding='utf-8') as f:
-                    code = f.read()
-                
-                # Extract title from docstring if present
-                title = py_file.stem.replace('_', ' ').title()
-                
-                category_examples.append({
-                    'filename': py_file.name,
-                    'title': title,
-                    'code': code
-                })
-                
-                total_files += 1
-                
-            except Exception as e:
-                print(f"   ⚠️  Error reading {py_file.name}: {e}")
+            with open(py_file, "r", encoding="utf-8") as f:
+                code = f.read()
+
+            title = py_file.stem.replace("_", " ").title()
+
+            category_examples.append(
+                {
+                    "filename": py_file.name,
+                    "title": title,
+                    "code": code,
+                }
+            )
+
+            total_files += 1
         
         all_examples[category_name] = category_examples
         print(f"   ✅ Processed {len(category_examples)} examples")

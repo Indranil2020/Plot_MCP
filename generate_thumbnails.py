@@ -35,41 +35,32 @@ def generate_thumbnails():
                 print(f"Progress: {i+1}/{len(examples)} (skipped existing)")
             continue
             
-        try:
-            # Skip interactive examples that block execution
-            if any(x in example['code'] for x in ['plt.ginput', 'waitforbuttonpress', 'ginput', 'BlockingContourLabeler']):
-                print(f"Skipping interactive example: {example['title']}")
-                continue
-
-            # Create a safe execution environment
-            plt.clf()
-            plt.close('all')
-            
-            # Execute the code with timeout protection
-            # Note: GalleryLoader returns examples with 'code' field
-            exec(example['code'], {'plt': plt, 'matplotlib': matplotlib, 'np': __import__('numpy')})
-            
-            # Save thumbnail with very low quality to save memory
-            thumb_data = io.BytesIO()
-            plt.savefig(thumb_data, format='png', dpi=20, bbox_inches='tight', pad_inches=0.05)
-            thumb_b64 = base64.b64encode(thumb_data.getvalue()).decode('utf-8')
-            thumbnails[example['title']] = f"data:image/png;base64,{thumb_b64}"
-            
-            # Explicit cleanup
-            thumb_data.close()
-            plt.close('all')
-            
-            # Save after EVERY example to avoid losing progress
-            with open(thumbnails_file, 'w') as f:
-                json.dump(thumbnails, f, indent=2)
-            
-            if (i + 1) % 10 == 0:
-                print(f"Progress: {i+1}/{len(examples)} ({len(thumbnails)} thumbnails)")
-                
-        except Exception as e:
-            print(f"Failed: {example['title']}: {str(e)[:100]}")
-            plt.close('all')
+        # Skip interactive examples that block execution
+        if any(
+            x in example["code"]
+            for x in ["plt.ginput", "waitforbuttonpress", "ginput", "BlockingContourLabeler"]
+        ):
+            print(f"Skipping interactive example: {example['title']}")
             continue
+
+        plt.clf()
+        plt.close("all")
+
+        exec(example["code"], {"plt": plt, "matplotlib": matplotlib, "np": __import__("numpy")})
+
+        thumb_data = io.BytesIO()
+        plt.savefig(thumb_data, format="png", dpi=20, bbox_inches="tight", pad_inches=0.05)
+        thumb_b64 = base64.b64encode(thumb_data.getvalue()).decode("utf-8")
+        thumbnails[example["title"]] = f"data:image/png;base64,{thumb_b64}"
+
+        thumb_data.close()
+        plt.close("all")
+
+        with open(thumbnails_file, "w") as f:
+            json.dump(thumbnails, f, indent=2)
+
+        if (i + 1) % 10 == 0:
+            print(f"Progress: {i+1}/{len(examples)} ({len(thumbnails)} thumbnails)")
     
     print(f"Generated {len(thumbnails)} thumbnails total")
     print("Thumbnail generation complete!")

@@ -35,28 +35,21 @@ plt.grid(True)
             "dpi": case["dpi"]
         }
         
-        try:
-            response = requests.post(url, json=payload, stream=True)
-            if response.status_code == 200:
-                print(f"  Success! Content-Type: {response.headers.get('Content-Type')}")
-                # Verify content length > 0
-                content = response.content
-                print(f"  Size: {len(content)} bytes")
-                
-                # Basic header checks
-                if case["format"] == "png":
-                    assert content.startswith(b'\x89PNG'), "Invalid PNG header"
-                elif case["format"] == "pdf":
-                    assert content.startswith(b'%PDF'), "Invalid PDF header"
-                elif case["format"] == "svg":
-                    # SVG might start with xml declaration or svg tag
-                    assert b'<svg' in content or b'<?xml' in content, "Invalid SVG content"
-                    
-            else:
-                print(f"  Failed! Status: {response.status_code}")
-                print(f"  Response: {response.text}")
-        except Exception as e:
-            print(f"  Error: {e}")
+        response = requests.post(url, json=payload, stream=True)
+        if response.status_code == 200:
+            print(f"  Success! Content-Type: {response.headers.get('Content-Type')}")
+            content = response.content
+            print(f"  Size: {len(content)} bytes")
+
+            if case["format"] == "png":
+                assert content.startswith(b"\x89PNG"), "Invalid PNG header"
+            elif case["format"] == "pdf":
+                assert content.startswith(b"%PDF"), "Invalid PDF header"
+            elif case["format"] == "svg":
+                assert b"<svg" in content or b"<?xml" in content, "Invalid SVG content"
+        else:
+            print(f"  Failed! Status: {response.status_code}")
+            print(f"  Response: {response.text}")
 
 if __name__ == "__main__":
     test_download()

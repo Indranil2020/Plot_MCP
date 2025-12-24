@@ -62,9 +62,9 @@ class ConvertArgsProxy(PassThroughProxy):
     def __call__(self, *args):
         converted_args = []
         for a in args:
-            try:
+            if hasattr(a, "convert_to"):
                 converted_args.append(a.convert_to(self.unit))
-            except AttributeError:
+            else:
                 converted_args.append(TaggedValue(a, self.unit))
         converted_args = tuple([c.get_value() for c in converted_args])
         return super().__call__(*converted_args)
@@ -96,10 +96,7 @@ class ConvertAllProxy(PassThroughProxy):
                 return NotImplemented
 
             if hasattr(a, 'convert_to'):
-                try:
-                    a = a.convert_to(self.unit)
-                except Exception:
-                    pass
+                a = a.convert_to(self.unit)
                 arg_units.append(a.get_unit())
                 converted_args.append(a.get_value())
             else:
@@ -130,14 +127,7 @@ class TaggedValue(metaclass=TaggedValueMeta):
                 '__len__': PassThroughProxy}
 
     def __new__(cls, value, unit):
-        # generate a new subclass for value
-        value_class = type(value)
-        try:
-            subcls = type(f'TaggedValue_of_{value_class.__name__}',
-                          (cls, value_class), {})
-            return object.__new__(subcls)
-        except TypeError:
-            return object.__new__(cls)
+        return object.__new__(cls)
 
     def __init__(self, value, unit):
         self.value = value
@@ -187,9 +177,9 @@ class TaggedValue(metaclass=TaggedValueMeta):
     def convert_to(self, unit):
         if unit == self.unit or not unit:
             return self
-        try:
+        if unit in self.unit.conversions:
             new_value = self.unit.convert_value_to(self.value, unit)
-        except AttributeError:
+        else:
             new_value = self
         return TaggedValue(new_value, unit)
 
@@ -371,15 +361,17 @@ class BasicUnitConverter(units.ConversionInterface):
                 if np.ma.is_masked(thisval):
                     out[i] = np.nan
                 else:
-                    try:
+                    if hasattr(thisval, "convert_to"):
                         out[i] = thisval.convert_to(unit).get_value()
-                    except AttributeError:
+                    else:
                         out[i] = thisval
             return out
         if np.ma.is_masked(val):
             return np.nan
         else:
-            return val.convert_to(unit).get_value()
+            if hasattr(val, "convert_to"):
+                return val.convert_to(unit).get_value()
+            return val
 
     @staticmethod
     def default_units(x, axis):

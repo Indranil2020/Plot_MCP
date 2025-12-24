@@ -71,10 +71,8 @@ print('After Roundtrip:  ', date2)
 # set before any date operations to prevent confusion between different
 # epochs. Trying to change the epoch later will raise a `RuntimeError`.
 
-try:
+if mdates.get_epoch() != new_epoch:
     mdates.set_epoch(new_epoch)  # this is the new MPL 3.3 default.
-except RuntimeError as e:
-    print('RuntimeError:', str(e))
 
 # %%
 # For this tutorial, we reset the sentinel using a private method, but users

@@ -1,77 +1,48 @@
-# Tiny LLM Setup for Local Execution
+# Tiny LLM Setup (Local, CPU-Friendly)
 
-This guide explains how to run Plot MCP entirely locally on consumer hardware (CPU only) using specialized "tiny" Large Language Models.
+Run Plot MCP fully local with small models on modest hardware.
 
-## Why Tiny Models?
+## Pick a Tiny Model
 
-Modern quantized models (like Qwen2-0.5B or Phi-3-Mini) are incredibly efficient. They can run on:
-- Laptops with no dedicated GPU
-- 4GB-8GB RAM systems
-- Fast inference speeds (low latency)
+| Model | Size | RAM | Notes |
+|-------|------|-----|-------|
+| `qwen2:0.5b` | 0.5B | <1 GB | Fastest, lowest memory |
+| `llama3.2:1b` | 1B | ~1.5 GB | Better reasoning, still light |
+| `qwen2:1.5b` | 1.5B | ~1.5 GB | Balanced |
+| `phi3` | 3.8B | ~4 GB | Higher quality, slower |
 
-## Recommended Models
+## Steps
 
-We recommend the following models for this application:
-
-| Model | Size | RAM Req | Speed |
-|-------|------|---------|-------|
-| `qwen2:0.5b` | 0.5B Params | < 1GB | Ultra Fast |
-| `qwen2:1.5b` | 1.5B Params | ~1.5GB | Very Fast |
-| `phi3` | 3.8B Params | ~4GB | Balanced |
-| `llama3.2:1b` | 1B Params | ~1.5GB | Fast |
-
-## Setup Instructions
-
-### 1. Install Ollama
-
-If you haven't already, install Ollama from [ollama.com](https://ollama.com).
-
-### 2. Pull a Tiny Model
-
-Open your terminal and pull one of the recommended models:
-
+1) Install Ollama (https://ollama.com).  
+2) Pull a tiny model:
 ```bash
-# Recommended for absolute lowest resource usage
-ollama pull qwen2:0.5b
-
-# Recommended for better reasoning
-ollama pull llama3.2:1b
+ollama pull qwen2:0.5b          # minimal
+ollama pull llama3.2:1b         # better reasoning
 ```
-
-### 3. Configure Plot MCP
-
-You can tell the application which model to use by setting an environment variable.
-
-#### On Linux/Mac:
+3) Point Plot MCP to the model:
 ```bash
-export OLLAMA_MODEL=qwen2:0.5b
+export OLLAMA_MODEL=qwen2:0.5b   # Linux/Mac
 python3 backend/main.py
 ```
-
-#### On Windows (PowerShell):
+PowerShell:
 ```powershell
 $env:OLLAMA_MODEL = "qwen2:0.5b"
 python3 backend\main.py
 ```
 
-## Notes for Tiny Models
-
-- Prefer selecting files in a project instead of pasting huge datasets into chat. The backend sends compact column summaries to the LLM.
-- If the model asks a clarification question (e.g., “which columns?”), answer it in the same chat session so the backend can include history.
-- By default, Plot MCP routes “no data” plot requests through the LLM (generic NL→plot behavior).
-- If you want deterministic templates for common “no data” requests (waves, etc.), set `PLOT_TEMPLATE_MODE=on`.
-
-## Performance Tips
-
-- **Quantization**: Ollama automatically uses 4-bit quantization, which reduces memory usage by 75% compared to full models.
-- **Context Window**: For tiny models, keep your data paste size reasonable (under 100 rows preview) to avoid overflowing the context.
-
-## Running the Full UI
+## Using the Full UI
 
 ```bash
 python3 backend/main.py
 cd frontend
 npm start
 ```
+Frontend runs on `http://localhost:5173`, backend on `http://0.0.0.0:8000`.
 
-The frontend runs on the Vite dev server (usually `http://localhost:5173`).
+## Tips for Tiny Models
+
+- Prefer selecting files in a project; backend sends compact summaries instead of full data.
+- If asked a clarification (e.g., columns to plot), answer in the same session so context is preserved.
+- To force deterministic templates for data-free requests, set `PLOT_TEMPLATE_MODE=on`.
+- Keep pasted data small (<100 rows preview) to stay within context.
+- Ollama uses 4-bit quantization automatically; no extra tuning required.

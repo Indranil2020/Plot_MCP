@@ -182,9 +182,9 @@ def _setup_qt(tb):
     from matplotlib.backends.qt_compat import QtGui, QtWidgets
 
     menu = QtWidgets.QMenu()
-    try:
+    if hasattr(QtGui, "QActionGroup"):
         QActionGroup = QtGui.QActionGroup  # Qt6
-    except AttributeError:
+    else:
         QActionGroup = QtWidgets.QActionGroup  # Qt5
     group = QActionGroup(menu)
     group.triggered.connect(lambda action: _set_menu_entry(tb, action.text()))

@@ -31,50 +31,52 @@ GALLERY_CATEGORIES = {
 }
 
 def fetch_example_links(category_url):
-    """Fetch all example links from a category page"""
-    try:
-        response = requests.get(category_url, timeout=10)
-        soup = BeautifulSoup(response.content, 'html.parser')
-        
-        # Find all example links
-        links = []
-        for link in soup.find_all('a', href=True):
-            href = link['href']
-            if href.endswith('.html') and not href.endswith('index.html'):
-                full_url = f"https://matplotlib.org/stable/gallery/{href.split('/')[-2]}/{href.split('/')[-1]}"
-                links.append({
-                    'title': link.get_text(strip=True),
-                    'url': full_url
-                })
-        
-        return links
-    except Exception as e:
-        print(f"Error fetching {category_url}: {e}")
+    """Fetch all example links from a category page."""
+    response = requests.get(category_url, timeout=10)
+    if response.status_code != 200:
+        print(f"Error fetching {category_url}: {response.status_code}")
         return []
 
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    links = []
+    for link in soup.find_all("a", href=True):
+        href = link["href"]
+        if href.endswith(".html") and not href.endswith("index.html"):
+            full_url = (
+                "https://matplotlib.org/stable/gallery/"
+                f"{href.split('/')[-2]}/{href.split('/')[-1]}"
+            )
+            links.append(
+                {
+                    "title": link.get_text(strip=True),
+                    "url": full_url,
+                }
+            )
+
+    return links
+
 def extract_code_from_example(example_url):
-    """Extract Python code from an example page"""
-    try:
-        response = requests.get(example_url, timeout=10)
-        soup = BeautifulSoup(response.content, 'html.parser')
-        
-        # Find code blocks
-        code_blocks = soup.find_all('div', class_='highlight-python')
-        if not code_blocks:
-            code_blocks = soup.find_all('pre')
-        
-        code = ""
-        for block in code_blocks:
-            code_text = block.get_text()
-            # Clean up the code
-            code_text = re.sub(r'^>>>\\s*', '', code_text, flags=re.MULTILINE)
-            code_text = re.sub(r'^\\.\\.\\. ', '', code_text, flags=re.MULTILINE)
-            code += code_text + "\\n"
-        
-        return code.strip()
-    except Exception as e:
-        print(f"Error extracting code from {example_url}: {e}")
+    """Extract Python code from an example page."""
+    response = requests.get(example_url, timeout=10)
+    if response.status_code != 200:
+        print(f"Error extracting code from {example_url}: {response.status_code}")
         return ""
+
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    code_blocks = soup.find_all("div", class_="highlight-python")
+    if not code_blocks:
+        code_blocks = soup.find_all("pre")
+
+    code = ""
+    for block in code_blocks:
+        code_text = block.get_text()
+        code_text = re.sub(r"^>>>\s*", "", code_text, flags=re.MULTILINE)
+        code_text = re.sub(r"^\.\.\. ", "", code_text, flags=re.MULTILINE)
+        code += code_text + "\n"
+
+    return code.strip()
 
 def main():
     """Download all examples and create knowledge base"""

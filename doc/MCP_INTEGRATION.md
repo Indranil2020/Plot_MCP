@@ -1,110 +1,90 @@
 # Model Context Protocol (MCP) Integration
 
-This document explains how to integrate Plot MCP with Model Context Protocol (MCP) clients (like Claude Desktop or other AI agents).
+Use Plot MCP from any MCP-capable client (Claude Desktop, Windsurf-style agents, custom tooling) without opening the web UI.
 
-## Overview
+## Quickstart (3 steps)
 
-MCP is a tool protocol: an MCP-capable LLM client connects to an MCP server over stdio and calls tools. Plot MCP includes a standalone MCP server so you can use the plotting engine from **any** MCP-compatible chat UI (Claude Desktop, Windsurf-style agents, custom clients, etc.) without using the web frontend.
-
-Plot MCP supports two usage modes:
-
-1. **Web app** (`backend/main.py` + `frontend/`): projects, multi-file selection, plot history, sessions, UI tools.
-2. **Standalone MCP server** (`mcp_server.py`): exposes a small set of plotting tools over MCP stdio (single dataset per call today).
-
-## Tool Definitions
-
-The repository ships with a ready-to-run MCP server (`mcp_server.py`) that exposes:
-
-### 1. `plot_data`
-Accepts raw text data and a plot description.
-- **Arguments**:
-  - `data` (string): The raw CSV/JSON/space-separated data.
-  - `instruction` (string): What plot to create (e.g., "Scatter plot of x vs y").
-  - `format` (string, optional): `csv` or `json`.
-  - `provider` (string, optional): `ollama`, `openai`, or `gemini`.
-  - `api_key` (string, optional): API key for cloud providers.
-  - `model` (string, optional): model name override.
-- **Returns**:
-  - Unstructured MCP content blocks:
-    - A text block with the generated Python code (and any warnings)
-    - An image block (PNG) when a plot is successfully generated
-
-### 2. `describe_data`
-Analyzes a dataset and returns column info.
-- **Arguments**:
-  - `data` (string): The raw data.
-  - `format` (string, optional): `csv` or `json`.
-- **Returns**:
-  - `analysis`: columns, inferred types, suggested plots, warnings
-  - `preview`: first rows
-
-## Running the MCP Server
-
-Install Python dependencies (including the `mcp` package):
-
+1) **Install deps**
 ```bash
 python3 -m pip install -r requirements.txt
-```
-
-If you cannot (or do not want to) install to your user/site packages, you can install into the repo and the server will pick it up automatically:
-
-```bash
+# or repo-local
 python3 -m pip install --target vendor -r requirements.txt
 ```
-
+2) **Run the MCP server**
 ```bash
+# auto-selects stdio when launched by a client, HTTP when run in a TTY
 python3 mcp_server.py
 ```
+3) **Point your client to it** (examples below).
 
-### Note on “Invalid JSON” errors
+## Tool Surface
 
-MCP stdio servers are **not interactive CLIs**. If you run a stdio MCP server directly in a terminal and type random text (or press Enter), you may see JSON-RPC parsing errors like “Invalid JSON”.
+- `plot_data`  
+  - Args: `data` (string), `instruction` (string), `format` (`csv`|`json`), `provider` (`ollama|openai|gemini`), `api_key`, `model`.  
+  - Returns: text block (code + warnings + saved image path) and PNG image block on success.
+- `describe_data`  
+  - Args: `data` (string), `format` (`csv`|`json`).  
+  - Returns: `analysis` (columns, inferred types, suggested plots, warnings) + `preview` (first rows).
 
-`mcp_server.py` defaults to:
-- `stdio` when launched by an MCP client (Claude Desktop, etc.)
-- `streamable-http` when run from a terminal (TTY) for easier manual testing
+## Transports
 
-You can force a specific mode with `PLOT_MCP_TRANSPORT`:
-
+- Default: `auto` → stdio when client-launched, `streamable-http` when run in a terminal.
+- Force mode:
 ```bash
-# Force stdio (for MCP clients that launch the process)
 PLOT_MCP_TRANSPORT=stdio python3 mcp_server.py
-
-# Run as an HTTP MCP server (manual testing / HTTP-capable clients)
 PLOT_MCP_TRANSPORT=streamable-http FASTMCP_PORT=8765 python3 mcp_server.py
 ```
+- HTTP endpoints (when in HTTP mode):
+  - `/mcp` for MCP messages
+  - `/sse` and `/messages/` for SSE transport
 
-## Reliability Notes
+## Client Recipes
 
-- `plot_data` uses an LLM to generate Matplotlib code. Reliability is improved by deterministic guardrails:
-  - AST linting and import stripping
-  - sandboxed execution (no file/network access)
-  - structured dataset context and column summaries
-- If the tool returns `type: clarify`, respond with the missing details and call `plot_data` again.
-- If you want deterministic “run this code exactly” behavior (no LLM rewrite), use the web backend endpoint `POST /execute_plot` or extend the MCP server with an `execute_plot` tool.
-
-## connecting to Claude Desktop
-
-1.  Locate your Claude Desktop config (Linux is typically `~/.config/Claude/claude_desktop_config.json`).
-2.  Add the MCP server configuration and restart Claude Desktop:
-    ```json
-    {
-      "mcpServers": {
-        "plot-mcp": {
-          "command": "python3",
-          "args": ["/path/to/Plot_MCP/mcp_server.py"]
-        }
-      }
+### Claude Desktop
+Edit `~/.config/Claude/claude_desktop_config.json` (path may vary):
+```json
+{
+  "mcpServers": {
+    "plot-mcp": {
+      "command": "python3",
+      "args": ["/path/to/Plot_MCP/mcp_server.py"]
     }
-    ```
+  }
+}
+```
+Restart Claude Desktop, open a chat, and call tools.
 
-## Environment Variables (Server-Side)
+### Gemini CLI (gcloud genai)
+Run the server over HTTP:
+```bash
+PLOT_MCP_TRANSPORT=streamable-http FASTMCP_PORT=8765 python3 mcp_server.py
+```
+Then configure your client to post MCP JSON-RPC to `http://127.0.0.1:8765/mcp`.
 
-- `OLLAMA_MODEL`: default local model name for Ollama (e.g., `llama3`, `qwen2:0.5b`)
-- `PLOT_GALLERY_RAG_MODE`: set to `off` to disable injecting closest Matplotlib gallery snippets into the LLM prompt (default: enabled)
-- `PLOT_EXEC_MEMORY_MB`: optional sandbox memory limit (0 = no limit)
-- `PLOT_ENFORCE_STYLE`: set to `1` to enforce consistent matplotlib styling defaults in the sandbox
-- `PLOT_TEMPLATE_MODE`: set to `on` to enable built-in deterministic templates for data-free requests (default: disabled / LLM-only)
-- `PLOT_MCP_TRANSPORT`: `auto` (default), `stdio`, `sse`, or `streamable-http`
-- `FASTMCP_HOST`: host for HTTP transports (default `127.0.0.1`)
-- `FASTMCP_PORT`: port for HTTP transports (default `8765`)
+### OpenAI-compatible agents
+Use HTTP transport and point the agent’s MCP client to the `/mcp` endpoint as above.
+
+## Reliability and Safety
+
+- Guardrails: AST lint (blocks imports/calls, ellipsis placeholders), import stripping, sandboxed execution (no file/network access), timeouts, optional memory cap.
+- Clarifications: `plot_data` may return `type: clarify`; answer and call again.
+- Deterministic code-path: for “run this code exactly” behavior, use the web backend `POST /execute_plot` or add an MCP `execute_plot` tool if needed.
+
+## Environment Variables (server)
+
+- `OLLAMA_MODEL` – default local model (e.g., `llama3`, `qwen2:0.5b`).
+- `PLOT_GALLERY_RAG_MODE` – `off` to disable gallery grounding (default on).
+- `PLOT_TEMPLATE_MODE` – `on` to enable deterministic templates for data-free requests.
+- `PLOT_EXEC_MEMORY_MB` – sandbox memory limit (0 = no limit).
+- `PLOT_ENFORCE_STYLE` – `1` to apply consistent Matplotlib styling in the sandbox.
+- `PLOT_MCP_TRANSPORT` – `auto` | `stdio` | `sse` | `streamable-http`.
+- `FASTMCP_HOST`, `FASTMCP_PORT` – host/port for HTTP transports.
+- `PLOT_MCP_OUTPUT_DIR` – directory for saved plot images (default `mcp_outputs`).
+- `PLOT_MCP_IMAGE_FALLBACK` – `1` to include a data URL in the text block for clients that cannot render images.
+
+## Troubleshooting
+
+- “Invalid JSON” when typing in the terminal: stdio MCP servers are not interactive; let the MCP client handle IO, or force HTTP mode for manual testing.
+- Missing deps: install via `python3 -m pip install -r requirements.txt` or `--target vendor`.
+- Plot fails: check lint errors in the returned text block; disallowed imports/calls are blocked before execution.
+- Image not shown in chat: open the saved file path from the tool output, or enable `PLOT_MCP_IMAGE_FALLBACK=1`.

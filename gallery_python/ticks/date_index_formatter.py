@@ -49,11 +49,10 @@ ax1.xaxis.set_major_formatter(DateFormatter('%a'))
 # the data against an index that goes from 0, 1,  ... len(data).  Instead of
 # formatting the tick marks as integers, we format as times.
 def format_date(x, _):
-    try:
-        # convert datetime64 to datetime, and use datetime's strftime:
-        return r["date"][round(x)].item().strftime('%a')
-    except IndexError:
-        pass
+    idx = round(x)
+    if 0 <= idx < len(r["date"]):
+        return r["date"][idx].item().strftime("%a")
+    return ""
 
 # Create an index plot (x defaults to range(len(y)) if omitted)
 ax2.plot(r["adj_close"], 'o-')
@@ -73,10 +72,10 @@ class MyFormatter(Formatter):
 
     def __call__(self, x, pos=0):
         """Return the label for time x at position pos."""
-        try:
-            return self.dates[round(x)].item().strftime(self.fmt)
-        except IndexError:
-            pass
+        idx = round(x)
+        if 0 <= idx < len(self.dates):
+            return self.dates[idx].item().strftime(self.fmt)
+        return ""
 
 
 ax2.xaxis.set_major_formatter(MyFormatter(r["date"], '%a'))

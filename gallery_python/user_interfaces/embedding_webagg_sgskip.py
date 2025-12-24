@@ -15,14 +15,15 @@ import argparse
 import io
 import json
 import mimetypes
+from importlib.util import find_spec
 from pathlib import Path
 import signal
 import socket
 
-try:
-    import tornado
-except ImportError as err:
-    raise RuntimeError("This example requires tornado.") from err
+if find_spec("tornado") is None:
+    raise RuntimeError("This example requires tornado.")
+
+import tornado
 import tornado.httpserver
 import tornado.ioloop
 import tornado.web
@@ -268,7 +269,4 @@ if __name__ == "__main__":
         signal.SIGINT,
         lambda sig, frame: ioloop.add_callback_from_signal(shutdown))
 
-    try:
-        ioloop.start()
-    finally:
-        signal.signal(signal.SIGINT, old_handler)
+    ioloop.start()

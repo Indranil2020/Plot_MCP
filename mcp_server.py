@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import base64
 import importlib.util
 import os
 import socket
@@ -132,6 +133,21 @@ def _build_filename(format_type: str) -> str:
     return f"mcp_{uuid.uuid4().hex}.{extension}"
 
 
+def _ensure_dir(path: str) -> None:
+    if not os.path.isdir(path):
+        os.makedirs(path)
+
+
+def _write_plot_image(image_bytes: bytes, image_format: str) -> str:
+    output_dir = os.getenv("PLOT_MCP_OUTPUT_DIR", os.path.join(ROOT_DIR, "mcp_outputs"))
+    _ensure_dir(output_dir)
+    filename = f"plot_{uuid.uuid4().hex}.{image_format}"
+    output_path = os.path.join(output_dir, filename)
+    with open(output_path, "wb") as f:
+        f.write(image_bytes)
+    return output_path
+
+
 @mcp.tool(structured_output=True)
 async def describe_data(data: str, format: str = "csv") -> Dict[str, object]:
     """Analyze a dataset and return summary plus preview rows."""
@@ -191,8 +207,16 @@ async def plot_data(
         warning_text = "\n\nWarnings:\n- " + "\n- ".join(str(item) for item in warnings)
 
     code = response.get("code", "")
-    message = f"Plot generated successfully.{warning_text}\n\n```python\n{code}\n```"
-    return [message, Image(data=image_bytes, format="png")]
+    image_format = "png"
+    image_path = _write_plot_image(image_bytes, image_format)
+    fallback_text = f"\n\nSaved image: {image_path}"
+    if os.getenv("PLOT_MCP_IMAGE_FALLBACK", "0") == "1":
+        encoded = base64.b64encode(image_bytes).decode("utf-8")
+        data_url = f"data:image/{image_format};base64,{encoded}"
+        fallback_text += f"\n\nImage data URL:\n{data_url}"
+
+    message = f"Plot generated successfully.{warning_text}{fallback_text}\n\n```python\n{code}\n```"
+    return [message, Image(data=image_bytes, format=image_format)]
 
 
 if __name__ == "__main__":

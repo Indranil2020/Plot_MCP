@@ -1,21 +1,21 @@
 # System Architecture
 
-## Overview
+This page shows how the pieces fit together and how data moves through the system.
 
-Plot MCP consists of:
+## High-Level Map
 
-- A **FastAPI backend** (`backend/main.py`) for projects, sessions, data workflow, LLM orchestration, and safe plot execution.
-- A **React + Vite frontend** (`frontend/`) focused on a plot-first workflow with a chat sidebar and tool drawer.
-- An optional **standalone MCP server** (`mcp_server.py`) that exposes plotting tools to any MCP-capable LLM client.
+- **Frontend (React + Vite)**: projects, sessions, file picker, chat, plot canvas, thumbnails, code editor.
+- **Backend (FastAPI)**: projects, sessions, data prep, joins, LLM orchestration, sandboxed plot execution, metrics.
+- **Standalone MCP server**: `mcp_server.py` exposes tools to any MCP-capable client (Claude Desktop, etc.).
 
-## System Diagram
+## Component Diagram
 
 ```mermaid
 graph TD
     User[User] --> Frontend[React Frontend (Vite)]
     Frontend -->|HTTP| Backend[FastAPI Backend]
-    
-    MCPClient[MCP Client (Claude Desktop, etc.)] -->|stdio| MCPServer[mcp_server.py]
+
+    MCPClient[MCP Client] -->|stdio/HTTP| MCPServer[mcp_server.py]
     MCPServer --> Plot
     MCPServer --> LLM
 
@@ -24,60 +24,37 @@ graph TD
         Backend --> Sessions[SessionManager]
         Backend --> Data[DataManager + Validator]
         Backend --> Join[JoinAssistant]
-        Backend --> Gallery[Gallery KB + Adapters]
+        Backend --> Gallery[Gallery RAG]
         Backend --> LLM[LLMService]
         Backend --> Plot[PlotEngine]
         Plot --> Sandbox[SandboxExecutor + sandbox_runner.py]
-        Backend --> Assets[PlotStorage (images + thumbnails)]
+        Backend --> Assets[Images + Thumbnails]
         Backend --> Metrics[/metrics]
     end
 
     subgraph External
-        LLM -->|HTTP| Ollama[Ollama / Local LLM]
+        LLM -->|HTTP| Ollama[Ollama / Local]
         LLM -->|HTTP| Cloud[OpenAI / Gemini]
         Sandbox -->|render| Matplotlib[Matplotlib (Agg)]
     end
 ```
 
-## Component Details
+## Backend Responsibilities (one glance)
 
-### 1. Project + Manifest
+- **Projects**: per-project folders + `project.json` manifest (datasets, hashes, plot history, UI state).
+- **Sessions**: JSON history on disk, auto-titles from first user message for readable threads.
+- **Data**: uploads/paste, preview, schema inference, warnings, suggested plots, join assistant hints.
+- **LLM**: provider adapters (Ollama/OpenAI/Gemini), structured prompts, clarify step, optional gallery RAG.
+- **Plot Engine**: AST lint, import stripping, alias map for multi-file, sandboxed execution with timeouts/memory caps.
+- **Metrics/Logging**: `/metrics` and `backend/logs/llm.log`.
 
-- **`backend/project_manager.py`**: creates and lists per-project folders (default `backend/projects`, configurable via `PROJECTS_DIR`).
-- **`backend/project_manifest.py`**: maintains a `project.json` manifest per project:
-  - dataset registry (paths + inferred schema + hashes)
-  - plot history (image + thumbnail paths + code + description)
-  - UI state (selected files, last plot index)
+## Frontend Layout
 
-### 2. Sessions (Threaded Chat)
+- Sidebar: projects, file selection, sessions, chat context.
+- Main pane: plot canvas + thumbnails; code editor for apply/redo.
+- Tools drawer: Preview, Join/merge assistant, Analysis, Gallery suggestions.
 
-- **`backend/session_manager.py`**: stores sessions and message history as JSON on disk (`backend/sessions` by default).
-- Sessions are auto-titled from the first user message for human-readable thread names.
-
-### 3. Data Workflow
-
-- **`backend/data_manager.py`**: file uploads, pasted data ingestion, previews, and context strings for LLM prompting.
-- **`backend/data_validator.py`**: infers column types, warns about issues, and suggests plot types.
-- **`backend/join_assistant.py`**: provides join/merge suggestions for multi-file plotting.
-
-### 4. LLM Service
-
-- **`backend/llm_service.py`**: provider adapters (Ollama/OpenAI/Gemini), structured prompts, clarification logic, and logging.
-- The backend can also produce deterministic template plots for common data-free requests (e.g., waves).
-
-### 5. Plot Engine + Sandbox
-
-- **`backend/plot_engine.py`**: validates code (`backend/code_safety.py`), strips imports, then runs in a sandboxed subprocess.
-- **`backend/sandbox_executor.py`**: launches `backend/sandbox_runner.py` with timeouts and optional memory caps.
-- **`backend/sandbox_runner.py`**: executes plot code with a restricted builtin set, pre-injected `plt/pd/np/sns`, then saves an image.
-
-### 6. Frontend
-
-- Left sidebar: projects, file selection, sessions, chat.
-- Main area: plot canvas with plot history (thumbnails) and a code editor.
-- Tools drawer: Preview / Join / Analysis / Gallery.
-
-## Data Flow
+## Data Journey (concise)
 
 ```mermaid
 sequenceDiagram
@@ -88,29 +65,36 @@ sequenceDiagram
     participant P as PlotEngine
     participant S as Sandbox
 
-    U->>F: Create project
-    F->>B: POST /projects
-    B-->>F: project created + manifest
+    U->>F: Select project + files
+    F->>B: GET/POST project resources
+    B-->>F: Manifest + previews + analysis
 
-    U->>F: Upload / paste data
-    F->>B: POST /projects/{name}/upload OR POST /paste_data
-    B-->>F: preview + analysis + dataset registry update
+    U->>F: "Plot X vs Y" (chat)
+    F->>B: POST /chat (session, selected_files)
+    B->>L: Build prompt + generate code
+    L-->>B: Code or clarify
+    B->>P: Lint + sanitize
+    P->>S: Execute safely
+    S-->>P: Image + metadata
+    B-->>F: Text + PNG + history entry
+    F-->>U: Render plot and thumbnails
 
-    U->>F: "Plot X vs Y"
-    F->>B: POST /chat (session_id + selected_files)
-    B->>L: Generate Python Code
-    L-->>B: Code
-    
-    B->>P: Validate + sanitize
-    P->>S: Execute in subprocess
-    S-->>P: Image + Metadata
-    B-->>F: Response + Image
-    F-->>U: Display Plot
-
-    U->>F: Edit code and apply
-    F->>B: POST /execute_plot
-    B->>P: Execute (no LLM rewrite)
-    P->>S: Execute in subprocess
-    S-->>P: Image + Metadata
-    B-->>F: Updated image + plot history entry
+    U->>F: Edit code
+    F->>B: POST /execute_plot (no LLM rewrite)
+    B->>P: Execute
+    S-->>P: Image
+    B-->>F: Updated plot
 ```
+
+## Ports and Defaults
+
+- Backend: `http://0.0.0.0:8000`
+- Frontend (Vite): `http://localhost:5173`
+- MCP server: stdio by default; HTTP transport defaults to `127.0.0.1:8765`
+
+## Safety Rails
+
+- No try/except in core logic; validation + explicit error propagation.
+- AST lint blocks disallowed imports/calls and ellipsis placeholders.
+- Sandbox runner: restricted builtins, injected `plt/pd/np/sns`, resource limits, Agg renderer.
+- Optional memory cap via `PLOT_EXEC_MEMORY_MB`; optional enforced styling via `PLOT_ENFORCE_STYLE=1`.
