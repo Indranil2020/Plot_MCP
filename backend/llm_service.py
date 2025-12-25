@@ -15,6 +15,19 @@ from gallery_loader import get_gallery_prompt
 from gallery_rag import gallery_rag_enabled, retrieve_gallery_examples
 
 
+def _read_timeout_env(name: str, default: float) -> float:
+    value = os.getenv(name, "").strip()
+    if not value:
+        return default
+    try:
+        parsed = float(value)
+    except ValueError:
+        return default
+    if parsed <= 0:
+        return default
+    return parsed
+
+
 class LLMProvider(ABC):
     """Abstract interface for LLM providers."""
 
@@ -28,10 +41,16 @@ class OllamaProvider(LLMProvider):
     """Ollama provider wrapper."""
 
     def __init__(
-        self, model: str = "llama3", api_url: str = "http://localhost:11434/api/generate"
+        self,
+        model: str = "llama3",
+        api_url: str = "http://localhost:11434/api/generate",
+        timeout_seconds: float = 60.0,
+        connect_timeout_seconds: float = 5.0,
     ) -> None:
         self.model = model
         self.api_url = api_url
+        self.timeout_seconds = timeout_seconds
+        self.connect_timeout_seconds = connect_timeout_seconds
 
     def generate(self, prompt: str, system_instruction: Optional[str] = None) -> str:
         full_prompt = prompt
@@ -45,40 +64,58 @@ class OllamaProvider(LLMProvider):
             "options": {"temperature": 0.2, "num_predict": 2048},
         }
 
-        response = requests.post(self.api_url, json=payload)
-        response.raise_for_status()
+        try:
+            response = requests.post(
+                self.api_url,
+                json=payload,
+                timeout=(self.connect_timeout_seconds, self.timeout_seconds),
+            )
+            response.raise_for_status()
+        except requests.exceptions.RequestException as exc:
+            raise RuntimeError(f"Ollama request failed: {exc}") from exc
         return response.json().get("response", "")
 
 
 class GeminiProvider(LLMProvider):
     """Google Gemini provider wrapper."""
 
-    def __init__(self, api_key: str, model: str = "gemini-1.5-flash") -> None:
+    def __init__(
+        self, api_key: str, model: str = "gemini-1.5-flash", timeout_seconds: float = 60.0
+    ) -> None:
         if find_spec("google.generativeai") is None:
             raise ValueError("Gemini provider requires 'google-generativeai' to be installed")
         import google.generativeai as genai
 
         genai.configure(api_key=api_key)
         self.model = genai.GenerativeModel(model)
+        self.timeout_seconds = timeout_seconds
 
     def generate(self, prompt: str, system_instruction: Optional[str] = None) -> str:
         full_prompt = prompt
         if system_instruction:
             full_prompt = f"{system_instruction}\n\n{prompt}"
 
-        response = self.model.generate_content(full_prompt)
+        try:
+            response = self.model.generate_content(
+                full_prompt,
+                request_options={"timeout": self.timeout_seconds},
+            )
+        except TypeError:
+            response = self.model.generate_content(full_prompt)
         return response.text
 
 
 class OpenAIProvider(LLMProvider):
     """OpenAI provider wrapper."""
 
-    def __init__(self, api_key: str, model: str = "gpt-4o") -> None:
+    def __init__(
+        self, api_key: str, model: str = "gpt-4o", timeout_seconds: float = 60.0
+    ) -> None:
         if find_spec("openai") is None:
             raise ValueError("OpenAI provider requires the 'openai' package to be installed")
         from openai import OpenAI
 
-        self.client = OpenAI(api_key=api_key)
+        self.client = OpenAI(api_key=api_key, timeout=timeout_seconds)
         self.model = model
 
     def generate(self, prompt: str, system_instruction: Optional[str] = None) -> str:
@@ -98,7 +135,13 @@ class LLMService:
 
     def __init__(self) -> None:
         default_model = os.getenv("OLLAMA_MODEL", "llama3")
-        self.provider: LLMProvider = OllamaProvider(model=default_model)
+        self.timeout_seconds = _read_timeout_env("PLOT_LLM_TIMEOUT", 60.0)
+        self.connect_timeout_seconds = _read_timeout_env("PLOT_LLM_CONNECT_TIMEOUT", 5.0)
+        self.provider: LLMProvider = OllamaProvider(
+            model=default_model,
+            timeout_seconds=self.timeout_seconds,
+            connect_timeout_seconds=self.connect_timeout_seconds,
+        )
         self.system_instruction = self._construct_system_instruction()
         self.logger = self._setup_logger()
 
@@ -108,14 +151,24 @@ class LLMService:
         if provider_name.lower() == "gemini":
             if not api_key:
                 raise ValueError("API Key required for Gemini")
-            self.provider = GeminiProvider(api_key, model=model_name or "gemini-1.5-flash")
+            self.provider = GeminiProvider(
+                api_key,
+                model=model_name or "gemini-1.5-flash",
+                timeout_seconds=self.timeout_seconds,
+            )
         elif provider_name.lower() == "openai":
             if not api_key:
                 raise ValueError("API Key required for OpenAI")
-            self.provider = OpenAIProvider(api_key, model=model_name or "gpt-4o")
+            self.provider = OpenAIProvider(
+                api_key, model=model_name or "gpt-4o", timeout_seconds=self.timeout_seconds
+            )
         else:
             default_model = os.getenv("OLLAMA_MODEL", "llama3")
-            self.provider = OllamaProvider(model=model_name or default_model)
+            self.provider = OllamaProvider(
+                model=model_name or default_model,
+                timeout_seconds=self.timeout_seconds,
+                connect_timeout_seconds=self.connect_timeout_seconds,
+            )
         self.system_instruction = self._construct_system_instruction()
 
     async def process_query(
@@ -143,7 +196,17 @@ class LLMService:
             file_catalog=file_catalog,
         )
 
-        response_text = self.provider.generate(prompt, self.system_instruction)
+        try:
+            response_text = self.provider.generate(prompt, self.system_instruction)
+        except Exception as exc:
+            self.logger.exception("llm_provider_error")
+            return {
+                "type": "text",
+                "text": (
+                    "LLM request failed: "
+                    f"{exc}. Check that your provider is running and configured."
+                ),
+            }
         self.logger.info("prompt=%s", prompt)
         self.logger.info("response=%s", response_text)
         code = self._extract_code(response_text)
@@ -166,7 +229,17 @@ class LLMService:
                 "- Use reasonable defaults.\n"
                 "- If no data is provided, generate synthetic data with numpy.\n"
             )
-            response_text = self.provider.generate(retry_prompt, self.system_instruction)
+            try:
+                response_text = self.provider.generate(retry_prompt, self.system_instruction)
+            except Exception as exc:
+                self.logger.exception("llm_provider_error_retry")
+                return {
+                    "type": "text",
+                    "text": (
+                        "LLM request failed: "
+                        f"{exc}. Check that your provider is running and configured."
+                    ),
+                }
             self.logger.info("retry_response=%s", response_text)
             code = self._extract_code(response_text)
 

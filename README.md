@@ -74,6 +74,7 @@ Plot MCP is a comprehensive plotting system that integrates Matplotlib with logi
 - **Sandbox style**: set `PLOT_ENFORCE_STYLE=1` to apply consistent styling defaults (fonts/ticks/spines).
 - **Gallery prompt grounding (RAG)**: set `PLOT_GALLERY_RAG_MODE=off` to disable injecting the closest Matplotlib gallery snippets into the LLM prompt (default: enabled).
 - **Deterministic templates**: set `PLOT_TEMPLATE_MODE=on` to enable built-in template plots (waves, etc.) as an optional fallback (default: disabled / LLM-only).
+- **LLM timeouts**: set `PLOT_LLM_TIMEOUT` (seconds) and optionally `PLOT_LLM_CONNECT_TIMEOUT` for provider calls (defaults: 60s / 5s).
 - **Projects directory**: set `PROJECTS_DIR=/path/to/projects` to store projects outside the repo.
 
 ## Happy Path Tutorial (End-to-End)

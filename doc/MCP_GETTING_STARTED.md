@@ -54,7 +54,14 @@ PLOT_MCP_TRANSPORT=streamable-http FASTMCP_PORT=8765 python3 mcp_server.py
   - Returns: column info, inferred types, suggested plots, preview rows
 - `plot_data`:
   - Args: `data`, `instruction`, `format` (`csv`|`json`), optional `provider` (`ollama|openai|gemini`), `api_key`, `model`
-  - Returns: text block (code + warnings + saved image path) and PNG image block
+  - Returns: text block (code + warnings + saved image path + latest viewer) and PNG image block
+- `describe_file`:
+  - Args: `file_path` (CSV/JSON)
+  - Returns: column info, inferred types, suggested plots, preview rows
+- `plot_file`:
+  - Args: `file_path` (CSV/JSON), `instruction`, optional `provider`, `api_key`, `model`
+  - Returns: text block (code + warnings + saved image path + latest viewer) and PNG image block
+  - Note: file paths must be inside `PLOT_MCP_ALLOWED_DIRS`
 
 ## 6) Environment knobs (common)
 - `PLOT_MCP_TRANSPORT`: `auto` (default) | `stdio` | `sse` | `streamable-http`
@@ -64,6 +71,8 @@ PLOT_MCP_TRANSPORT=streamable-http FASTMCP_PORT=8765 python3 mcp_server.py
 - `PLOT_TEMPLATE_MODE`: `on` for deterministic templates when no data is provided
 - `PLOT_MCP_OUTPUT_DIR`: directory for saved plot images (default `mcp_outputs`)
 - `PLOT_MCP_IMAGE_FALLBACK`: `1` to include a data URL in the text block
+- `PLOT_MCP_ALLOWED_DIRS`: colon-separated allowed roots for file tools (default repo root)
+- `PLOT_MCP_MAX_FILE_MB`: max file size allowed for file tools (default 20)
 
 ## 7) Sanity check (HTTP mode)
 If running in HTTP mode, you can probe the MCP endpoint:
@@ -78,4 +87,4 @@ You should see a JSON response with `serverInfo.name = "PlotMCP"`.
 - “Invalid JSON” when typing in the terminal: stdio MCP servers are not interactive; let the MCP client handle IO or use HTTP mode for manual testing.
 - Missing dependencies: install with `pip install -r requirements.txt` (or `--target vendor`).
 - Plot errors: check the returned text block for lint errors (disallowed imports, ellipsis placeholders). Fix and call again.
-- Image not shown in chat: open the saved image path from the tool output or enable `PLOT_MCP_IMAGE_FALLBACK=1`.
+- Image not shown in chat: open `mcp_outputs/latest.html` (auto-refresh), or open the saved image path from the tool output.

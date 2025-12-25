@@ -21,10 +21,17 @@ python3 mcp_server.py
 
 - `plot_data`  
   - Args: `data` (string), `instruction` (string), `format` (`csv`|`json`), `provider` (`ollama|openai|gemini`), `api_key`, `model`.  
-  - Returns: text block (code + warnings + saved image path) and PNG image block on success.
+  - Returns: text block (code + warnings + saved image path + latest viewer) and PNG image block on success.
 - `describe_data`  
   - Args: `data` (string), `format` (`csv`|`json`).  
   - Returns: `analysis` (columns, inferred types, suggested plots, warnings) + `preview` (first rows).
+- `plot_file`  
+  - Args: `file_path` (CSV/JSON), `instruction`, optional `provider`, `api_key`, `model`.  
+  - Returns: text block (code + warnings + saved image path + latest viewer) and PNG image block on success.
+- `describe_file`  
+  - Args: `file_path` (CSV/JSON).  
+  - Returns: `analysis` + `preview`.
+  - Note: file paths must be inside `PLOT_MCP_ALLOWED_DIRS`.
 
 ## Transports
 
@@ -75,16 +82,20 @@ Use HTTP transport and point the agent’s MCP client to the `/mcp` endpoint as 
 - `OLLAMA_MODEL` – default local model (e.g., `llama3`, `qwen2:0.5b`).
 - `PLOT_GALLERY_RAG_MODE` – `off` to disable gallery grounding (default on).
 - `PLOT_TEMPLATE_MODE` – `on` to enable deterministic templates for data-free requests.
+- `PLOT_LLM_TIMEOUT` – max seconds to wait for LLM responses (default 60).
+- `PLOT_LLM_CONNECT_TIMEOUT` – max seconds for LLM connection (default 5).
 - `PLOT_EXEC_MEMORY_MB` – sandbox memory limit (0 = no limit).
 - `PLOT_ENFORCE_STYLE` – `1` to apply consistent Matplotlib styling in the sandbox.
 - `PLOT_MCP_TRANSPORT` – `auto` | `stdio` | `sse` | `streamable-http`.
 - `FASTMCP_HOST`, `FASTMCP_PORT` – host/port for HTTP transports.
 - `PLOT_MCP_OUTPUT_DIR` – directory for saved plot images (default `mcp_outputs`).
 - `PLOT_MCP_IMAGE_FALLBACK` – `1` to include a data URL in the text block for clients that cannot render images.
+- `PLOT_MCP_ALLOWED_DIRS` – colon-separated allowed roots for `plot_file` / `describe_file` (default repo root).
+- `PLOT_MCP_MAX_FILE_MB` – max file size allowed for file tools (default 20).
 
 ## Troubleshooting
 
 - “Invalid JSON” when typing in the terminal: stdio MCP servers are not interactive; let the MCP client handle IO, or force HTTP mode for manual testing.
 - Missing deps: install via `python3 -m pip install -r requirements.txt` or `--target vendor`.
 - Plot fails: check lint errors in the returned text block; disallowed imports/calls are blocked before execution.
-- Image not shown in chat: open the saved file path from the tool output, or enable `PLOT_MCP_IMAGE_FALLBACK=1`.
+- Image not shown in chat: open `mcp_outputs/latest.html` (auto-refresh), or open the saved image path from the tool output.

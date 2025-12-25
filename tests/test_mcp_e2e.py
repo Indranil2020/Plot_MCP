@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import os
 import sys
+from pathlib import Path
 
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if ROOT_DIR not in sys.path:
@@ -81,7 +82,7 @@ def test_initialize_and_list_tools():
 
         assert init_resp["result"]["serverInfo"]["name"] == "PlotMCP"
         tool_names = {tool["name"] for tool in list_resp["result"]["tools"]}
-        assert {"describe_data", "plot_data"}.issubset(tool_names)
+        assert {"describe_data", "plot_data", "describe_file", "plot_file"}.issubset(tool_names)
 
     anyio.run(scenario)
 
@@ -225,6 +226,56 @@ def test_plot_data_generates_image_and_code(tmp_path, monkeypatch):
         assert image_blocks, "Expected an image block in plot response"
         assert "Plot generated successfully" in text_blocks[0].get("text", "")
         assert len(image_blocks[0].get("data", b"")) > 0
+
+    anyio.run(scenario)
+
+
+def test_plot_data_with_empty_input_generates_image(tmp_path, monkeypatch):
+    async def scenario() -> None:
+        _set_upload_dir(str(tmp_path))
+
+        async def fake_process_query(**kwargs):
+            return {
+                "type": "plot_code",
+                "code": (
+                    "x = np.linspace(0, 2 * np.pi, 200)\n"
+                    "y = np.sin(x)\n"
+                    "plt.figure(figsize=(4, 3))\n"
+                    "plt.plot(x, y)\n"
+                    "plt.xlabel('x')\n"
+                    "plt.ylabel('sin(x)')\n"
+                ),
+                "text": "generated",
+            }
+
+        monkeypatch.setattr(mcp_server.LLM_SERVICE, "process_query", fake_process_query)
+
+        init = _init_message("1")
+        plot_call = _build_message(
+            "2",
+            "tools/call",
+            {
+                "name": "plot_data",
+                "arguments": {
+                    "data": "",
+                    "instruction": "plot a sine wave",
+                    "format": "csv",
+                    "provider": "ollama",
+                },
+            },
+        )
+
+        responses = await _run_mcp([init, plot_call])
+        _, plot_resp = responses
+        result = plot_resp.get("result", {})
+        content = result.get("content", [])
+
+        text_blocks = [item for item in content if isinstance(item, dict) and item.get("type") == "text"]
+        image_blocks = [item for item in content if isinstance(item, dict) and item.get("type") == "image"]
+
+        assert text_blocks, "Expected a text block in plot response"
+        assert image_blocks, "Expected an image block in plot response"
+        assert "Plot generated successfully" in text_blocks[0].get("text", "")
 
     anyio.run(scenario)
 
@@ -424,6 +475,88 @@ def test_describe_data_preview_is_capped(tmp_path):
         preview = structured.get("result", {}).get("preview", [])
 
         assert len(preview) == 10
+
+    anyio.run(scenario)
+
+
+def test_describe_file_reads_allowed_path(tmp_path, monkeypatch):
+    csv_path = tmp_path / "data.csv"
+    csv_path.write_text("a,b\n1,2\n3,4")
+
+    monkeypatch.setenv("PLOT_MCP_ALLOWED_DIRS", str(tmp_path))
+
+    async def scenario() -> None:
+        init = _init_message("1")
+        describe = _build_message(
+            "2",
+            "tools/call",
+            {
+                "name": "describe_file",
+                "arguments": {"file_path": str(csv_path)},
+            },
+        )
+
+        responses = await _run_mcp([init, describe])
+        _, describe_resp = responses
+
+        result = describe_resp["result"]
+        structured = result.get("structuredContent", {})
+        analysis = structured.get("result", {}).get("analysis", {})
+        preview = structured.get("result", {}).get("preview", [])
+
+        assert analysis.get("columns") == ["a", "b"]
+        assert len(preview) == 2
+
+    anyio.run(scenario)
+
+
+def test_plot_file_generates_image(tmp_path, monkeypatch):
+    csv_path = tmp_path / "data.csv"
+    csv_path.write_text("x,y\n0,0\n1,1\n2,4")
+
+    monkeypatch.setenv("PLOT_MCP_ALLOWED_DIRS", str(tmp_path))
+
+    async def fake_process_query(**kwargs):
+        return {
+            "type": "plot_code",
+            "code": (
+                "plt.figure(figsize=(4, 3))\n"
+                "plt.plot(df['x'], df['y'], label='series')\n"
+                "plt.xlabel('x')\n"
+                "plt.ylabel('y')\n"
+                "plt.legend()\n"
+            ),
+            "text": "generated",
+        }
+
+    monkeypatch.setattr(mcp_server.LLM_SERVICE, "process_query", fake_process_query)
+
+    async def scenario() -> None:
+        init = _init_message("1")
+        plot_call = _build_message(
+            "2",
+            "tools/call",
+            {
+                "name": "plot_file",
+                "arguments": {
+                    "file_path": str(csv_path),
+                    "instruction": "plot y vs x",
+                    "provider": "ollama",
+                },
+            },
+        )
+
+        responses = await _run_mcp([init, plot_call])
+        _, plot_resp = responses
+        result = plot_resp.get("result", {})
+        content = result.get("content", [])
+
+        text_blocks = [item for item in content if isinstance(item, dict) and item.get("type") == "text"]
+        image_blocks = [item for item in content if isinstance(item, dict) and item.get("type") == "image"]
+
+        assert text_blocks, "Expected a text block in plot response"
+        assert image_blocks, "Expected an image block in plot response"
+        assert "Plot generated successfully" in text_blocks[0].get("text", "")
 
     anyio.run(scenario)
 

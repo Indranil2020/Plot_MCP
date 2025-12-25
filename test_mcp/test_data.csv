@@ -1,0 +1,25 @@
+Date,Region,Product,Revenue,Profit,Satisfaction_Score,Marketing_Spend
+2023-01-01,North,Widget A,1500,300,4.5,500
+2023-01-01,South,Widget B,1200,250,3.8,400
+2023-01-01,East,Widget A,1600,320,4.2,550
+2023-01-01,West,Widget C,900,100,2.5,300
+2023-01-02,North,Widget B,1300,260,3.9,420
+2023-01-02,South,Widget A,1550,310,4.6,510
+2023-01-02,East,Widget C,950,120,2.8,310
+2023-01-02,West,Widget B,1250,240,3.7,410
+2023-01-03,North,Widget C,1100,150,3.0,350
+2023-01-03,South,Widget B,1350,270,4.0,430
+2023-01-03,East,Widget A,1700,340,4.8,580
+2023-01-03,West,Widget A,1400,280,4.1,480
+2023-01-04,North,Widget A,1450,290,4.4,490
+2023-01-04,South,Widget C,800,80,2.2,290
+2023-01-04,East,Widget B,1280,255,3.6,415
+2023-01-04,West,Widget C,920,110,2.6,305
+2023-01-05,North,Widget B,1320,264,3.8,425
+2023-01-05,South,Widget A,1580,316,4.7,515
+2023-01-05,East,Widget C,980,140,3.1,320
+2023-01-05,West,Widget B,1220,238,3.5,405
+2023-01-06,North,Widget C,1050,130,2.9,340
+2023-01-06,South,Widget B,1380,276,4.1,435
+2023-01-06,East,Widget A,1650,330,4.5,570
+2023-01-06,West,Widget A,1350,270,4.0,470

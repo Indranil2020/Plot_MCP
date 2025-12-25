@@ -18,8 +18,6 @@ class TemplatePlot:
 _PEAK_PATTERN = re.compile(r"(?P<count>\d+)\s*(peaks?|cycles?|periods?)")
 
 _WAVE_HINTS = {
-    "sine": ("sine", "sin"),
-    "cosine": ("cosine", "cos"),
     "square": ("square", "squarewave", "square-wave", "sqaure"),
     "sawtooth": ("sawtooth", "saw-tooth", "saw tooth", "swattooth", "swat tooth"),
 }
@@ -63,17 +61,21 @@ def _detect_waves(normalized_query: str) -> List[str]:
     detected: List[str] = []
 
     for wave_name, hints in _WAVE_HINTS.items():
-        if wave_name in {"sine", "cosine"}:
-            continue
-
         if any(hint in normalized_query for hint in hints):
             detected.append(wave_name)
 
     if "sine" in normalized_query or re.search(r"\bsin\b", normalized_query):
         detected.insert(0, "sine")
-    if "cosine" in normalized_query or re.search(r"\bcos\b", normalized_query):
+    if (
+        "cosine" in normalized_query
+        or re.search(r"\bcos\b", normalized_query)
+        or re.search(r"\bcose\b", normalized_query)
+    ):
         if "cosine" not in detected:
             detected.append("cosine")
+    if "tangent" in normalized_query or re.search(r"\btan\b", normalized_query):
+        if "tangent" not in detected:
+            detected.append("tangent")
 
     unique: List[str] = []
     for item in detected:
@@ -91,10 +93,12 @@ def _multi_wave_code(waves: Sequence[str], peaks: int) -> str:
     color_map = {
         "sine": "#1f77b4",
         "cosine": "#ff7f0e",
+        "tangent": "#ef4444",
         "square": "#22c55e",
         "sawtooth": "#a855f7",
     }
 
+    has_tangent = "tangent" in waves
     lines = [
         "plt.style.use('seaborn-v0_8-whitegrid')",
         f"x = np.linspace(0, 2 * np.pi * {peaks}, 2500)",
@@ -107,6 +111,12 @@ def _multi_wave_code(waves: Sequence[str], peaks: int) -> str:
             lines.append(f"ax.plot(x, np.sin(x), linewidth=2.0, color={color!r}, label='sine')")
         elif wave == "cosine":
             lines.append(f"ax.plot(x, np.cos(x), linewidth=2.0, color={color!r}, label='cosine')")
+        elif wave == "tangent":
+            lines.append("tan = np.tan(x / 2.0)")
+            lines.append("tan = np.where(np.abs(tan) > 5, np.nan, tan)")
+            lines.append(
+                f"ax.plot(x, tan, linewidth=2.0, color={color!r}, label='tangent')"
+            )
         elif wave == "square":
             lines.append("square = np.where(np.sin(x) >= 0, 1.0, -1.0)")
             lines.append(
@@ -119,12 +129,13 @@ def _multi_wave_code(waves: Sequence[str], peaks: int) -> str:
                 f"ax.plot(x, saw, linewidth=2.0, color={color!r}, label='sawtooth')"
             )
 
+    y_limits = (-5, 5) if has_tangent else (-1.25, 1.25)
     lines.extend(
         [
             "ax.set_title('Waves')",
             "ax.set_xlabel('x')",
             "ax.set_ylabel('amplitude')",
-            "ax.set_ylim(-1.25, 1.25)",
+            f"ax.set_ylim({y_limits[0]}, {y_limits[1]})",
             "ax.legend(loc='best', ncol=min(4, len(ax.get_lines())))",
             "fig.tight_layout()",
         ]

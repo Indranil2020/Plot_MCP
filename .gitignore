@@ -6,4 +6,11 @@ backend/sessions/
 uploads/
 vendor/
 .venv/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.svg
+*.pdf
 
